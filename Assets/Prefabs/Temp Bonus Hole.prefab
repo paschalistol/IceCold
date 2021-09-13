@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2db793a7693ecf34ab2a50924f193ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.999694, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7219053098728340603}
   - component: {fileID: -7957277714196036401}
   - component: {fileID: 2721769697628829736}
+  - component: {fileID: 4022808316975881496}
   m_Layer: 0
   m_Name: Temp Bonus Hole
   m_TagString: Hole
@@ -193,6 +194,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!111 &4022808316975881496
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901901174573548207}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: cebf74df50969c242808420bb6428193, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: cebf74df50969c242808420bb6428193, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6991734542195959735
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064982865130214794, guid: 1a7ba28d903d6a4428e75d8002ca84a8, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4278190080
+      value: 4278226395
       objectReference: {fileID: 0}
     - target: {fileID: 6064982865130214794, guid: 1a7ba28d903d6a4428e75d8002ca84a8, type: 3}
       propertyPath: m_VerticalAlignment

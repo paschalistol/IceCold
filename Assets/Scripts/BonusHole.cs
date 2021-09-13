@@ -8,10 +8,12 @@ public class BonusHole : Hole
     public static int bonusNumber = 0;
     [SerializeField] private TMP_Text label;
     private bool activeGoal = false;
+    Animation anim;
 
     private void Start()
     {
         SetLabel();
+        anim = GetComponent<Animation>();
     }
     protected override void EndRound()
     {
@@ -24,5 +26,16 @@ public class BonusHole : Hole
     private void SetLabel()
     {
         label.SetText("-" + ++bonusNumber + "-");
+    }
+    private void PlayAnimation(bool play)
+    {
+        if (play)
+        {
+            anim.Play();
+        }
+        else
+        {
+            anim.Stop();
+        }
     }
 }
