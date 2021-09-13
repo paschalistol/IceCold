@@ -52,11 +52,7 @@ public class HoleGeneratorClassic : MonoBehaviour
                 GameObject hole = Instantiate(colorMapping.GetPrefab(),position, Quaternion.identity, transform);
                 if (colorMapping.IsBonus())
                 {
-                    Vector3 numberPosition = position;
-                    numberPosition.y += 0.065f;
-                    Debug.Log(numberPosition);
-                    //GameObject holeNumber = Instantiate(holeNumberPrefab, numberPosition, Quaternion.identity, panelObject.transform);
-                    //holeNumber.GetComponent<TMP_Text>().SetText("-" + ++bonusNumber + "-");
+
                 }
             }
         }

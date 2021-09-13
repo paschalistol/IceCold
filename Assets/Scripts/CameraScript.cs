@@ -11,6 +11,8 @@ public class CameraScript : MonoBehaviour
         float scaleHeight = windowAspect / targetAspect;
         Camera camera = GetComponent<Camera>();
         camera.orthographicSize /= scaleHeight;
+        RectTransform rect = GetComponent<RectTransform>();
+        rect.localPosition = new Vector3(0, camera.orthographicSize - 5, -10);
         
     }
 
