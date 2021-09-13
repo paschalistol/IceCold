@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
 
 public class HoleGeneratorClassic : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class HoleGeneratorClassic : MonoBehaviour
     [SerializeField] private ColorToPrefab[] colorMappings;
     private RectTransform canvas;
     private float holeMapScale;
+    [SerializeField] private GameObject holeNumberPrefab;
+    [SerializeField] private GameObject panelObject;
+    private int bonusNumber = 0;
 
     void Start()
     {
@@ -18,11 +23,11 @@ public class HoleGeneratorClassic : MonoBehaviour
 
     private void GenerateLevel()
     {
-        
-        for (int x = 0; x < map.width; x++)
+        for (int y = 0; y < map.height; y++)
         {
-            for (int y = 0; y < map.height; y++)
-            {
+            for (int x = 0; x < map.width; x++)
+        {
+
                 GenerateHoles(x,y);
             }
         }
@@ -44,7 +49,15 @@ public class HoleGeneratorClassic : MonoBehaviour
 
                 position.x += -3.1f;
                 position.y += -4.85f;
-                Instantiate(colorMapping.GetPrefab(),position, Quaternion.identity, transform);
+                GameObject hole = Instantiate(colorMapping.GetPrefab(),position, Quaternion.identity, transform);
+                if (colorMapping.IsBonus())
+                {
+                    Vector3 numberPosition = position;
+                    numberPosition.y += 0.065f;
+                    Debug.Log(numberPosition);
+                    //GameObject holeNumber = Instantiate(holeNumberPrefab, numberPosition, Quaternion.identity, panelObject.transform);
+                    //holeNumber.GetComponent<TMP_Text>().SetText("-" + ++bonusNumber + "-");
+                }
             }
         }
     }

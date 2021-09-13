@@ -10,7 +10,14 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + offset, transform.position.z);
-
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Hole"))
+        {
+            Debug.Log("Die");
+            gameObject.SetActive(false);
         }
     }
 
