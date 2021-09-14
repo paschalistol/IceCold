@@ -10,18 +10,29 @@ public class BonusHole : Hole
     private bool activeGoal = false;
     Animation anim;
 
+
     private void Start()
     {
         SetLabel();
         anim = GetComponent<Animation>();
+        SetActiveGoal(false);
+        ClassicGameManager.instance.AddBonus(this);
     }
-    protected override void EndRound()
+    public override void BallInHole()
     {
-        base.EndRound();
+        if (activeGoal)
+        {
+            ClassicGameManager.instance.BallInBonus();
+        }
+        else
+        {
+            base.BallInHole();
+        }
     }
-    private void SetActiveGoal(bool goal)
+    public void SetActiveGoal(bool goal)
     {
         activeGoal = goal;
+        PlayAnimation(goal);
     }
     private void SetLabel()
     {
@@ -35,6 +46,11 @@ public class BonusHole : Hole
         }
         else
         {
+            foreach (AnimationState state in anim)
+            {
+                state.time = 0f;
+            }
+            anim.Sample();
             anim.Stop();
         }
     }

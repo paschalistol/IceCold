@@ -7,8 +7,7 @@ public class BallTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
 
-            Debug.Log("Die");
-            transform.parent.gameObject.SetActive(false);
-        
+        //transform.parent.gameObject.SetActive(false);
+        collider.GetComponent<Hole>().BallInHole();
     }
 }

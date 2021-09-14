@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour
 {
-    virtual protected void EndRound()
+    public virtual void BallInHole()
     {
 
     }

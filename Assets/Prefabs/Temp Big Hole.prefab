@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7768065804816515805}
   - component: {fileID: 7219053098728340603}
   - component: {fileID: 4074097235833880648}
+  - component: {fileID: 4024753335617923670}
   m_Layer: 0
   m_Name: Temp Big Hole
   m_TagString: Hole
@@ -178,3 +179,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.09
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4024753335617923670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901901174573548207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9288bc7b3afe42a43ab9f64a25a17374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
