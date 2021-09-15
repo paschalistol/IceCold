@@ -15,6 +15,8 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField]private int lives = 0;
     [SerializeField] private int waitTime = 6;
     Coroutine pointDecreaser;
+    private BoxCollider boxCollider;
+    [SerializeField] private IronBar player;
     
     private void Awake()
     {
@@ -23,11 +25,19 @@ public class ClassicGameManager : MonoBehaviour
 
         if (instance != this)
             Destroy(gameObject);
-        StartGame();
+        boxCollider = GetComponent<BoxCollider>();
     }
     private void StartGame()
     {
         pointDecreaser = StartCoroutine(PointDecrease());
+            boxCollider.enabled = false;
+            Ball.instance.ActivateTrigger(true);
+        player.StartRound();
+    }
+    private void StartRound()
+    {
+        boxCollider.enabled = true ;
+
     }
     public void AddBonus(BonusHole bonusHole)
     {
@@ -40,15 +50,29 @@ public class ClassicGameManager : MonoBehaviour
     }
     public void Die()
     {
+
+        Debug.Log("die");
         lives--;
+
         if (lives < 0)
         {
             Debug.Log("Die");
         }
+        else
+        {
+            //StartRound();
+        }
+    }
+    private void RestartBall()
+    {
+        StopCoroutine(pointDecreaser);
+        player.EndRound();
+        boxCollider.enabled = true;
+        Ball.instance.ActivateTrigger(false);
     }
     public void BallInBonus()
     {
-        StopCoroutine(pointDecreaser);
+        RestartBall();
         bonusHoles[currentGoal].SetActiveGoal(false);
         UpdatePoints();
         currentGoal++;
@@ -77,4 +101,12 @@ public class ClassicGameManager : MonoBehaviour
             pointDecreaser = StartCoroutine(PointDecrease());
         }
     }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.transform.CompareTag("Ball"))
+        {
+            StartGame();
+        }
+    }
+    
 }
