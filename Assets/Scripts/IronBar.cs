@@ -35,7 +35,7 @@ public class IronBar : MonoBehaviour
         }
         if (barLocated && barRotated)
         {
-            transform.parent = null;
+
             barRotated = false;
             barLocated = false;
 
@@ -56,6 +56,7 @@ public class IronBar : MonoBehaviour
     }
     private void ResetBar()
     {
+        transform.parent = null;
         StartCoroutine(ResetBarRotation());
         StartCoroutine(ResetBarLocation());
     }
@@ -66,7 +67,6 @@ public class IronBar : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,0,90), 0.1f);
             yield return new WaitForSeconds(0.01f);
         }
-        Debug.Log("rotated");
         barRotated = true;
 
     }
@@ -77,7 +77,6 @@ public class IronBar : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, barStart, 0.01f);
             yield return new WaitForSeconds(0.01f);
         }
-        Debug.Log("located");
         barLocated = true;
 
     }

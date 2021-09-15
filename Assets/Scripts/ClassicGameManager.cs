@@ -30,8 +30,8 @@ public class ClassicGameManager : MonoBehaviour
     private void StartGame()
     {
         pointDecreaser = StartCoroutine(PointDecrease());
-            boxCollider.enabled = false;
-            Ball.instance.ActivateTrigger(true);
+        boxCollider.enabled = false;
+        Ball.instance.ActivateTrigger(true);
         player.StartRound();
     }
     private void StartRound()
@@ -81,7 +81,6 @@ public class ClassicGameManager : MonoBehaviour
         {
             bonusHoles[currentGoal].SetActiveGoal(true) ;
             currentPoints=(currentGoal + 1) * 100;
-            pointDecreaser = StartCoroutine(PointDecrease());
         }
     }
 
@@ -92,14 +91,14 @@ public class ClassicGameManager : MonoBehaviour
     }
     IEnumerator PointDecrease()
     {
-        yield return new WaitForSeconds(waitTime);
-        currentPoints -= 10;
-        Debug.Log(currentPoints);
-        if (currentPoints>0)
+        while (currentPoints > 0)
         {
-
-            pointDecreaser = StartCoroutine(PointDecrease());
+            yield return new WaitForSeconds(waitTime);
+            currentPoints -= 10;
+            Debug.Log(currentPoints);
         }
+
+
     }
     private void OnTriggerEnter(Collider collision)
     {
