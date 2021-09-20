@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class ClassicGameManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ClassicGameManager : MonoBehaviour
     private int currentGoal = 0;
     private int currentPoints = 100;
     [SerializeField] private TMP_Text pointScreen;
+    [SerializeField] private TMP_Text bonusPointScreen;
+    [SerializeField] private TMP_Text livesScreen;
     public static ClassicGameManager instance;
     private List<BonusHole> bonusHoles = new List<BonusHole>();
     [SerializeField]private int lives = 0;
@@ -33,6 +36,8 @@ public class ClassicGameManager : MonoBehaviour
         boxCollider.enabled = false;
         Ball.instance.ActivateTrigger(true);
         player.StartRound();
+        bonusPointScreen.SetText(currentPoints.ToString());
+        livesScreen.SetText(lives.ToString());
     }
     private void StartRound()
     {
@@ -57,10 +62,11 @@ public class ClassicGameManager : MonoBehaviour
         if (lives < 0)
         {
             Debug.Log("Die");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else
         {
-            //StartRound();
+            RestartBall();
         }
     }
     private void RestartBall()
@@ -96,6 +102,7 @@ public class ClassicGameManager : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
             currentPoints -= 10;
             Debug.Log(currentPoints);
+            bonusPointScreen.SetText(currentPoints.ToString());
         }
 
 

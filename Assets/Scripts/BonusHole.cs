@@ -10,7 +10,10 @@ public class BonusHole : Hole
     private bool activeGoal = false;
     Animation anim;
 
-
+    private void Awake()
+    {
+        bonusNumber = 0;
+    }
     private void Start()
     {
         SetLabel();
