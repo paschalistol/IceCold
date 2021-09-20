@@ -6,15 +6,21 @@ using UnityEngine;
 public class IronBar : MonoBehaviour
 {
 
-    [SerializeField]private float rotationSpeed = 1;
+    [SerializeField] private float rotationSpeed = 1;
     [SerializeField] private float heightDifferenceOnSides = 0.5f;
     [SerializeField] private GameObject leftPivot, rightPivot;
     [SerializeField] private float bottomHeight = -2.5f;
     [SerializeField] private float topHeight = 3.2f;
     [SerializeField] private Joystick leftJoystick;
     [SerializeField] private Joystick rightJoystick;
-    [SerializeField, Range(0,1)] private float threshold = 0.2f;
+    [SerializeField, Range(0, 1)] private float threshold = 0.2f;
     private bool allowControls = false;
+    public delegate void ResettingBar();
+    public ResettingBar resettingBar;
+    public bool AllowControls
+    {
+        get { return allowControls; }
+    }
     [SerializeField] private Ball ball;
     private Vector3 leftPivotStart, rightPivotStart, barStart;
     private bool barRotated, barLocated;
@@ -57,6 +63,7 @@ public class IronBar : MonoBehaviour
     private void ResetBar()
     {
         transform.parent = null;
+        resettingBar();
         StartCoroutine(ResetBarRotation());
         StartCoroutine(ResetBarLocation());
     }
