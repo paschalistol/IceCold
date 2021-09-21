@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class BallTrigger : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody rb;
     private void OnTriggerEnter(Collider collider)
     {
 
-        //transform.parent.gameObject.SetActive(false);
         collider.GetComponent<Hole>().BallInHole();
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.useGravity = false;
+        rb.velocity = Vector3.zero;
+        rb.useGravity = false;
         Ball.instance.transform.localPosition = collider.transform.position;
         Ball.instance.StartAnimation("BallInHole");
 

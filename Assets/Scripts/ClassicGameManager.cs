@@ -20,7 +20,15 @@ public class ClassicGameManager : MonoBehaviour
     Coroutine pointDecreaser;
     private BoxCollider boxCollider;
     [SerializeField] private IronBar player;
-    
+    public delegate void StartRound();
+    public StartRound startRound;
+    public delegate void EndRound();
+    public EndRound endRound;
+    public delegate void ActivateBallTrigger(bool activate);
+    public ActivateBallTrigger activateBallTrigger;
+    public delegate void EndGame();
+    public EndGame endGame;
+
     private void Awake()
     {
         if (instance == null)
@@ -34,16 +42,13 @@ public class ClassicGameManager : MonoBehaviour
     {
         pointDecreaser = StartCoroutine(PointDecrease());
         boxCollider.enabled = false;
-        Ball.instance.ActivateTrigger(true);
-        player.StartRound();
+        activateBallTrigger(true);
+        //Ball.instance.ActivateTrigger(true);
+        startRound();
         bonusPointScreen.SetText(currentPoints.ToString());
         livesScreen.SetText(lives.ToString());
     }
-    private void StartRound()
-    {
-        boxCollider.enabled = true ;
 
-    }
     public void AddBonus(BonusHole bonusHole)
     {
         bonusHoles.Add(bonusHole);
@@ -56,13 +61,13 @@ public class ClassicGameManager : MonoBehaviour
     public void Die()
     {
 
-        Debug.Log("die");
         lives--;
 
         if (lives < 0)
         {
-            Debug.Log("Die");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            endGame();
         }
         else
         {
@@ -72,9 +77,10 @@ public class ClassicGameManager : MonoBehaviour
     private void RestartBall()
     {
         StopCoroutine(pointDecreaser);
-        player.EndRound();
+        endRound();
         boxCollider.enabled = true;
-        Ball.instance.ActivateTrigger(false);
+        activateBallTrigger(false);
+        //Ball.instance.ActivateTrigger(false);
     }
     public void BallInBonus()
     {
@@ -82,7 +88,6 @@ public class ClassicGameManager : MonoBehaviour
         bonusHoles[currentGoal].SetActiveGoal(false);
         UpdatePoints();
         currentGoal++;
-        Debug.Log("Goal");
         if (currentGoal <= bonusHoles.Count)
         {
             bonusHoles[currentGoal].SetActiveGoal(true) ;
@@ -101,7 +106,6 @@ public class ClassicGameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(waitTime);
             currentPoints -= 10;
-            Debug.Log(currentPoints);
             bonusPointScreen.SetText(currentPoints.ToString());
         }
 

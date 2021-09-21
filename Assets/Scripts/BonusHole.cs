@@ -9,6 +9,7 @@ public class BonusHole : Hole
     [SerializeField] private TMP_Text label;
     private bool activeGoal = false;
     Animation anim;
+    [SerializeField] private Animator animator;
 
     private void Awake()
     {
@@ -35,7 +36,8 @@ public class BonusHole : Hole
     public void SetActiveGoal(bool goal)
     {
         activeGoal = goal;
-        PlayAnimation(goal);
+        //PlayAnimation(goal);
+        animator.SetBool("activeBonus", goal);
     }
     private void SetLabel()
     {

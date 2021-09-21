@@ -16,8 +16,8 @@ public class CyllinderSoundManager : MonoBehaviour
         audioSource =  GetComponent<AudioSource>();
         player = GetComponent<IronBar>();
         player.resettingBar += PlayClickUp;
-        previousLeft = leftPivot.transform.position.y;
-        previousRight = rightPivot.transform.position.y;
+        UpdatePivotPosition();
+        player.resettingPivots += UpdatePivotPosition;
     }
     private void Update()
     {
@@ -39,6 +39,11 @@ public class CyllinderSoundManager : MonoBehaviour
         }
     }
 
+    private void UpdatePivotPosition()
+    {
+        previousLeft = leftPivot.transform.position.y;
+        previousRight = rightPivot.transform.position.y;
+    }
 
     private void PlayClickDown()
     {

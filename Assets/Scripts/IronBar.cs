@@ -17,6 +17,8 @@ public class IronBar : MonoBehaviour
     private bool allowControls = false;
     public delegate void ResettingBar();
     public ResettingBar resettingBar;
+    public delegate void ResettingPivots();
+    public ResettingPivots resettingPivots;
     public bool AllowControls
     {
         get { return allowControls; }
@@ -31,6 +33,8 @@ public class IronBar : MonoBehaviour
         rightPivotStart = rightPivot.transform.position;
         barStart = transform.position;
         animat = GetComponent<Animation>();
+        ClassicGameManager.instance.startRound += StartRound;
+        ClassicGameManager.instance.endRound += EndRound;
     }
     void Update()
     {
@@ -48,17 +52,17 @@ public class IronBar : MonoBehaviour
             animat.Play("ReStartIron");
         }
     }
-    public void EndRound()
+    private void EndRound()
     {
         allowControls = false;
         ResetBar();
     }
 
-    internal void StartRound()
+    private void StartRound()
     {
         allowControls = true;
-        leftPivot.transform.position = leftPivotStart;
-        rightPivot.transform.position = rightPivotStart;
+
+
     }
     private void ResetBar()
     {
@@ -84,8 +88,17 @@ public class IronBar : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, barStart, 0.01f);
             yield return new WaitForSeconds(0.01f);
         }
+        RestartPivots();
         barLocated = true;
 
+    }
+    private void RestartPivots()
+    {
+        leftPivot.transform.position = leftPivotStart;
+        rightPivot.transform.position = rightPivotStart;
+        leftPivot.transform.parent = null;
+        rightPivot.transform.parent = null;
+        resettingPivots();
     }
     private void StartNextRound()
     {

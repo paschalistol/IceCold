@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     Animation anim;
     public static Ball instance;
     [SerializeField] private GameObject trigger;
+    private AudioSource audioSource;
     private void Awake()
     {
         if (instance == null)
@@ -19,6 +20,9 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animation>();
+        ClassicGameManager.instance.activateBallTrigger += ActivateTrigger;
+        audioSource = GetComponent<AudioSource>();
+        ClassicGameManager.instance.startRound += PlayBallSound;
     }
     private float offset = 0.005f;
     private void OnCollisionStay(Collision collision)
@@ -27,6 +31,10 @@ public class Ball : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + offset, transform.position.z);
         }
+    }
+    private void PlayBallSound()
+    {
+        audioSource.Play();
     }
     public void StartAnimation(string animation)
     {
@@ -39,7 +47,7 @@ public class Ball : MonoBehaviour
         }
         anim.Play(animation);
     }
-    public void ActivateTrigger(bool activate)
+    private void ActivateTrigger(bool activate)
     {
         trigger.SetActive(activate);
     }
