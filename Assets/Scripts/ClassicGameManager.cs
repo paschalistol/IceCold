@@ -26,6 +26,8 @@ public class ClassicGameManager : MonoBehaviour
     public EndRound endRound;
     public delegate void ActivateBallTrigger(bool activate);
     public ActivateBallTrigger activateBallTrigger;
+    public delegate void BeginningGame();
+    public BeginningGame beginningGame;
     public delegate void EndGame();
     public EndGame endGame;
 
@@ -38,12 +40,15 @@ public class ClassicGameManager : MonoBehaviour
             Destroy(gameObject);
         boxCollider = GetComponent<BoxCollider>();
     }
+    public void BeginGame()
+    {
+        beginningGame();
+    }
     private void StartGame()
     {
         pointDecreaser = StartCoroutine(PointDecrease());
         boxCollider.enabled = false;
         activateBallTrigger(true);
-        //Ball.instance.ActivateTrigger(true);
         startRound();
         bonusPointScreen.SetText(currentPoints.ToString());
         livesScreen.SetText(lives.ToString());
@@ -111,6 +116,8 @@ public class ClassicGameManager : MonoBehaviour
 
 
     }
+
+    //Trigger when balls enter to enable controls and start point decreaser
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.transform.CompareTag("Ball"))

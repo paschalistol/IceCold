@@ -12,7 +12,6 @@ public class HoleGeneratorClassic : MonoBehaviour
     private float holeMapScale;
     [SerializeField] private GameObject holeNumberPrefab;
     [SerializeField] private GameObject panelObject;
-    private int bonusNumber = 0;
 
     void Start()
     {

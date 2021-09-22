@@ -24,31 +24,35 @@ public class IronBar : MonoBehaviour
         get { return allowControls; }
     }
     [SerializeField] private Ball ball;
-    private Vector3 leftPivotStart, rightPivotStart, barStart;
+    private Vector3 leftPivotStart, rightPivotStart;
+    [SerializeField] private Vector3 barStart;
     private bool barRotated, barLocated;
     Animation animat;
+
     private void Start()
     {
         leftPivotStart = leftPivot.transform.position;
         rightPivotStart = rightPivot.transform.position;
-        barStart = transform.position;
         animat = GetComponent<Animation>();
+        ClassicGameManager.instance.beginningGame += StartGame;
         ClassicGameManager.instance.startRound += StartRound;
         ClassicGameManager.instance.endRound += EndRound;
+    }
+    private void StartGame()
+    {
+        StartNextRound();
     }
     void Update()
     {
         if (allowControls)
         {
-
-        Controls();
+            Controls();
         }
         if (barLocated && barRotated)
         {
 
             barRotated = false;
             barLocated = false;
-
             animat.Play("ReStartIron");
         }
     }
@@ -85,7 +89,7 @@ public class IronBar : MonoBehaviour
     {
         while (transform.position.y != barStart.y)
         {
-            transform.position = Vector3.MoveTowards(transform.position, barStart, 0.01f);
+            transform.position = Vector3.MoveTowards(transform.position, barStart, 0.02f);
             yield return new WaitForSeconds(0.01f);
         }
         RestartPivots();
