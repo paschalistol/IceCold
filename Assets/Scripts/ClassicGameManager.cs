@@ -43,6 +43,7 @@ public class ClassicGameManager : MonoBehaviour
     public void BeginGame()
     {
         beginningGame();
+        Time.timeScale = 1;
     }
     private void StartGame()
     {
