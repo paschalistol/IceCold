@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicPlayer : MonoBehaviour
 {
     public static MusicPlayer instance;
+    [SerializeField] private AudioMixer audioMixer;
     private void Awake()
     {
         if (instance == null)
@@ -16,5 +16,11 @@ public class MusicPlayer : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+    }
+    private void Start()
+    {
+        audioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("musicVolume"));
+        GetComponent<AudioSource>().Play();
     }
 }

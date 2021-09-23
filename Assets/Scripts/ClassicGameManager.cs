@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
-using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class ClassicGameManager : MonoBehaviour
 {
@@ -30,6 +29,7 @@ public class ClassicGameManager : MonoBehaviour
     public BeginningGame beginningGame;
     public delegate void EndGame();
     public EndGame endGame;
+    [SerializeField] private AudioMixer masterMixer;
 
     private void Awake()
     {
@@ -44,6 +44,8 @@ public class ClassicGameManager : MonoBehaviour
     {
         beginningGame();
         Time.timeScale = 1;
+        masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume",0));
+        bonusHoles[currentGoal].SetActiveGoal(true);
     }
     private void StartGame()
     {
@@ -60,7 +62,7 @@ public class ClassicGameManager : MonoBehaviour
         bonusHoles.Add(bonusHole);
         if (bonusHoles.Count == 1)
         {
-            bonusHoles[0].SetActiveGoal(true);
+
             currentGoal = 0;
         }
     }
