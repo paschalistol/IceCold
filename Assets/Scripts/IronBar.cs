@@ -28,6 +28,7 @@ public class IronBar : MonoBehaviour
     [SerializeField] private Vector3 barStart;
     private bool barRotated, barLocated;
     Animation animat;
+    private bool outOfLives = false;
 
     private void Start()
     {
@@ -37,7 +38,14 @@ public class IronBar : MonoBehaviour
         ClassicGameManager.instance.beginningGame += StartGame;
         ClassicGameManager.instance.startRound += StartRound;
         ClassicGameManager.instance.endRound += EndRound;
+        ClassicGameManager.instance.endGame += EndGame;
     }
+
+    private void EndGame()
+    {
+        outOfLives = true;
+    }
+
     private void StartGame()
     {
         StartNextRound();
@@ -106,7 +114,11 @@ public class IronBar : MonoBehaviour
     }
     private void StartNextRound()
     {
+        if (!outOfLives)
+        {
+
         animat.Play("StartIron");
+        }
     }
 
     private void StartBall()
