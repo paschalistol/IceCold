@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Options : MonoBehaviour
 {
-    [SerializeField] private GameObject soundPanel;
+    [SerializeField] private GameObject soundPanel, machineCanvas, screenPanel, pausePanel;
     private bool pause = false;
 
 
@@ -19,7 +19,7 @@ public class Options : MonoBehaviour
         if (pause)
         {
             Time.timeScale = 0;
-            gameObject.SetActive(true);
+            pausePanel.SetActive(true);
             soundPanel.SetActive(true);
             foreach (var source in sources)
             {
@@ -32,7 +32,7 @@ public class Options : MonoBehaviour
         else
         {
             Time.timeScale = 1;
-            gameObject.SetActive(false);
+            pausePanel.SetActive(false);
             soundPanel.SetActive(false);
             foreach (var source in sources)
             {
@@ -42,5 +42,10 @@ public class Options : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void FullScreen(bool fullScreen)
+    {
+
     }
 }
