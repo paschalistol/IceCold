@@ -8,14 +8,14 @@ public class Options : MonoBehaviour
     [SerializeField] private RectTransform machinePanel, screenPanel, optionsBackground;
     [SerializeField] private Vector3 fullScreenPosition, fullScreenScale;
     private bool fullScreen;
-    public delegate void ToggleFullscreen();
-    public ToggleFullscreen toggleFullscreen;
+    public delegate void TogglingFullscreen();
+    public TogglingFullscreen toggleFullscreen;
     private void Start()
     {
         fullScreen = (PlayerPrefs.GetInt("fullScreen") != 0);
-        FullScreen();
+        //FullScreen();
         OptionsBackground();
-        toggleFullscreen();
+        ToggleFullscreen();
     }
     public void ReloadScene()
     {
@@ -54,7 +54,7 @@ public class Options : MonoBehaviour
             }
         }
     }
-    public void ToggleFullScreen()
+    public void ToggleFullscreen()
     {
         fullScreen = !fullScreen;
         PlayerPrefs.SetInt("fullScreen", (fullScreen ? 1 : 0));
@@ -76,7 +76,7 @@ public class Options : MonoBehaviour
         {
             optionsBackground.anchorMin = new Vector2(0.05f, 0);
             optionsBackground.anchorMax = new Vector2(0.95f, 0);
-            optionsBackground.anchoredPosition = new Vector3(0, 375, -80);
+            optionsBackground.anchoredPosition = new Vector3(0, 380, -80);
             optionsBackground.sizeDelta = new Vector2(0, 982);
         }
     }
