@@ -50,7 +50,7 @@ public class IronBar : MonoBehaviour
     {
         StartNextRound();
     }
-    void Update()
+    void FixedUpdate()
     {
         if (allowControls)
         {
@@ -127,14 +127,14 @@ public class IronBar : MonoBehaviour
     }
     private void Controls()
     {
-        if (leftJoystick.Vertical > 0 && (Input.GetKey(KeyCode.UpArrow) || rightJoystick.Vertical > threshold) && leftPivot.transform.position.y < topHeight && rightPivot.transform.position.y < topHeight)
+        if ((leftJoystick.Vertical > threshold || Input.GetKey(KeyCode.W)) && (Input.GetKey(KeyCode.UpArrow) || rightJoystick.Vertical > threshold) && leftPivot.transform.position.y < topHeight && rightPivot.transform.position.y < topHeight)
         {
             transform.parent = null;
             leftPivot.transform.parent = transform;
             rightPivot.transform.parent = transform;
             transform.position = new Vector3(0, transform.position.y, transform.position.z);
         }
-        else if (Input.GetKey(KeyCode.S) && (Input.GetKey(KeyCode.DownArrow) || rightJoystick.Vertical < -threshold) && leftPivot.transform.position.y > bottomHeight && rightPivot.transform.position.y > bottomHeight)
+        else if (leftJoystick.Vertical < -threshold || (Input.GetKey(KeyCode.S)) && (Input.GetKey(KeyCode.DownArrow) || rightJoystick.Vertical < -threshold) && leftPivot.transform.position.y > bottomHeight && rightPivot.transform.position.y > bottomHeight)
         {
             transform.parent = null;
             leftPivot.transform.parent = transform;
@@ -142,6 +142,7 @@ public class IronBar : MonoBehaviour
 
             transform.position = new Vector3(0, transform.position.y, transform.position.z);
         }
+        //only right
         if ((Input.GetKey(KeyCode.DownArrow) || rightJoystick.Vertical < -threshold) && rightPivot.transform.position.y > bottomHeight)
         {
             if (leftPivot.transform.position.y - rightPivot.transform.position.y < heightDifferenceOnSides)
@@ -162,6 +163,7 @@ public class IronBar : MonoBehaviour
                 leftPivot.transform.rotation = Quaternion.Euler(0, 0, leftPivot.transform.eulerAngles.z + rotationSpeed * (Mathf.Abs(rightJoystick.Vertical) > 0 ? Mathf.Abs(rightJoystick.Vertical) : 1) * Time.deltaTime);
             }
         }
+        //only left
         if ((Input.GetKey(KeyCode.S) || leftJoystick.Vertical < -threshold) && leftPivot.transform.position.y > bottomHeight)
         {
             if (rightPivot.transform.position.y - leftPivot.transform.position.y < heightDifferenceOnSides)

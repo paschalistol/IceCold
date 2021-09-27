@@ -15,7 +15,7 @@ public class Options : MonoBehaviour
         fullScreen = (PlayerPrefs.GetInt("fullScreen") != 0);
         //FullScreen();
         OptionsBackground();
-        ToggleFullscreen();
+        ChangeFullScreenOptions();
     }
     public void ReloadScene()
     {
@@ -54,13 +54,17 @@ public class Options : MonoBehaviour
             }
         }
     }
+    private void ChangeFullScreenOptions()
+    {
+        FullScreen();
+        OptionsBackground();
+        toggleFullscreen();
+    }
     public void ToggleFullscreen()
     {
         fullScreen = !fullScreen;
         PlayerPrefs.SetInt("fullScreen", (fullScreen ? 1 : 0));
-        FullScreen();
-        OptionsBackground();
-        toggleFullscreen();
+        ChangeFullScreenOptions();
     }
 
     private void OptionsBackground()

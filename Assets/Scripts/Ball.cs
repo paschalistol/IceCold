@@ -24,7 +24,7 @@ public class Ball : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         ClassicGameManager.instance.startRound += PlayBallSound;
     }
-    private float offset = 0.005f;
+    private float offset = 0.002f;
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
