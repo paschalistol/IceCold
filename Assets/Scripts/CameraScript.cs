@@ -8,6 +8,7 @@ public class CameraScript : MonoBehaviour
     Camera myCamera;
     private void Start()
     {
+        myCamera = GetComponent<Camera>();
         DifferentAspectRatioSize(5);
         options.toggleFullscreen += FullScreenCamera;
     }
@@ -16,7 +17,6 @@ public class CameraScript : MonoBehaviour
         float targetAspect = 9.0f / 16.0f;
         float windowAspect = (float)Screen.width / (float)Screen.height;
         float scaleHeight = windowAspect / targetAspect;
-        myCamera = GetComponent<Camera>();
         myCamera.orthographicSize /= scaleHeight;
         RectTransform rect = GetComponent<RectTransform>();
         rect.localPosition = new Vector3(0, myCamera.orthographicSize - size, -10);
@@ -31,7 +31,7 @@ public class CameraScript : MonoBehaviour
         else
         {
             myCamera.orthographicSize = 4.1f;
-            DifferentAspectRatioSize(4.1f);
+            DifferentAspectRatioSize(4.1f - 0.07f);
         }
     }
 
