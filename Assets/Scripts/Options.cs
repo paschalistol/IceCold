@@ -74,14 +74,14 @@ public class Options : MonoBehaviour
             optionsBackground.anchorMin = Vector2.zero;
             optionsBackground.anchorMax = new Vector2(1,0);
             optionsBackground.anchoredPosition = new Vector3(0, 275, -80);
-            optionsBackground.sizeDelta = new Vector2(0,1200);
+            optionsBackground.sizeDelta = new Vector2(0,1190);
         }
         else
         {
-            optionsBackground.anchorMin = new Vector2(0.05f, 0);
-            optionsBackground.anchorMax = new Vector2(0.95f, 0);
+            optionsBackground.anchorMin = new Vector2(0.09f, 0);
+            optionsBackground.anchorMax = new Vector2(0.91f, 0);
             optionsBackground.anchoredPosition = new Vector3(0, 380, -80);
-            optionsBackground.sizeDelta = new Vector2(0, 982);
+            optionsBackground.sizeDelta = new Vector2(0, 976);
         }
     }
 
