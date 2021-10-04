@@ -38,17 +38,21 @@ public class IronBar : MonoBehaviour
         ClassicGameManager.instance.beginningGame += StartGame;
         ClassicGameManager.instance.startRound += StartRound;
         ClassicGameManager.instance.endRound += EndRound;
-        ClassicGameManager.instance.endGame += EndGame;
+        ClassicGameManager.instance.endGame += OutOfLives;
     }
 
-    private void EndGame()
+    private void OutOfLives(bool noMoreLives)
     {
-        outOfLives = true;
+        outOfLives = noMoreLives;
     }
 
     private void StartGame()
     {
+        if (!animat.isPlaying)
+        {
+
         StartNextRound();
+        }
     }
     void FixedUpdate()
     {
@@ -73,7 +77,6 @@ public class IronBar : MonoBehaviour
     private void StartRound()
     {
         allowControls = true;
-
 
     }
     private void ResetBar()
@@ -116,8 +119,7 @@ public class IronBar : MonoBehaviour
     {
         if (!outOfLives)
         {
-
-        animat.Play("StartIron");
+            animat.Play("StartIron");
         }
     }
 

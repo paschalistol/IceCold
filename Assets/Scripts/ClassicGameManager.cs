@@ -27,9 +27,13 @@ public class ClassicGameManager : MonoBehaviour
     public ActivateBallTrigger activateBallTrigger;
     public delegate void BeginningGame();
     public BeginningGame beginningGame;
-    public delegate void EndGame();
+    public delegate void EndGame(bool outOfLives);
     public EndGame endGame;
     [SerializeField] private AudioMixer masterMixer;
+    [SerializeField] private int secondChanceLives = 2;
+    private bool gotAward;
+    [SerializeField] private AdManager adManager;
+    [SerializeField] private GameObject endPanel, endPanel2,optionsBG;
 
     private void Awake()
     {
@@ -46,6 +50,10 @@ public class ClassicGameManager : MonoBehaviour
         Time.timeScale = 1;
         masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume",0));
         bonusHoles[currentGoal].SetActiveGoal(true);
+    }
+    private void Start()
+    {
+        adManager.giveReward += SecondChance;
     }
     private void StartGame()
     {
@@ -66,21 +74,44 @@ public class ClassicGameManager : MonoBehaviour
             currentGoal = 0;
         }
     }
+    private void SecondChance()
+    {
+
+            gotAward = true;
+            endPanel.SetActive(false);
+            lives = 0;
+            lives += secondChanceLives;
+            endGame(lives < 0);
+            beginningGame();
+            optionsBG.gameObject.SetActive(false);
+    }
+    private void OutOfLives()
+    {
+        optionsBG.gameObject.SetActive(true);
+        if (!gotAward)
+        {
+
+            endPanel.SetActive(true);
+        }
+        else
+        {
+            endPanel2.SetActive(true);
+
+        }
+    }
     public void Die()
     {
 
         lives--;
 
+        RestartBall();
+        endGame( lives<0);
         if (lives < 0)
         {
-
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            endGame();
+            OutOfLives();
         }
-        else
-        {
-            RestartBall();
-        }
+
     }
     private void RestartBall()
     {
