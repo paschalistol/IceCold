@@ -49,6 +49,10 @@ public class ClassicGameManager : MonoBehaviour
         beginningGame();
         Time.timeScale = 1;
         masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume",0));
+
+    }
+    public void BeginClassicGame()
+    {
         bonusHoles[currentGoal].SetActiveGoal(true);
     }
     private void Start()
