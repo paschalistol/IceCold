@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
+using System;
 
 public class ClassicGameManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class ClassicGameManager : MonoBehaviour
     private bool gotAward;
     [SerializeField] private AdManager adManager;
     [SerializeField] private GameObject endPanel, endPanel2,optionsBG;
+    [SerializeField] private TMP_Text highScore, survivalScore;
 
     private void Awake()
     {
@@ -58,7 +60,15 @@ public class ClassicGameManager : MonoBehaviour
     private void Start()
     {
         adManager.giveReward += SecondChance;
+        SetHighScores();
     }
+
+    private void SetHighScores()
+    {
+        highScore.SetText(PlayerPrefs.GetInt("HighScore").ToString());
+        survivalScore.SetText(PlayerPrefs.GetInt("Survival",0).ToString());
+    }
+
     private void StartGame()
     {
         pointDecreaser = StartCoroutine(PointDecrease());
@@ -100,8 +110,19 @@ public class ClassicGameManager : MonoBehaviour
         else
         {
             endPanel2.SetActive(true);
-
+            if (totalPoints > (PlayerPrefs.GetInt("HighScore", 0)))
+            {
+                PlayerPrefs.SetInt("HighScore", totalPoints);
+                highScore.SetText(PlayerPrefs.GetInt("HighScore", 0).ToString());
+            }
         }
+    }
+    public void NoReward()
+    {
+        gotAward = true;
+
+        endPanel.SetActive(false);
+        OutOfLives();
     }
     public void Die()
     {
