@@ -36,6 +36,8 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private AdManager adManager;
     [SerializeField] private GameObject endPanel, endPanel2,optionsBG;
     [SerializeField] private TMP_Text highScore, survivalScore;
+    private GameMode gameMode;
+
 
     private void Awake()
     {
@@ -48,10 +50,10 @@ public class ClassicGameManager : MonoBehaviour
     }
     public void BeginGame()
     {
+        gameMode = GameMode.classic;
         beginningGame();
         Time.timeScale = 1;
         masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume",0));
-
     }
     public void BeginClassicGame()
     {
@@ -69,8 +71,10 @@ public class ClassicGameManager : MonoBehaviour
         survivalScore.SetText(PlayerPrefs.GetInt("Survival",0).ToString());
     }
 
+    //call from ball
     private void StartGame()
     {
+
         pointDecreaser = StartCoroutine(PointDecrease());
         boxCollider.enabled = false;
         activateBallTrigger(true);
@@ -98,6 +102,10 @@ public class ClassicGameManager : MonoBehaviour
             endGame(lives < 0);
             beginningGame();
             optionsBG.gameObject.SetActive(false);
+    }
+    public GameMode GetGameMode()
+    {
+        return gameMode;
     }
     private void OutOfLives()
     {
@@ -176,13 +184,16 @@ public class ClassicGameManager : MonoBehaviour
 
     }
 
-    //Trigger when balls enter to enable controls and start point decreaser
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.transform.CompareTag("Ball"))
-        {
-            StartGame();
-        }
-    }
+    ////Trigger when balls enter to enable controls and start point decreaser
+    //private void OnTriggerEnter(Collider collision)
+    //{
+    //    if (collision.transform.CompareTag("Ball"))
+    //    {
+    //        StartGame();
+    //    }
+    //}
     
+}
+public enum GameMode{
+    classic, survival
 }

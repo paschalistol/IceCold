@@ -51,4 +51,5 @@ public class Ball : MonoBehaviour
     {
         trigger.SetActive(activate);
     }
+
 }

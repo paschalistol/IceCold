@@ -19,6 +19,7 @@ public class IronBar : MonoBehaviour
     public ResettingBar resettingBar;
     public delegate void ResettingPivots();
     public ResettingPivots resettingPivots;
+    private GameMode gameMode;
     public bool AllowControls
     {
         get { return allowControls; }
@@ -45,9 +46,16 @@ public class IronBar : MonoBehaviour
     {
         outOfLives = noMoreLives;
     }
-
+    private void InitializeInvisible()
+    {
+        leftPivotStart = new Vector3(leftPivot.transform.position.x, transform.position.y, leftPivot.transform.position.z);
+        rightPivotStart = new Vector3(rightPivot.transform.position.x, transform.position.y, rightPivot.transform.position.z);
+        leftPivot.transform.position = leftPivotStart;
+        rightPivot.transform.position = rightPivotStart;
+    }
     private void StartGame()
     {
+        gameMode = ClassicGameManager.instance.GetGameMode();   
         if (!animat.isPlaying)
         {
 
@@ -59,6 +67,10 @@ public class IronBar : MonoBehaviour
         if (allowControls)
         {
             Controls();
+            if (gameMode == GameMode.survival)
+            {
+                SurvivalControl();
+            }
         }
         if (barLocated && barRotated)
         {
@@ -68,6 +80,15 @@ public class IronBar : MonoBehaviour
             animat.Play("ReStartIron");
         }
     }
+
+    private void SurvivalControl()
+    {
+        transform.parent = null;
+        leftPivot.transform.parent = transform;
+        rightPivot.transform.parent = transform;
+        transform.position = new Vector3(0, -1.5f, transform.position.z);
+    }
+
     private void EndRound()
     {
         allowControls = false;
@@ -119,7 +140,15 @@ public class IronBar : MonoBehaviour
     {
         if (!outOfLives)
         {
-            animat.Play("StartIron");
+            if (gameMode == GameMode.classic)
+            {
+
+            animat.Play("StartIron"); 
+            }
+            else if (gameMode == GameMode.survival)
+            {
+
+            }
         }
     }
 

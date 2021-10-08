@@ -10,8 +10,6 @@ public class HoleGeneratorClassic : MonoBehaviour
     [SerializeField] private ColorToPrefab[] colorMappings;
     private RectTransform canvas;
     private float holeMapScale;
-    [SerializeField] private GameObject holeNumberPrefab;
-    [SerializeField] private GameObject panelObject;
 
     void Start()
     {
