@@ -3562,13 +3562,14 @@ GameObject:
   m_Component:
   - component: {fileID: 516965385}
   - component: {fileID: 516965384}
+  - component: {fileID: 516965386}
   m_Layer: 0
   m_Name: SurvivalPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &516965384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3586,6 +3587,9 @@ MonoBehaviour:
     prefab: {fileID: 4901901174573548207, guid: 01b43bd0203dd144382e4c89040f1e6e, type: 3}
   - poolObject: 1
     prefab: {fileID: 4901901174573548207, guid: 687d7ecf24c82bc448c8d6f45af719f1, type: 3}
+  minScale: 0.5
+  maxScale: 0.8
+  initialPoolSize: 1
 --- !u!4 &516965385
 Transform:
   m_ObjectHideFlags: 0
@@ -3594,12 +3598,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516965383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.65, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &516965386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516965383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811650fdea4a5da49b02326eff637aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chance: 0.65
+  xRange: 0.1
+  yRange: 0.3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -8305,6 +8324,7 @@ MonoBehaviour:
   color: {r: 0.5235849, g: 0.57994795, b: 1, a: 1}
   baseImage: {fileID: 1725212152}
   gameManager: {fileID: 1579815148}
+  survivalPool: {fileID: 516965383}
 --- !u!1 &1152385534
 GameObject:
   m_ObjectHideFlags: 0
@@ -9267,6 +9287,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 516965383}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1579815151}
+        m_TargetAssemblyTypeName: ClassicGameManager, Assembly-CSharp
+        m_MethodName: BeginSurvivalGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1643067532}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 128542889}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1256500815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10176,7 +10244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 29.9, y: 0, z: 0}
   m_AnchorMin: {x: 0.4, y: 0.5}
   m_AnchorMax: {x: 0.54, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -618.79}
+  m_AnchoredPosition: {x: 0, y: -631.47}
   m_SizeDelta: {x: 0, y: 100.3}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1466259632
@@ -10199,7 +10267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lives
+  m_text: Extra Lives
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 656dab4b8cd006b4fa64fc94080621aa, type: 2}
   m_sharedMaterial: {fileID: -232948571493530808, guid: 656dab4b8cd006b4fa64fc94080621aa, type: 2}
@@ -10226,7 +10294,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 49.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10234,7 +10302,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -10242,7 +10310,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -10946,7 +11014,6 @@ GameObject:
   - component: {fileID: 1579815151}
   - component: {fileID: 1579815152}
   - component: {fileID: 1579815153}
-  - component: {fileID: 1579815154}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11027,7 +11094,7 @@ BoxCollider:
   m_GameObject: {fileID: 1579815148}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 4.98, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -11050,18 +11117,6 @@ MonoBehaviour:
   optionsBackground: {fileID: 1381114843}
   fullScreenPosition: {x: 0, y: -190, z: 0}
   fullScreenScale: {x: 1.22, y: 1.22, z: 1.22}
---- !u!114 &1579815154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579815148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 811650fdea4a5da49b02326eff637aaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1589348743
 GameObject:
   m_ObjectHideFlags: 0

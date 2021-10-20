@@ -7,6 +7,8 @@ public class Hole : MonoBehaviour
     private SurvivalPool pool;
     private bool survival;
     private PoolObject type = PoolObject.BIG_HOLE;
+    private HoleGeneratorSurvival survivalFunctions;
+
 
     public virtual void BallInHole()
     {
@@ -24,5 +26,17 @@ public class Hole : MonoBehaviour
     {
         pool = survivalPool;
         survival = true;
+        if (survivalFunctions == null)
+        {
+            survivalFunctions = survivalPool.gameObject.GetComponent<HoleGeneratorSurvival>();
+        }
+        survivalFunctions.NewHolePosition(transform);
+    }
+    private void Update()
+    {
+        if (ClassicGameManager.instance.GetGameMode() == GameMode.survival &&  Ball.instance.transform.position.y - transform.position.y > 2 )
+        {
+            Debug.Log("delete");
+        }
     }
 }

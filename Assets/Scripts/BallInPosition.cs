@@ -14,8 +14,8 @@ public class BallInPosition : MonoBehaviour
     {
         if (rb.velocity.y >-0.1f)
         {
-            Debug.Log("Ball In Position");
             this.enabled = false;
+            ClassicGameManager.instance.BallInPosition();
         }
     }
 }

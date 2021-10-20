@@ -50,7 +50,7 @@ public class ClassicGameManager : MonoBehaviour
     }
     public void BeginGame()
     {
-        gameMode = GameMode.classic;
+
         beginningGame();
         Time.timeScale = 1;
         masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume",0));
@@ -58,6 +58,12 @@ public class ClassicGameManager : MonoBehaviour
     public void BeginClassicGame()
     {
         bonusHoles[currentGoal].SetActiveGoal(true);
+        gameMode = GameMode.classic;
+    }
+    public void BeginSurvivalGame()
+    {
+
+        gameMode = GameMode.survival;
     }
     private void Start()
     {
@@ -71,7 +77,6 @@ public class ClassicGameManager : MonoBehaviour
         survivalScore.SetText(PlayerPrefs.GetInt("Survival",0).ToString());
     }
 
-    //call from ball
     private void StartGame()
     {
 
@@ -80,6 +85,12 @@ public class ClassicGameManager : MonoBehaviour
         activateBallTrigger(true);
         startRound();
         bonusPointScreen.SetText(currentPoints.ToString());
+        livesScreen.SetText(lives.ToString());
+    }
+    private void StartSurvivalGame()
+    {
+        activateBallTrigger(true);
+        startRound();
         livesScreen.SetText(lives.ToString());
     }
 
@@ -184,14 +195,27 @@ public class ClassicGameManager : MonoBehaviour
 
     }
 
-    ////Trigger when balls enter to enable controls and start point decreaser
-    //private void OnTriggerEnter(Collider collision)
-    //{
-    //    if (collision.transform.CompareTag("Ball"))
-    //    {
-    //        StartGame();
-    //    }
-    //}
+    //Trigger when balls enter to enable controls and start point decreaser
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.transform.CompareTag("Ball"))
+        {
+            //StartGame();
+        }
+    }
+
+    public void BallInPosition()
+    {
+        if (gameMode == GameMode.classic)
+        {
+            StartGame();
+        }
+        else
+        {
+            StartSurvivalGame();
+        }
+
+    }
     
 }
 public enum GameMode{

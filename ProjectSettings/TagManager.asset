@@ -7,6 +7,7 @@ TagManager:
   - Hole
   - Ball
   - Machine
+  - Pool
   layers:
   - Default
   - TransparentFX

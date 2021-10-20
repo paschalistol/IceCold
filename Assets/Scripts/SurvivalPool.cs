@@ -16,10 +16,11 @@ public class SurvivalPool : MonoBehaviour
     GameObject tempPoolObject;
     [SerializeField] private List<Pool> pools;
     [SerializeField] private float minScale = 0.4f, maxScale = 1;
+    [SerializeField] private int initialPoolSize = 40; 
     private void Start()
     {
         PopulateTranslation();
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < initialPoolSize; i++)
         {
             GrowPool(PoolObject.BIG_HOLE);
         }
@@ -58,6 +59,7 @@ public class SurvivalPool : MonoBehaviour
         tempPoolObject = poolDictionary[poolObject].Dequeue();
         tempPoolObject.SetActive(true);
 
+        tempPoolObject.transform.localScale = Vector3.one * Random.Range(minScale, maxScale);
         return tempPoolObject;
     }
 
