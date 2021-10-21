@@ -11,9 +11,11 @@ public class IronBar : MonoBehaviour
     [SerializeField] private GameObject leftPivot, rightPivot;
     [SerializeField] private float bottomHeight = -2.5f;
     [SerializeField] private float topHeight = 3.2f;
+    [SerializeField] private float topHeightSurvival = -0.5f;
     [SerializeField] private Joystick leftJoystick;
     [SerializeField] private Joystick rightJoystick;
     [SerializeField, Range(0, 1)] private float threshold = 0.2f;
+    [SerializeField] private SurvivalPool survivalPool;
     private bool allowControls = false;
     public delegate void ResettingBar();
     public ResettingBar resettingBar;
@@ -55,7 +57,11 @@ public class IronBar : MonoBehaviour
     }
     private void StartGame()
     {
-        gameMode = ClassicGameManager.instance.GetGameMode();   
+        gameMode = ClassicGameManager.instance.GetGameMode();
+        if (gameMode == GameMode.survival)
+        {
+            topHeight = topHeightSurvival + heightDifferenceOnSides;
+        }
         if (!animat.isPlaying)
         {
             StartNextRound();
@@ -66,9 +72,11 @@ public class IronBar : MonoBehaviour
         if (allowControls)
         {
             Controls();
-            if (gameMode == GameMode.survival)
+            if (gameMode == GameMode.survival && transform.position.y > topHeightSurvival)
             {
                 SurvivalControl();
+                survivalPool.transform.position = new Vector3(survivalPool.transform.position.x,
+                    survivalPool.transform.position.y - 0.01f, survivalPool.transform.position.z);
             }
         }
         if (barLocated && barRotated)
@@ -78,6 +86,8 @@ public class IronBar : MonoBehaviour
             barLocated = false;
             animat.Play("ReStartIron");
         }
+
+
     }
 
     private void SurvivalControl()
@@ -85,7 +95,7 @@ public class IronBar : MonoBehaviour
         transform.parent = null;
         leftPivot.transform.parent = transform;
         rightPivot.transform.parent = transform;
-        transform.position = new Vector3(0, -1.5f, transform.position.z);
+        transform.position = new Vector3(0, topHeightSurvival, transform.position.z);
     }
 
     private void EndRound()
@@ -97,7 +107,6 @@ public class IronBar : MonoBehaviour
     private void StartRound()
     {
         allowControls = true;
-
     }
     private void ResetBar()
     {
@@ -146,7 +155,7 @@ public class IronBar : MonoBehaviour
             }
             else if (gameMode == GameMode.survival)
             {
-
+                animat.Play("StartIron"); 
             }
         }
     }

@@ -43,7 +43,14 @@ public class Ball : MonoBehaviour
         {
             float randomX = Random.Range(-ballRandomPos, ballRandomPos);
             transform.position = new Vector3( randomX,4, 0);
-            transform.localScale = Vector3.one;
+            if (ClassicGameManager.instance.GetGameMode() == GameMode.survival)
+            {
+                transform.localScale = Vector3.one * 2.5f;
+            }else if (ClassicGameManager.instance.GetGameMode() == GameMode.classic)
+            {
+                transform.localScale = Vector3.one;
+            }
+
         }
         anim.Play(animation);
     }

@@ -33,7 +33,7 @@ public class Hole : MonoBehaviour
     }
     private void Update()
     {
-        if (ClassicGameManager.instance.GetAllowControls() && ClassicGameManager.instance.GetGameMode() == GameMode.survival &&  Ball.instance.transform.position.y - transform.position.y > 2 )
+        if (ClassicGameManager.instance.GetAllowControls() && ClassicGameManager.instance.GetGameMode() == GameMode.survival &&  Ball.instance.transform.position.y - transform.position.y > 4 )
         {
             survivalFunctions.NewHolePosition(transform);
             //Move Hole To new position

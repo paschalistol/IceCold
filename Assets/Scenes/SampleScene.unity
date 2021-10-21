@@ -1493,9 +1493,11 @@ MonoBehaviour:
   rightPivot: {fileID: 2100231060}
   bottomHeight: -2.5
   topHeight: 3.2
+  topHeightSurvival: -0.5
   leftJoystick: {fileID: 1455447291}
   rightJoystick: {fileID: 1513056479}
   threshold: 0.1
+  survivalPool: {fileID: 516965384}
   ball: {fileID: 1118161734}
   barStart: {x: 0, y: -2.5, z: 0}
 --- !u!136 &170545174
@@ -2203,14 +2205,14 @@ SpriteMask:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 957c3b6eba67ec54cafbba61c559dea1, type: 3}
-  m_MaskAlphaCutoff: 0.2
+  m_MaskAlphaCutoff: 0
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0
-  m_IsCustomRangeActive: 0
+  m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!222 &269277167
 CanvasRenderer:
@@ -3589,7 +3591,7 @@ MonoBehaviour:
     prefab: {fileID: 4901901174573548207, guid: 687d7ecf24c82bc448c8d6f45af719f1, type: 3}
   minScale: 0.5
   maxScale: 0.8
-  initialPoolSize: 1
+  initialPoolSize: 30
 --- !u!4 &516965385
 Transform:
   m_ObjectHideFlags: 0
@@ -9373,6 +9375,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256500812}
   m_CullTransparentMesh: 1
+--- !u!1 &1301401171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1301401172}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1301401172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301401171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1337674948
 GameObject:
   m_ObjectHideFlags: 0
@@ -11085,6 +11117,7 @@ MonoBehaviour:
   optionsBG: {fileID: 344753839}
   highScore: {fileID: 839364946}
   survivalScore: {fileID: 918408742}
+  survivalPool: {fileID: 516965383}
 --- !u!65 &1579815152
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -37,6 +37,7 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private GameObject endPanel, endPanel2,optionsBG;
     [SerializeField] private TMP_Text highScore, survivalScore;
     private GameMode gameMode;
+    [SerializeField] private GameObject survivalPool;
 
 
     private void Awake()
@@ -50,7 +51,7 @@ public class ClassicGameManager : MonoBehaviour
     }
     public void BeginGame()
     {
-        beginningGame();
+
         Time.timeScale = 1;
         masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume",0));
     }
@@ -58,11 +59,12 @@ public class ClassicGameManager : MonoBehaviour
     {
         bonusHoles[currentGoal].SetActiveGoal(true);
         gameMode = GameMode.classic;
+        beginningGame();
     }
     public void BeginSurvivalGame()
     {
-
         gameMode = GameMode.survival;
+        beginningGame();
     }
     private void Start()
     {
@@ -162,7 +164,10 @@ public class ClassicGameManager : MonoBehaviour
     }
     private void RestartBall()
     {
-        StopCoroutine(pointDecreaser);
+        if (gameMode == GameMode.classic)
+        {
+            StopCoroutine(pointDecreaser);
+        }
         endRound();
         boxCollider.enabled = true;
         activateBallTrigger(false);
@@ -179,6 +184,20 @@ public class ClassicGameManager : MonoBehaviour
             bonusHoles[currentGoal].SetActiveGoal(true) ;
             currentPoints=(currentGoal + 1) * 100;
         }
+    }
+
+    private void Update()
+    {
+        if (gameMode == GameMode.survival)
+        {
+            UpdateSurvivalPoints();
+        }
+    }
+
+    private void UpdateSurvivalPoints()
+    {
+        totalPoints = Mathf.Abs((int)(survivalPool.transform.position.y * 10) - 30);
+        pointScreen.SetText(totalPoints.ToString());
     }
 
     private void UpdatePoints()
