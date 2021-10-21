@@ -12,7 +12,14 @@ public class BallTrigger : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
         Ball.instance.transform.localPosition = collider.transform.position;
-        Ball.instance.StartAnimation("BallInHole");
+        if (ClassicGameManager.instance.GetGameMode()==GameMode.classic)
+        {
+            Ball.instance.StartAnimation("BallInHole");
+        }
+        else if (ClassicGameManager.instance.GetGameMode()==GameMode.survival)
+        {
+            Ball.instance.StartAnimation("BallInHoleSurvival");
+        }
 
     }
 }

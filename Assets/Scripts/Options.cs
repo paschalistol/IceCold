@@ -5,7 +5,7 @@ public class Options : MonoBehaviour
 {
     [SerializeField] private GameObject soundPanel, pausePanel;
     private bool pause = false;
-    [SerializeField] private RectTransform machinePanel, screenPanel, optionsBackground;
+    [SerializeField] private RectTransform machinePanel, screenPanel, optionsBackground, fade;
     [SerializeField] private Vector3 fullScreenPosition, fullScreenScale;
     private bool fullScreen;
     public delegate void TogglingFullscreen();
@@ -93,6 +93,8 @@ public class Options : MonoBehaviour
             machinePanel.localScale = fullScreenScale;
             screenPanel.anchoredPosition = fullScreenPosition;
             screenPanel.localScale = fullScreenScale;
+            fade.anchoredPosition = fullScreenPosition;
+            fade.localScale = fullScreenScale;
         }
         else
         {
@@ -100,6 +102,8 @@ public class Options : MonoBehaviour
             machinePanel.localScale = Vector3.one;
             screenPanel.anchoredPosition = Vector3.zero;
             screenPanel.localScale = Vector3.one;
+            fade.anchoredPosition = Vector3.zero;
+            fade.localScale = Vector3.one;
         }
     }
 }

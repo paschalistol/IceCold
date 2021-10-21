@@ -14,6 +14,8 @@ public class HoleGeneratorSurvival : MonoBehaviour
 
     private void Start()
     {
+        rowNumber = 0;
+        column = 0;
         startPoolY = transform.position.y;
     }
 

@@ -16,7 +16,8 @@ public class ClassicGameManager : MonoBehaviour
     public static ClassicGameManager instance;
     private List<BonusHole> bonusHoles = new List<BonusHole>();
     [SerializeField]private int lives = 0;
-    [SerializeField] private int waitTime = 6;
+    [SerializeField]private int survivalLives = 1;
+    [SerializeField, Tooltip("Wait time for the bonus decrease")] private int waitTime = 6;
     Coroutine pointDecreaser;
     private BoxCollider boxCollider;
     [SerializeField] private IronBar player;
@@ -32,6 +33,7 @@ public class ClassicGameManager : MonoBehaviour
     public EndGame endGame;
     [SerializeField] private AudioMixer masterMixer;
     [SerializeField] private int secondChanceLives = 2;
+    [SerializeField] private int secondChanceLivesSurvival = 0;
     private bool gotAward;
     [SerializeField] private AdManager adManager;
     [SerializeField] private GameObject endPanel, endPanel2,optionsBG;
@@ -39,6 +41,11 @@ public class ClassicGameManager : MonoBehaviour
     private GameMode gameMode;
     [SerializeField] private GameObject survivalPool;
 
+    public float BallStartHeight
+    {
+        get;
+        private set;
+    }
 
     private void Awake()
     {
@@ -65,6 +72,8 @@ public class ClassicGameManager : MonoBehaviour
     {
         gameMode = GameMode.survival;
         beginningGame();
+        lives = survivalLives;
+        secondChanceLives = secondChanceLivesSurvival;
     }
     private void Start()
     {
@@ -129,10 +138,16 @@ public class ClassicGameManager : MonoBehaviour
         else
         {
             endPanel2.SetActive(true);
-            if (totalPoints > (PlayerPrefs.GetInt("HighScore", 0)))
+            if (gameMode == GameMode.classic && totalPoints > (PlayerPrefs.GetInt("HighScore", 0)))
             {
                 PlayerPrefs.SetInt("HighScore", totalPoints);
                 highScore.SetText(PlayerPrefs.GetInt("HighScore", 0).ToString());
+            }
+
+            if (gameMode == GameMode.survival &&totalPoints > (PlayerPrefs.GetInt("Survival", 0)))
+            {
+                PlayerPrefs.SetInt("Survival", totalPoints);
+                survivalScore.SetText(PlayerPrefs.GetInt("Survival", 0).ToString());
             }
         }
     }
@@ -169,7 +184,7 @@ public class ClassicGameManager : MonoBehaviour
             StopCoroutine(pointDecreaser);
         }
         endRound();
-        boxCollider.enabled = true;
+        //boxCollider.enabled = true;
         activateBallTrigger(false);
         //Ball.instance.ActivateTrigger(false);
     }
@@ -228,6 +243,8 @@ public class ClassicGameManager : MonoBehaviour
 
     public void BallInPosition()
     {
+        BallStartHeight = Ball.instance.transform.position.y;
+        Debug.Log(BallStartHeight);
         if (gameMode == GameMode.classic)
         {
             StartGame();
