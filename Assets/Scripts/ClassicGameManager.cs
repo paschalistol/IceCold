@@ -50,7 +50,6 @@ public class ClassicGameManager : MonoBehaviour
     }
     public void BeginGame()
     {
-
         beginningGame();
         Time.timeScale = 1;
         masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume",0));
@@ -79,7 +78,6 @@ public class ClassicGameManager : MonoBehaviour
 
     private void StartGame()
     {
-
         pointDecreaser = StartCoroutine(PointDecrease());
         boxCollider.enabled = false;
         activateBallTrigger(true);
@@ -135,6 +133,11 @@ public class ClassicGameManager : MonoBehaviour
                 highScore.SetText(PlayerPrefs.GetInt("HighScore", 0).ToString());
             }
         }
+    }
+
+    public bool GetAllowControls()
+    {
+        return player.AllowControls;
     }
     public void NoReward()
     {

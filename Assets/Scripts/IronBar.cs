@@ -58,8 +58,7 @@ public class IronBar : MonoBehaviour
         gameMode = ClassicGameManager.instance.GetGameMode();   
         if (!animat.isPlaying)
         {
-
-        StartNextRound();
+            StartNextRound();
         }
     }
     void FixedUpdate()
@@ -143,7 +142,7 @@ public class IronBar : MonoBehaviour
             if (gameMode == GameMode.classic)
             {
 
-            animat.Play("StartIron"); 
+                animat.Play("StartIron"); 
             }
             else if (gameMode == GameMode.survival)
             {

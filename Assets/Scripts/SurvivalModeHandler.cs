@@ -23,7 +23,6 @@ public class SurvivalModeHandler : MonoBehaviour
     {
         foreach (Transform child in survivalPool.transform)
         {
-            
             child.gameObject.SetActive(true);
         }
     }
