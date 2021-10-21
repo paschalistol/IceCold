@@ -114,14 +114,13 @@ public class ClassicGameManager : MonoBehaviour
     }
     private void SecondChance()
     {
-
-            gotAward = true;
-            endPanel.SetActive(false);
-            lives = 0;
-            lives += secondChanceLives;
-            endGame(lives < 0);
-            beginningGame();
-            optionsBG.gameObject.SetActive(false);
+        gotAward = true;
+        endPanel.SetActive(false);
+        lives = 0;
+        lives += secondChanceLives;
+        endGame(lives < 0);
+        beginningGame();
+        optionsBG.gameObject.SetActive(false);
     }
     public GameMode GetGameMode()
     {
