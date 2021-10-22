@@ -94,13 +94,13 @@ public class ClassicGameManager : MonoBehaviour
         activateBallTrigger(true);
         startRound();
         bonusPointScreen.SetText(currentPoints.ToString());
-        livesScreen.SetText(lives.ToString());
+        livesScreen.SetText((lives -1).ToString());
     }
     private void StartSurvivalGame()
     {
         activateBallTrigger(true);
         startRound();
-        livesScreen.SetText(lives.ToString());
+        livesScreen.SetText((lives -1).ToString());
     }
 
     public void AddBonus(BonusHole bonusHole)
@@ -118,7 +118,7 @@ public class ClassicGameManager : MonoBehaviour
         endPanel.SetActive(false);
         lives = 0;
         lives += secondChanceLives;
-        endGame(lives < 0);
+        endGame(lives ==0);
         beginningGame();
         optionsBG.gameObject.SetActive(false);
     }
@@ -168,8 +168,8 @@ public class ClassicGameManager : MonoBehaviour
         lives--;
 
         RestartBall();
-        endGame( lives<0);
-        if (lives < 0)
+        endGame( lives==0);
+        if (lives == 0)
         {
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             OutOfLives();
@@ -243,7 +243,6 @@ public class ClassicGameManager : MonoBehaviour
     public void BallInPosition()
     {
         BallStartHeight = Ball.instance.transform.position.y;
-        Debug.Log(BallStartHeight);
         if (gameMode == GameMode.classic)
         {
             StartGame();

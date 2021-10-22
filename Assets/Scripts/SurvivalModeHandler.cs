@@ -11,12 +11,14 @@ public class SurvivalModeHandler : MonoBehaviour
     [SerializeField] private Image baseImage;
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject survivalPool;
+    [SerializeField] private SurvivalBGHandler survivalBgHandler;
     private void ChangeScreenBG()
     {
         baseImage.sprite = newBG;
         baseImage.color = color;
         DeleteClassicHoles();
         EnableSurvivalHoles();
+        survivalBgHandler.ChangeToSurvivalBackground(color);
     }
 
     private void EnableSurvivalHoles()

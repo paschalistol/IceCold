@@ -7,10 +7,10 @@ public class CyllinderSoundManager : MonoBehaviour
     [SerializeField] private AudioClip tick;
     AudioSource audioSource;
     [SerializeField] private GameObject leftPivot, rightPivot;
-    private float previousLeft, previousRight;
+    private float previousLeft, previousRight, previousLevelHeight;
     [SerializeField] private float soundOnHeightDifference = 0.03f;
     private IronBar player;
-
+    [SerializeField] private GameObject survivalPool;
     private void Start()
     {
         audioSource =  GetComponent<AudioSource>();
@@ -18,27 +18,37 @@ public class CyllinderSoundManager : MonoBehaviour
         player.resettingBar += PlayClickUp;
         UpdatePivotPosition();
         player.resettingPivots += UpdatePivotPosition;
+        previousLevelHeight = survivalPool.transform.position.y;
+
     }
     private void Update()
     {
         if (!audioSource.isPlaying && player.AllowControls)
         {
 
-        if (Mathf.Abs(previousLeft - leftPivot.transform.position.y) > soundOnHeightDifference)
-        {
-            previousLeft = leftPivot.transform.position.y;
-            PlaySound(tick, false, 1.22f);
-            audioSource.Play();
-        }
-        else if (Mathf.Abs(previousRight - rightPivot.transform.position.y) > soundOnHeightDifference)
-        {
-            previousRight = rightPivot.transform.position.y;
-            PlaySound(tick, false, 1.22f);
-            audioSource.Play();
-        }
+            if (Mathf.Abs(previousLeft - leftPivot.transform.position.y) > soundOnHeightDifference)
+            {
+                previousLeft = leftPivot.transform.position.y;
+                PlaySound();
+            }
+            else if (Mathf.Abs(previousRight - rightPivot.transform.position.y) > soundOnHeightDifference)
+            {
+                previousRight = rightPivot.transform.position.y;
+                PlaySound();
+            }
+            else if ((previousLevelHeight - survivalPool.transform.position.y) > soundOnHeightDifference)
+            {
+                previousLevelHeight = survivalPool.transform.position.y;
+                PlaySound();
+            }
         }
     }
 
+    private void PlaySound()
+    {
+        PlaySound(tick, false, 1.22f);
+        audioSource.Play();
+    }
     private void UpdatePivotPosition()
     {
         previousLeft = leftPivot.transform.position.y;

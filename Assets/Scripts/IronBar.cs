@@ -22,6 +22,9 @@ public class IronBar : MonoBehaviour
     public delegate void ResettingPivots();
     public ResettingPivots resettingPivots;
     private GameMode gameMode;
+    
+    [SerializeField] private SurvivalBGHandler survivalBgHandler;
+
     public bool AllowControls
     {
         get { return allowControls; }
@@ -77,6 +80,7 @@ public class IronBar : MonoBehaviour
                 SurvivalControl();
                 survivalPool.transform.position = new Vector3(survivalPool.transform.position.x,
                     survivalPool.transform.position.y - 0.01f, survivalPool.transform.position.z);
+                survivalBgHandler.MoveBgDown(-0.01f);
             }
         }
         if (barLocated && barRotated)
@@ -89,6 +93,8 @@ public class IronBar : MonoBehaviour
 
 
     }
+
+
 
     private void SurvivalControl()
     {
