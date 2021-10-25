@@ -8,10 +8,11 @@ public class BallTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
 
-        collider.GetComponent<Hole>().BallInHole();
+        collider.transform.parent.GetComponent<Hole>().BallInHole();
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
-        Ball.instance.transform.localPosition = collider.transform.position;
+        // Ball.instance.transform.localPosition = collider.transform.position;
+        Ball.instance.RotateBallInHole(collider.transform.position);
         if (ClassicGameManager.instance.GetGameMode()==GameMode.classic)
         {
             Ball.instance.StartAnimation("BallInHole");
@@ -22,4 +23,6 @@ public class BallTrigger : MonoBehaviour
         }
 
     }
+
+
 }

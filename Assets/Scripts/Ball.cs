@@ -9,6 +9,14 @@ public class Ball : MonoBehaviour
     public static Ball instance;
     [SerializeField] private GameObject trigger;
     private AudioSource audioSource;
+    public delegate void StartingBall();
+    public StartingBall startingBall;
+
+    public bool BallResetting
+    {
+        get;
+        private set;
+    }
     private void Awake()
     {
         if (instance == null)
@@ -51,8 +59,34 @@ public class Ball : MonoBehaviour
                 transform.localScale = Vector3.one;
             }
 
+
         }
         anim.Play(animation);
+    }
+
+    public void BarInLocation()
+    {
+        if (startingBall != null)
+        {
+            
+         startingBall();
+        }
+    }
+    public void RotateBallInHole(Vector3 holeCenter)
+    {
+        StartCoroutine(BallInHoleAnimator(holeCenter));
+    }
+    IEnumerator BallInHoleAnimator(Vector3 holeCenter)
+    {
+        BallResetting = true;
+        while (transform.localScale.x>0)
+        {
+            transform.RotateAround(holeCenter, -Vector3.forward, 300 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, holeCenter, 0.1f * Time.deltaTime);
+            yield return null;
+        }
+
+        BallResetting = false;
     }
     private void ActivateTrigger(bool activate)
     {

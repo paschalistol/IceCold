@@ -8,18 +8,30 @@ public class SurvivalHole : Hole
     private float distanceAfterDying = 0.7f;
     private Animator anim;
     private Vector3 localScale;
+    private bool closeHole;
     void Start()
     {
         ClassicGameManager.instance.endRound += CheckDistanceAfterDying;
         anim = GetComponent<Animator>();
+        Ball.instance.startingBall += WaitForTrigger; 
     }
     private void CheckDistanceAfterDying()
     {
         if (ClassicGameManager.instance.GetGameMode() == GameMode.survival && transform.position.y - distanceAfterDying < ClassicGameManager.instance.BallStartHeight)
         {
             localScale = transform.localScale;
+            closeHole = true;
+        }   
+    }
+
+    private void WaitForTrigger()
+    {
+        if (closeHole)
+        {
             anim.SetTrigger("CloseHole");
         }
+
+        closeHole = false;
     }
 
     private void MoveHoleToNew()

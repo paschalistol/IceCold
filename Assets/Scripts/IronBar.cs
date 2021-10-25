@@ -22,7 +22,6 @@ public class IronBar : MonoBehaviour
     public delegate void ResettingPivots();
     public ResettingPivots resettingPivots;
     private GameMode gameMode;
-    
     [SerializeField] private SurvivalBGHandler survivalBgHandler;
 
     public bool AllowControls
@@ -83,7 +82,7 @@ public class IronBar : MonoBehaviour
                 survivalBgHandler.MoveBgDown(-0.01f);
             }
         }
-        if (barLocated && barRotated)
+        if (barLocated && barRotated && !Ball.instance.BallResetting)
         {
 
             barRotated = false;
@@ -121,6 +120,7 @@ public class IronBar : MonoBehaviour
         StartCoroutine(ResetBarRotation());
         StartCoroutine(ResetBarLocation());
     }
+    
     IEnumerator ResetBarRotation()
     {
         while (transform.eulerAngles.z != 90)
@@ -156,11 +156,11 @@ public class IronBar : MonoBehaviour
         {
             if (gameMode == GameMode.classic)
             {
-
                 animat.Play("StartIron"); 
             }
             else if (gameMode == GameMode.survival)
-            {
+            {   
+                ball.BarInLocation();
                 animat.Play("StartIron"); 
             }
         }
