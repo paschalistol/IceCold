@@ -39,7 +39,7 @@ public class SurvivalPool : MonoBehaviour
     {
         tempPoolObject = Instantiate(poolObjectTranslation[poolObject]);
         tempPoolObject.transform.SetParent(transform);
-        tempPoolObject.GetComponent<Hole>().SurvivalHole(this);
+        tempPoolObject.GetComponent<SurvivalHole>().SurvivalHoleInit(this);
         tempPoolObject.transform.localScale = Vector3.one* Random.Range(minScale, maxScale);
         AddToPool(poolObject, tempPoolObject);
     }

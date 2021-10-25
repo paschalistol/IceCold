@@ -55,6 +55,7 @@ public class ClassicGameManager : MonoBehaviour
         if (instance != this)
             Destroy(gameObject);
         boxCollider = GetComponent<BoxCollider>();
+        Time.timeScale = 1;
     }
     public void BeginGame()
     {

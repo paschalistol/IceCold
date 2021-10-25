@@ -3675,7 +3675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - poolObject: 0
-    prefab: {fileID: 4901901174573548207, guid: 01b43bd0203dd144382e4c89040f1e6e, type: 3}
+    prefab: {fileID: 4901901174573548207, guid: 683ba97fda2d79040b2fc6fcc0b82152, type: 3}
   - poolObject: 1
     prefab: {fileID: 4901901174573548207, guid: 687d7ecf24c82bc448c8d6f45af719f1, type: 3}
   minScale: 0.5
