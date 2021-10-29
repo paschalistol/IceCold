@@ -23,6 +23,7 @@ public class IronBar : MonoBehaviour
     public ResettingPivots resettingPivots;
     private GameMode gameMode;
     [SerializeField] private SurvivalBGHandler survivalBgHandler;
+    private float survivalBgSpeed = 0.01f;
 
     public bool AllowControls
     {
@@ -76,10 +77,11 @@ public class IronBar : MonoBehaviour
             Controls();
             if (gameMode == GameMode.survival && transform.position.y > topHeightSurvival)
             {
+                survivalBgSpeed = rotationSpeed * Time.deltaTime * 0.1f;
                 SurvivalControl();
                 survivalPool.transform.position = new Vector3(survivalPool.transform.position.x,
-                    survivalPool.transform.position.y - 0.01f, survivalPool.transform.position.z);
-                survivalBgHandler.MoveBgDown(-0.01f);
+                    survivalPool.transform.position.y - survivalBgSpeed, survivalPool.transform.position.z);
+                survivalBgHandler.MoveBgDown(-survivalBgSpeed);
             }
         }
         if (barLocated && barRotated && !Ball.instance.BallResetting)
@@ -172,21 +174,21 @@ public class IronBar : MonoBehaviour
     }
     private void Controls()
     {
-        if ((leftJoystick.Vertical > threshold || Input.GetKey(KeyCode.W)) && (Input.GetKey(KeyCode.UpArrow) || rightJoystick.Vertical > threshold) && leftPivot.transform.position.y < topHeight && rightPivot.transform.position.y < topHeight)
-        {
-            transform.parent = null;
-            leftPivot.transform.parent = transform;
-            rightPivot.transform.parent = transform;
-            transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        }
-        else if (leftJoystick.Vertical < -threshold || (Input.GetKey(KeyCode.S)) && (Input.GetKey(KeyCode.DownArrow) || rightJoystick.Vertical < -threshold) && leftPivot.transform.position.y > bottomHeight && rightPivot.transform.position.y > bottomHeight)
-        {
-            transform.parent = null;
-            leftPivot.transform.parent = transform;
-            rightPivot.transform.parent = transform;
-
-            transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        }
+        // if ((leftJoystick.Vertical > threshold || Input.GetKey(KeyCode.W)) && (Input.GetKey(KeyCode.UpArrow) || rightJoystick.Vertical > threshold) && leftPivot.transform.position.y < topHeight && rightPivot.transform.position.y < topHeight)
+        // {
+        //     transform.parent = null;
+        //     leftPivot.transform.parent = transform;
+        //     rightPivot.transform.parent = transform;
+        //     transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        // }
+        // else if (leftJoystick.Vertical < -threshold || (Input.GetKey(KeyCode.S)) && (Input.GetKey(KeyCode.DownArrow) || rightJoystick.Vertical < -threshold) && leftPivot.transform.position.y > bottomHeight && rightPivot.transform.position.y > bottomHeight)
+        // {
+        //     transform.parent = null;
+        //     leftPivot.transform.parent = transform;
+        //     rightPivot.transform.parent = transform;
+        //
+        //     transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        // }
         //only right
         if ((Input.GetKey(KeyCode.DownArrow) || rightJoystick.Vertical < -threshold) && rightPivot.transform.position.y > bottomHeight)
         {
@@ -196,6 +198,7 @@ public class IronBar : MonoBehaviour
                 transform.parent = leftPivot.transform;
                 rightPivot.transform.parent = transform;
                 leftPivot.transform.rotation = Quaternion.Euler(0, 0, leftPivot.transform.eulerAngles.z + -rotationSpeed * (Mathf.Abs(rightJoystick.Vertical) > 0 ? Mathf.Abs(rightJoystick.Vertical) : 1) * Time.deltaTime);
+                CenterBar();
             }
         }
         else if ((Input.GetKey(KeyCode.UpArrow) || rightJoystick.Vertical > threshold) && rightPivot.transform.position.y < topHeight)
@@ -206,6 +209,7 @@ public class IronBar : MonoBehaviour
                 transform.parent = leftPivot.transform;
                 rightPivot.transform.parent = transform;
                 leftPivot.transform.rotation = Quaternion.Euler(0, 0, leftPivot.transform.eulerAngles.z + rotationSpeed * (Mathf.Abs(rightJoystick.Vertical) > 0 ? Mathf.Abs(rightJoystick.Vertical) : 1) * Time.deltaTime);
+                CenterBar();
             }
         }
         //only left
@@ -217,6 +221,7 @@ public class IronBar : MonoBehaviour
                 transform.parent = rightPivot.transform;
                 leftPivot.transform.parent = transform;
                 rightPivot.transform.rotation = Quaternion.Euler(0, 0, rightPivot.transform.eulerAngles.z + rotationSpeed * (Mathf.Abs(leftJoystick.Vertical) > 0 ? Mathf.Abs(leftJoystick.Vertical) : 1) * Time.deltaTime);
+                CenterBar();
             }
         }
         else if ((Input.GetKey(KeyCode.W) || leftJoystick.Vertical > threshold) && leftPivot.transform.position.y < topHeight)
@@ -227,7 +232,17 @@ public class IronBar : MonoBehaviour
                 transform.parent = rightPivot.transform;
                 leftPivot.transform.parent = transform;
                 rightPivot.transform.rotation = Quaternion.Euler(0, 0, rightPivot.transform.eulerAngles.z + -rotationSpeed * (Mathf.Abs(leftJoystick.Vertical)>0 ? Mathf.Abs(leftJoystick.Vertical) : 1) * Time.deltaTime);;
+                CenterBar();
             }
         }
+
+    }
+
+    private void CenterBar()
+    {
+        transform.parent = null;
+        leftPivot.transform.parent = transform;
+        rightPivot.transform.parent = transform;
+        transform.position = new Vector3(0, transform.position.y, transform.position.z);
     }
 }

@@ -39,4 +39,14 @@ public class HoleGeneratorSurvival : MonoBehaviour
             NewHolePosition(holeTransform);
         }
     }
+
+    private void MovingHole()
+    {
+        
+    }
+
+    private void ClosedHole()
+    {
+        
+    }
 }

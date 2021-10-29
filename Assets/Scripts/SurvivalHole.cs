@@ -9,6 +9,7 @@ public class SurvivalHole : Hole
     private Animator anim;
     private Vector3 localScale;
     private bool closeHole;
+
     void Start()
     {
         ClassicGameManager.instance.endRound += CheckDistanceAfterDying;
@@ -44,8 +45,9 @@ public class SurvivalHole : Hole
     {
         if (ClassicGameManager.instance.GetAllowControls() &&  Ball.instance.transform.position.y - transform.position.y > 4 )
         {
-            survivalFunctions.NewHolePosition(transform);
             //Move Hole To new position
+            survivalFunctions.NewHolePosition(transform);
+            //CheckForSmartFeatures;
         }
     }
     private void OnDestroy()
@@ -61,4 +63,5 @@ public class SurvivalHole : Hole
         localScale = transform.localScale;
         MoveHoleToNew();
     }
+
 }

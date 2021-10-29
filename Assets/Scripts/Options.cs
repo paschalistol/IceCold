@@ -14,7 +14,7 @@ public class Options : MonoBehaviour
     {
         fullScreen = (PlayerPrefs.GetInt("fullScreen") != 0);
         //FullScreen();
-        OptionsBackground();
+        //OptionsBackground();
         ChangeFullScreenOptions();
     }
     public void ReloadScene()
@@ -57,7 +57,7 @@ public class Options : MonoBehaviour
     private void ChangeFullScreenOptions()
     {
         FullScreen();
-        OptionsBackground();
+        //OptionsBackground();
         toggleFullscreen();
     }
     public void ToggleFullscreen()
@@ -84,7 +84,7 @@ public class Options : MonoBehaviour
             optionsBackground.sizeDelta = new Vector2(0, 976);
         }
     }
-
+    
     private void FullScreen()
     {
         if (fullScreen)
@@ -95,6 +95,8 @@ public class Options : MonoBehaviour
             screenPanel.localScale = fullScreenScale;
             fade.anchoredPosition = fullScreenPosition;
             fade.localScale = fullScreenScale;
+            optionsBackground.anchoredPosition = fullScreenPosition;
+            optionsBackground.localScale = fullScreenScale;
         }
         else
         {
@@ -104,6 +106,8 @@ public class Options : MonoBehaviour
             screenPanel.localScale = Vector3.one;
             fade.anchoredPosition = Vector3.zero;
             fade.localScale = Vector3.one;
+            optionsBackground.anchoredPosition = Vector3.zero;;
+            optionsBackground.localScale = Vector3.one;;
         }
     }
 }
