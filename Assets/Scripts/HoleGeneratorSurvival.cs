@@ -14,7 +14,7 @@ public class HoleGeneratorSurvival : MonoBehaviour
     private float startPoolY;
     private float previousClockAppearance = 0;
     [SerializeField, Range(0,1)] private float clockChance = 0.3f;
-    private int rowChange = 0;
+    private int rowChange = 0, minRow = 10;
     private GameObject objectHandler;
     private void Start()
     {
@@ -48,7 +48,7 @@ public class HoleGeneratorSurvival : MonoBehaviour
 
     private void PowerUpHandler()
     {
-        if (rowChange<rowNumber)
+        if (rowChange<rowNumber && rowNumber > minRow)
         {
             TimePowerUpHandler();
             rowChange = rowNumber;

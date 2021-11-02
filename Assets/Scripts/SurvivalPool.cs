@@ -26,11 +26,6 @@ public class SurvivalPool : MonoBehaviour
     private void Start()
     {
         PopulateTranslation();
-        // for (int i = 0; i < initialPoolSize; i++)
-        // {
-        //     GrowPool(PoolObject.BIG_HOLE);
-        // }
-
         foreach (Pool pool in pools)
         {
             for (int i = 0; i < pool.initialSize; i++)
@@ -53,11 +48,12 @@ public class SurvivalPool : MonoBehaviour
     {
         tempPoolObject = Instantiate(poolObjectTranslation[poolObject]);
         tempPoolObject.transform.SetParent(transform);
-        DifferentObjectHandler(poolObject);
+        tempPoolObject.name = tempPoolObject.name + " " + tempPoolObject.transform.GetSiblingIndex();
+        DifferentObjectHandler(poolObject, tempPoolObject);
         AddToPool(poolObject, tempPoolObject);
     }
 
-    private void DifferentObjectHandler(PoolObject poolObject)
+    private void DifferentObjectHandler(PoolObject poolObject, GameObject tempPoolObject)
     {
         if (poolObject == PoolObject.BIG_HOLE)
         {
@@ -84,8 +80,7 @@ public class SurvivalPool : MonoBehaviour
             GrowPool(poolObject);
         }
         tempPoolObject = poolDictionary[poolObject].Dequeue();
-        tempPoolObject.SetActive(true);
-        // tempPoolObject.transform.GetComponentInChildren<Transform>().localScale = Vector3.one * Random.Range(minScale, maxScale);
+        tempPoolObject.SetActive(true); 
         return tempPoolObject;
     }
 
