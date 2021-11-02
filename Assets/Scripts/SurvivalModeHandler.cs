@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EasyMobile;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SurvivalModeHandler : MonoBehaviour
 {
@@ -12,6 +14,15 @@ public class SurvivalModeHandler : MonoBehaviour
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject survivalPool;
     [SerializeField] private SurvivalBGHandler survivalBgHandler;
+    [SerializeField] private float startingTime = 10.0f;
+    private float timeLeft = 10.0f;
+    [SerializeField] private TMP_Text bonusPointScreen;
+
+    private void Start()
+    {
+        ClassicGameManager.instance.startRound += StartRound;
+    }
+
     private void ChangeScreenBG()
     {
         baseImage.sprite = newBG;
@@ -25,7 +36,11 @@ public class SurvivalModeHandler : MonoBehaviour
     {
         foreach (Transform child in survivalPool.transform)
         {
-            child.gameObject.SetActive(true);
+            if (child.transform.CompareTag("Hole"))
+            {
+                
+                child.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -40,5 +55,27 @@ public class SurvivalModeHandler : MonoBehaviour
 
         }
     }
-    
+
+    private void StartRound()
+    {
+        timeLeft = startingTime;
+    }
+
+    private void Update()
+    {
+        if (ClassicGameManager.instance.GetAllowControls())
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+                bonusPointScreen.SetText(((int)timeLeft).ToString());
+            }
+            else if (timeLeft <= 0)
+            {
+                bonusPointScreen.SetText("0");
+                ClassicGameManager.instance.Die();
+            }
+        }
+
+    }
 }

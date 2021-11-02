@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SurvivalPool : MonoBehaviour
 {
@@ -10,19 +11,32 @@ public class SurvivalPool : MonoBehaviour
     {
         public PoolObject poolObject;
         public GameObject prefab;
+        public int initialSize;
     }
     private Dictionary<PoolObject, GameObject> poolObjectTranslation = new Dictionary<PoolObject, GameObject>();
     private Dictionary<PoolObject, Queue<GameObject>> poolDictionary = new Dictionary<PoolObject, Queue<GameObject>>();
     GameObject tempPoolObject;
     [SerializeField] private List<Pool> pools;
-    [SerializeField] private float minScale = 0.4f, maxScale = 1;
-    [SerializeField] private int initialPoolSize = 40; 
+    [Header("Hole Settings")]
+    [SerializeField] private float minScale = 0.4f;
+    [SerializeField] private float maxScale = 1;
+    [FormerlySerializedAs("clockSize")]
+    [Header("Clock Settings")]
+    [SerializeField] private float clockScale = 0.65f;
     private void Start()
     {
         PopulateTranslation();
-        for (int i = 0; i < initialPoolSize; i++)
+        // for (int i = 0; i < initialPoolSize; i++)
+        // {
+        //     GrowPool(PoolObject.BIG_HOLE);
+        // }
+
+        foreach (Pool pool in pools)
         {
-            GrowPool(PoolObject.BIG_HOLE);
+            for (int i = 0; i < pool.initialSize; i++)
+            {
+                GrowPool(pool.poolObject);
+            }
         }
     }
 
@@ -39,8 +53,15 @@ public class SurvivalPool : MonoBehaviour
     {
         tempPoolObject = Instantiate(poolObjectTranslation[poolObject]);
         tempPoolObject.transform.SetParent(transform);
-        tempPoolObject.GetComponent<SurvivalHole>().SurvivalHoleInit(this);
-        tempPoolObject.transform.GetChild(0).transform.localScale = Vector3.one * Random.Range(minScale, maxScale) / tempPoolObject.transform.localScale.x;
+        if (poolObject == PoolObject.BIG_HOLE)
+        {
+            tempPoolObject.GetComponent<SurvivalHole>().SurvivalHoleInit(this);
+            tempPoolObject.transform.GetChild(0).transform.localScale = Vector3.one * Random.Range(minScale, maxScale) / tempPoolObject.transform.localScale.x;
+        }
+        else if (poolObject == PoolObject.CLOCK)
+        {
+            tempPoolObject.transform.localScale= Vector3.one * clockScale;
+        }
         AddToPool(poolObject, tempPoolObject);
     }
     public void AddToPool(PoolObject poolObject, GameObject instanceToAdd)
@@ -72,5 +93,5 @@ public class SurvivalPool : MonoBehaviour
 }
 public enum PoolObject
 {
-    BIG_HOLE
+    BIG_HOLE, CLOCK
 }

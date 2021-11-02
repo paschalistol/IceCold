@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour
     private AudioSource audioSource;
     public delegate void StartingBall();
     public StartingBall startingBall;
-
+    private Rigidbody rb;
     public bool BallResetting
     {
         get;
@@ -27,6 +27,7 @@ public class Ball : MonoBehaviour
     }
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animation>();
         ClassicGameManager.instance.activateBallTrigger += ActivateTrigger;
         audioSource = GetComponent<AudioSource>();
@@ -90,6 +91,7 @@ public class Ball : MonoBehaviour
     }
     private void ActivateTrigger(bool activate)
     {
+        rb.useGravity = activate;
         trigger.SetActive(activate);
     }
 

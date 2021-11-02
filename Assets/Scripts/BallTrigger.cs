@@ -9,26 +9,27 @@ public class BallTrigger : MonoBehaviour
     [SerializeField] private float max = 50;
     private void OnTriggerEnter(Collider collider)
     {
-        if (ClassicGameManager.instance.GetGameMode() == GameMode.classic)
+        if (collider.CompareTag("Hole"))
         {
-            collider.GetComponent<Hole>().BallInHole();
-        }
-        else if (ClassicGameManager.instance.GetGameMode() == GameMode.survival)
-        {
+            rb.velocity = Vector3.zero;
+            rb.useGravity = false;
+            Ball.instance.RotateBallInHole(collider.transform.position);
+            if (ClassicGameManager.instance.GetGameMode() == GameMode.classic)
+            {
+                collider.GetComponent<Hole>().BallInHole();
+                Ball.instance.StartAnimation("BallInHole");
+            }
+            else if (ClassicGameManager.instance.GetGameMode() == GameMode.survival)
+            {
             
-            collider.transform.parent.GetComponent<Hole>().BallInHole();
+                collider.transform.parent.GetComponent<Hole>().BallInHole();
+                Ball.instance.StartAnimation("BallInHoleSurvival");
+            }
         }
-        rb.velocity = Vector3.zero;
-        rb.useGravity = false;
-        // Ball.instance.transform.localPosition = collider.transform.position;
-        Ball.instance.RotateBallInHole(collider.transform.position);
-        if (ClassicGameManager.instance.GetGameMode()==GameMode.classic)
+
+        if (collider.CompareTag("TimePowerUp"))
         {
-            Ball.instance.StartAnimation("BallInHole");
-        }
-        else if (ClassicGameManager.instance.GetGameMode()==GameMode.survival)
-        {
-            Ball.instance.StartAnimation("BallInHoleSurvival");
+            Debug.Log("more time");
         }
 
     }
