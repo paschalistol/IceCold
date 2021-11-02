@@ -7,6 +7,7 @@ public class BallTrigger : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float max = 50;
+    [SerializeField] private SurvivalModeHandler survivalModeHandler;
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Hole"))
@@ -29,7 +30,8 @@ public class BallTrigger : MonoBehaviour
 
         if (collider.CompareTag("TimePowerUp"))
         {
-            Debug.Log("more time");
+            survivalModeHandler.AddTime();
+            collider.GetComponent<SurvivalPowerUp>().BackToPool();
         }
 
     }
@@ -41,6 +43,6 @@ public class BallTrigger : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(rb.maxAngularVelocity);
+        // Debug.Log(rb.maxAngularVelocity);
     }
 }

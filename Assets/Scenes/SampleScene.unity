@@ -3683,7 +3683,7 @@ MonoBehaviour:
     initialSize: 30
   - poolObject: 1
     prefab: {fileID: 3577839142065315907, guid: a80fcc902c394e046983ca950349d34e, type: 3}
-    initialSize: 2
+    initialSize: 10
   minScale: 0.5
   maxScale: 0.8
   clockScale: 0.65
@@ -3716,6 +3716,7 @@ MonoBehaviour:
   chance: 0.65
   xRange: 0.1
   yRange: 0.3
+  clockChance: 0.4
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -8888,8 +8889,9 @@ MonoBehaviour:
   gameManager: {fileID: 1579815148}
   survivalPool: {fileID: 516965383}
   survivalBgHandler: {fileID: 1486457158}
-  startingTime: 10
+  startingTime: 50
   bonusPointScreen: {fileID: 128542891}
+  secondsToAdd: 15
 --- !u!1 &1152385534
 GameObject:
   m_ObjectHideFlags: 0
@@ -14193,6 +14195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1118161733}
   max: 100
+  survivalModeHandler: {fileID: 1129842952}
 --- !u!1 &1923859596
 GameObject:
   m_ObjectHideFlags: 0

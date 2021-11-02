@@ -17,6 +17,7 @@ public class SurvivalModeHandler : MonoBehaviour
     [SerializeField] private float startingTime = 10.0f;
     private float timeLeft = 10.0f;
     [SerializeField] private TMP_Text bonusPointScreen;
+    [SerializeField] private int secondsToAdd = 15;
 
     private void Start()
     {
@@ -38,7 +39,6 @@ public class SurvivalModeHandler : MonoBehaviour
         {
             if (child.transform.CompareTag("Hole"))
             {
-                
                 child.gameObject.SetActive(true);
             }
         }
@@ -61,6 +61,10 @@ public class SurvivalModeHandler : MonoBehaviour
         timeLeft = startingTime;
     }
 
+    public void AddTime()
+    {
+        timeLeft += secondsToAdd;
+    }
     private void Update()
     {
         if (ClassicGameManager.instance.GetAllowControls())

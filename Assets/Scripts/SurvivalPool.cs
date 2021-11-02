@@ -53,6 +53,12 @@ public class SurvivalPool : MonoBehaviour
     {
         tempPoolObject = Instantiate(poolObjectTranslation[poolObject]);
         tempPoolObject.transform.SetParent(transform);
+        DifferentObjectHandler(poolObject);
+        AddToPool(poolObject, tempPoolObject);
+    }
+
+    private void DifferentObjectHandler(PoolObject poolObject)
+    {
         if (poolObject == PoolObject.BIG_HOLE)
         {
             tempPoolObject.GetComponent<SurvivalHole>().SurvivalHoleInit(this);
@@ -62,8 +68,8 @@ public class SurvivalPool : MonoBehaviour
         {
             tempPoolObject.transform.localScale= Vector3.one * clockScale;
         }
-        AddToPool(poolObject, tempPoolObject);
     }
+
     public void AddToPool(PoolObject poolObject, GameObject instanceToAdd)
     {
         instanceToAdd.SetActive(false);
@@ -79,7 +85,7 @@ public class SurvivalPool : MonoBehaviour
         }
         tempPoolObject = poolDictionary[poolObject].Dequeue();
         tempPoolObject.SetActive(true);
-        tempPoolObject.transform.GetComponentInChildren<Transform>().localScale = Vector3.one * Random.Range(minScale, maxScale);
+        // tempPoolObject.transform.GetComponentInChildren<Transform>().localScale = Vector3.one * Random.Range(minScale, maxScale);
         return tempPoolObject;
     }
 
