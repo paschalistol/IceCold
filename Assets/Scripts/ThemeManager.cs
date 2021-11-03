@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using EasyMobile;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +17,7 @@ public class ThemeManager : MonoBehaviour
     [SerializeField] private Material bar;
     [SerializeField] private Material machineMain;
     [SerializeField] private Material machineSecondary;
-
+    private Dictionary<string, GameObject> buttons = new Dictionary<string, GameObject>();
     public Theme ActiveTheme
     {
         get;
@@ -36,9 +37,15 @@ public class ThemeManager : MonoBehaviour
             themeInstance.transform.GetChild(0).GetComponent<Image>().sprite = theme.platform;
             themeInstance.GetComponent<ThemeObject>().changeTheme += ChangeTheme;
             themeInstance.name = theme.name;
+            buttons.Add(themeInstance.name, themeInstance);
             if (!theme.available)
             {
                 themeInstance.GetComponent<Button>().interactable = false;
+                themeInstance.GetComponent<ThemeObject>().NotAvailable();
+            }
+            else if (theme.name.Equals(ActiveTheme.name))
+            {
+                themeInstance.GetComponent<ThemeObject>().ChangeButtonColor();
             }
         }
         // ball.EnableKeyword("_EMISSION");
@@ -70,7 +77,20 @@ public class ThemeManager : MonoBehaviour
 
     private void ChangeTheme(string name)
     {
+        RemoveOldSelected();
         PlayerPrefs.SetString("startingTheme", name);
         GetStartingTheme();
+    }
+
+    private void RemoveOldSelected()
+    {
+        foreach (KeyValuePair<string,GameObject> theme in buttons)
+        {
+            if (theme.Key.Equals(ActiveTheme.name))
+            {
+                theme.Value.GetComponent<ThemeObject>().RemoveSelected();
+            }
+        }
+
     }
 }

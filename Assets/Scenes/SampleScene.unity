@@ -9231,7 +9231,7 @@ MonoBehaviour:
   gameManager: {fileID: 1579815148}
   survivalPool: {fileID: 516965383}
   survivalBgHandler: {fileID: 1486457158}
-  startingTime: 50
+  startingTime: 70
   bonusPointScreen: {fileID: 128542891}
   secondsToAdd: 23
   themeManager: {fileID: 1579815154}
@@ -12666,9 +12666,6 @@ MonoBehaviour:
   themes:
   - {fileID: 11400000, guid: 8a81fd59c402c0d4685eef75b5d6c4c8, type: 2}
   - {fileID: 11400000, guid: 4f3e81d4c30b19b4287d30913b23354a, type: 2}
-  - {fileID: 11400000, guid: b73c7342ef1f87240847458927b04123, type: 2}
-  - {fileID: 11400000, guid: f05a9c4ba0fc15f4e943edfc407b1793, type: 2}
-  - {fileID: 11400000, guid: 8b06825d1f5e34246b6f292cb2636999, type: 2}
   - {fileID: 11400000, guid: b73c7342ef1f87240847458927b04123, type: 2}
   - {fileID: 11400000, guid: f05a9c4ba0fc15f4e943edfc407b1793, type: 2}
   - {fileID: 11400000, guid: 8b06825d1f5e34246b6f292cb2636999, type: 2}
