@@ -41,8 +41,9 @@ public class ThemeManager : MonoBehaviour
                 themeInstance.GetComponent<Button>().interactable = false;
             }
         }
-        ball.EnableKeyword("_EMISSION");
-        bar.EnableKeyword("_EMISSION");
+        // ball.EnableKeyword("_EMISSION");
+        // bar.EnableKeyword("_EMISSION");
+        
     }
 
     private void GetStartingTheme()
@@ -63,7 +64,8 @@ public class ThemeManager : MonoBehaviour
         classicScreen.sprite = ActiveTheme.classicBg;
         ball.SetColor("_Emission", ActiveTheme.ballColor);
         bar.SetColor("_Emission", ActiveTheme.bar);
-        
+        machineMain.SetColor("_Color", ActiveTheme.machineMain);
+        machineSecondary.SetColor("_EmissionColor", ActiveTheme.machineSecondary);
     }
 
     private void ChangeTheme(string name)

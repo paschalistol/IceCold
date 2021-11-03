@@ -9226,7 +9226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newBG: {fileID: 21300000, guid: 957c3b6eba67ec54cafbba61c559dea1, type: 3}
-  color: {r: 0.6627451, g: 0.7058824, b: 0.7764706, a: 1}
   baseImage: {fileID: 1725212152}
   gameManager: {fileID: 1579815148}
   survivalPool: {fileID: 516965383}
@@ -9234,6 +9233,7 @@ MonoBehaviour:
   startingTime: 50
   bonusPointScreen: {fileID: 128542891}
   secondsToAdd: 15
+  themeManager: {fileID: 1579815154}
 --- !u!1 &1146552694
 GameObject:
   m_ObjectHideFlags: 0
@@ -12672,8 +12672,8 @@ MonoBehaviour:
   classicScreen: {fileID: 1725212152}
   ball: {fileID: 2100000, guid: 15b7a00437ec76c4fba8c32fb5e39d3c, type: 2}
   bar: {fileID: 2100000, guid: 5fac4b404fda0574e94e0f890f0694a3, type: 2}
-  machineMain: {fileID: 0}
-  machineSecondary: {fileID: 0}
+  machineMain: {fileID: 2100000, guid: e49c257c320f85c44b854b6a5c68946f, type: 2}
+  machineSecondary: {fileID: 2100000, guid: 8765f6007816a4345ab60c0bd8d227e1, type: 2}
 --- !u!1 &1589348743
 GameObject:
   m_ObjectHideFlags: 0

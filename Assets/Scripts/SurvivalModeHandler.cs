@@ -9,7 +9,6 @@ using TMPro;
 public class SurvivalModeHandler : MonoBehaviour
 {
     [SerializeField] private Sprite newBG;
-    [SerializeField] private Color color;
     [SerializeField] private Image baseImage;
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject survivalPool;
@@ -18,6 +17,7 @@ public class SurvivalModeHandler : MonoBehaviour
     private float timeLeft = 10.0f;
     [SerializeField] private TMP_Text bonusPointScreen;
     [SerializeField] private int secondsToAdd = 15;
+    [SerializeField] private ThemeManager themeManager;
     private void Start()
     {
         ClassicGameManager.instance.startRound += StartRound;
@@ -35,11 +35,11 @@ public class SurvivalModeHandler : MonoBehaviour
 /// </summary>
     private void ChangeScreenBG()
     {
-        baseImage.sprite = newBG;
-        baseImage.color = color;
+        // baseImage.sprite = newBG;
+        // baseImage.color = color;
         DeleteClassicHoles();
         EnableSurvivalHoles();
-        survivalBgHandler.ChangeToSurvivalBackground(color);
+        survivalBgHandler.ChangeToSurvivalBackground(themeManager.ActiveTheme.survivalBgColor);
     }
 
     private void EnableSurvivalHoles()
