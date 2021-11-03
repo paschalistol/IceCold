@@ -5,7 +5,7 @@ public class Options : MonoBehaviour
 {
     [SerializeField] private GameObject soundPanel, pausePanel;
     private bool pause = false;
-    [SerializeField] private RectTransform machinePanel, screenPanel, optionsBackground, fade;
+    [SerializeField] private RectTransform machinePanel, screenPanel, optionsBackground, fade, themeSelector;
     [SerializeField] private Vector3 fullScreenPosition, fullScreenScale;
     private bool fullScreen;
     public delegate void TogglingFullscreen();
@@ -84,7 +84,10 @@ public class Options : MonoBehaviour
             optionsBackground.sizeDelta = new Vector2(0, 976);
         }
     }
-    
+    /// <summary>
+    ///Changes the anchors of UI objects
+    /// also important to add the panel at CameraScript.scalers
+    /// </summary>
     private void FullScreen()
     {
         if (fullScreen)
@@ -97,6 +100,8 @@ public class Options : MonoBehaviour
             fade.localScale = fullScreenScale;
             optionsBackground.anchoredPosition = fullScreenPosition;
             optionsBackground.localScale = fullScreenScale;
+            themeSelector.anchoredPosition = fullScreenPosition;
+            themeSelector.localScale = fullScreenScale;
         }
         else
         {
@@ -108,6 +113,8 @@ public class Options : MonoBehaviour
             fade.localScale = Vector3.one;
             optionsBackground.anchoredPosition = Vector3.zero;;
             optionsBackground.localScale = Vector3.one;;
+            themeSelector.anchoredPosition = Vector3.zero;;
+            themeSelector.localScale = Vector3.one;;
         }
     }
 }

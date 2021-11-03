@@ -3833,6 +3833,7 @@ MonoBehaviour:
   - {fileID: 1105561425}
   - {fileID: 786270579}
   - {fileID: 1450068186}
+  - {fileID: 730360032}
 --- !u!114 &519420033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9232,7 +9233,7 @@ MonoBehaviour:
   survivalBgHandler: {fileID: 1486457158}
   startingTime: 50
   bonusPointScreen: {fileID: 128542891}
-  secondsToAdd: 15
+  secondsToAdd: 23
   themeManager: {fileID: 1579815154}
 --- !u!1 &1146552694
 GameObject:
@@ -9269,9 +9270,9 @@ RectTransform:
   m_Father: {fileID: 730360034}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.5}
-  m_AnchorMax: {x: 0.8, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 157.9}
+  m_AnchorMin: {x: 0.2, y: 0}
+  m_AnchorMax: {x: 0.8, y: 0}
+  m_AnchoredPosition: {x: 0, y: 950}
   m_SizeDelta: {x: 0, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146552696
@@ -12647,6 +12648,7 @@ MonoBehaviour:
   screenPanel: {fileID: 1725212151}
   optionsBackground: {fileID: 1381114843}
   fade: {fileID: 1129842951}
+  themeSelector: {fileID: 730360034}
   fullScreenPosition: {x: 0, y: -190, z: 0}
   fullScreenScale: {x: 1.22, y: 1.22, z: 1.22}
 --- !u!114 &1579815154
@@ -12667,6 +12669,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b73c7342ef1f87240847458927b04123, type: 2}
   - {fileID: 11400000, guid: f05a9c4ba0fc15f4e943edfc407b1793, type: 2}
   - {fileID: 11400000, guid: 8b06825d1f5e34246b6f292cb2636999, type: 2}
+  - {fileID: 11400000, guid: b73c7342ef1f87240847458927b04123, type: 2}
+  - {fileID: 11400000, guid: f05a9c4ba0fc15f4e943edfc407b1793, type: 2}
+  - {fileID: 11400000, guid: 8b06825d1f5e34246b6f292cb2636999, type: 2}
+  - {fileID: 11400000, guid: c27eab11e38a7d4429c07977776a8963, type: 2}
+  - {fileID: 11400000, guid: bdc9efed41850c544b7b1b2dfd76a402, type: 2}
+  - {fileID: 11400000, guid: dc77016d8234b5549b4a9eb4336b9070, type: 2}
+  - {fileID: 11400000, guid: d4726ab537dd40a4985fbb34d5717d87, type: 2}
+  - {fileID: 11400000, guid: 4c9e88263b4ffbe408540f8df3b90750, type: 2}
+  - {fileID: 11400000, guid: 80544c49846037a41935ac0628ba357c, type: 2}
+  - {fileID: 11400000, guid: 22da8045f03574c43a7055b8ca48a1ac, type: 2}
+  - {fileID: 11400000, guid: a80cf57e71c3bf8448ad821fcbe97525, type: 2}
+  - {fileID: 11400000, guid: eb6d70b4fb6bd574a838cfc5060b76e9, type: 2}
+  - {fileID: 11400000, guid: 9b4dd32317b06c54aa69da36a46892b5, type: 2}
+  - {fileID: 11400000, guid: 48c709ea1ef432e41bea3126490e4cc8, type: 2}
+  - {fileID: 11400000, guid: 39dd5ab230c48d043976149b062a5645, type: 2}
   parent: {fileID: 1008808583}
   themePrefab: {fileID: 7561936238379973060, guid: 599c1e7e69a809f4bbda04a59e2acc8d, type: 3}
   classicScreen: {fileID: 1725212152}
