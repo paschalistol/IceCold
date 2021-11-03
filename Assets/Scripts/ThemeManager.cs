@@ -12,6 +12,11 @@ public class ThemeManager : MonoBehaviour
     [Header("Materials and Sprites")] 
     [SerializeField] private Image classicScreen;
 
+    [SerializeField] private Material ball;
+    [SerializeField] private Material bar;
+    [SerializeField] private Material machineMain;
+    [SerializeField] private Material machineSecondary;
+
     public Theme ActiveTheme
     {
         get;
@@ -36,6 +41,8 @@ public class ThemeManager : MonoBehaviour
                 themeInstance.GetComponent<Button>().interactable = false;
             }
         }
+        ball.EnableKeyword("_EMISSION");
+        bar.EnableKeyword("_EMISSION");
     }
 
     private void GetStartingTheme()
@@ -54,6 +61,9 @@ public class ThemeManager : MonoBehaviour
     private void ChangeMaterialsAndSprites()
     {
         classicScreen.sprite = ActiveTheme.classicBg;
+        ball.SetColor("_Emission", ActiveTheme.ballColor);
+        bar.SetColor("_Emission", ActiveTheme.bar);
+        
     }
 
     private void ChangeTheme(string name)

@@ -39,7 +39,7 @@ public class SurvivalModeHandler : MonoBehaviour
         baseImage.color = color;
         DeleteClassicHoles();
         EnableSurvivalHoles();
-        // survivalBgHandler.ChangeToSurvivalBackground(color);
+        survivalBgHandler.ChangeToSurvivalBackground(color);
     }
 
     private void EnableSurvivalHoles()
