@@ -21,6 +21,8 @@ public class IronBar : MonoBehaviour
     public ResettingBar resettingBar;
     public delegate void ResettingPivots();
     public ResettingPivots resettingPivots;
+    public delegate void StartingBar();
+    public StartingBar startingBar;
     private GameMode gameMode;
     [SerializeField] private SurvivalBGHandler survivalBgHandler;
     private float survivalBgSpeed = 0.01f;
@@ -156,6 +158,7 @@ public class IronBar : MonoBehaviour
     {
         if (!outOfLives)
         {
+            startingBar();
             if (gameMode == GameMode.classic)
             {
                 animat.Play("StartIron"); 

@@ -29,6 +29,8 @@ public class ClassicGameManager : MonoBehaviour
     public ActivateBallTrigger activateBallTrigger;
     public delegate void BeginningGame();
     public BeginningGame beginningGame;
+    public delegate void InitializingTexts();
+    public InitializingTexts initializingTexts;
     public delegate void EndGame(bool outOfLives);
     public EndGame endGame;
     [SerializeField] private AudioMixer masterMixer;
@@ -73,13 +75,13 @@ public class ClassicGameManager : MonoBehaviour
     {
         gameMode = GameMode.survival;
         beginningGame();
-        lives = survivalLives;
         secondChanceLives = secondChanceLivesSurvival;
     }
     private void Start()
     {
         adManager.giveReward += SecondChance;
         SetHighScores();
+        player.startingBar += InitRoundTexts;
     }
 
     private void SetHighScores()
@@ -88,20 +90,32 @@ public class ClassicGameManager : MonoBehaviour
         survivalScore.SetText(PlayerPrefs.GetInt("Survival",0).ToString());
     }
 
+    private void InitRoundTexts()
+    {
+        if (gameMode == GameMode.classic)
+        {
+            bonusPointScreen.SetText(currentPoints.ToString());
+        }
+        else if (gameMode == GameMode.survival)
+        {
+            lives = survivalLives;
+        initializingTexts();
+        }
+        livesScreen.SetText((lives -1).ToString());
+
+    }
     private void StartGame()
     {
         pointDecreaser = StartCoroutine(PointDecrease());
         boxCollider.enabled = false;
         activateBallTrigger(true);
         startRound();
-        bonusPointScreen.SetText(currentPoints.ToString());
-        livesScreen.SetText((lives -1).ToString());
+
     }
     private void StartSurvivalGame()
     {
         activateBallTrigger(true);
         startRound();
-        livesScreen.SetText((lives -1).ToString());
     }
 
     public void AddBonus(BonusHole bonusHole)

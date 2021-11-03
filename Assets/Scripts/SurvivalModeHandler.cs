@@ -18,19 +18,28 @@ public class SurvivalModeHandler : MonoBehaviour
     private float timeLeft = 10.0f;
     [SerializeField] private TMP_Text bonusPointScreen;
     [SerializeField] private int secondsToAdd = 15;
-
     private void Start()
     {
         ClassicGameManager.instance.startRound += StartRound;
+
     }
 
+    private void Awake()
+    {
+        ClassicGameManager.instance.initializingTexts += InitTimeText;
+    }
+
+    /// <summary>
+/// Changes the Screen BG and the game holes.
+/// Is enabled from animation event
+/// </summary>
     private void ChangeScreenBG()
     {
         baseImage.sprite = newBG;
         baseImage.color = color;
         DeleteClassicHoles();
         EnableSurvivalHoles();
-        survivalBgHandler.ChangeToSurvivalBackground(color);
+        // survivalBgHandler.ChangeToSurvivalBackground(color);
     }
 
     private void EnableSurvivalHoles()
@@ -52,10 +61,13 @@ public class SurvivalModeHandler : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
-
         }
     }
 
+    private void InitTimeText()
+    {
+        bonusPointScreen.SetText(((int)startingTime).ToString());
+    }
     private void StartRound()
     {
         timeLeft = startingTime;

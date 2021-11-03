@@ -11,4 +11,5 @@ public class Theme : ScriptableObject
     public Color machine;
     public Color bar = new Color(207/255f, 77/255f, 0);
     public Sprite platform;
+    public bool available;
 }
