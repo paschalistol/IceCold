@@ -15,7 +15,7 @@ public class HoleGeneratorSurvival : MonoBehaviour
     private float previousClockAppearance = 0;
     [SerializeField, Range(0,1)] private float clockChance = 0.3f;
     private int rowChange = 0, minRow = 10;
-    private GameObject objectHandler;
+    private int previousPowerUpAppearance = 0;
     private void Start()
     {
         rowNumber = 0;
@@ -51,8 +51,18 @@ public class HoleGeneratorSurvival : MonoBehaviour
         if (rowChange<rowNumber && rowNumber > minRow)
         {
             TimePowerUpHandler();
+            if (previousPowerUpAppearance != rowNumber)
+            {
+                ExtraPointsPowerUpHandler();
+            }
             rowChange = rowNumber;
         }
+    }
+
+    private void ExtraPointsPowerUpHandler()
+    {
+        PutExtraPointsCoin();
+        previousPowerUpAppearance = rowNumber;
     }
 
     private void TimePowerUpHandler()
@@ -62,16 +72,25 @@ public class HoleGeneratorSurvival : MonoBehaviour
             // Debug.Log("<color=green>appeared in row: </color>" +rowNumber + " "+ c +" " + (rowNumber-previousClockAppearance));
             PutClock();
             previousClockAppearance = rowNumber;
+            previousPowerUpAppearance = rowNumber;
         }
     }
 
     private void PutClock()
     {
+        survivalPool.GetFromPool(PoolObject.CLOCK, GetRandomPosition());
+    }
+
+    private Vector3 GetRandomPosition()
+    {
         int randomColumn = Random.Range(0, noOfColumns-1);
         float randomX = startX + 0.5f + (randomColumn );
         float randomY = startY + (rowNumber * 1.4f) + transform.position.y - startPoolY;
         randomY += Random.Range(-yRange, yRange);
-        Vector3 newPosition = new Vector3(randomX, randomY, 0);
-        objectHandler = survivalPool.GetFromPool(PoolObject.CLOCK, newPosition);
+        return new Vector3(randomX, randomY, 0);
+    }
+    private void PutExtraPointsCoin()
+    {
+        survivalPool.GetFromPool(PoolObject.EXTRA_POINTS, GetRandomPosition()).GetComponent<ExtraPointsPowerUp>().SetExtraPoints(rowNumber);
     }
 }

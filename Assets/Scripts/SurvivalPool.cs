@@ -23,6 +23,8 @@ public class SurvivalPool : MonoBehaviour
     [FormerlySerializedAs("clockSize")]
     [Header("Clock Settings")]
     [SerializeField] private float clockScale = 0.65f;
+    [Header("Coin Settings")]
+    [SerializeField] private float coinScale = 0.5f;
     private void Start()
     {
         PopulateTranslation();
@@ -64,6 +66,10 @@ public class SurvivalPool : MonoBehaviour
         {
             tempPoolObject.transform.localScale= Vector3.one * clockScale;
         }
+        else if (poolObject == PoolObject.EXTRA_POINTS)
+        {
+            tempPoolObject.transform.localScale= Vector3.one * coinScale;
+        }
 
         if (poolObject != PoolObject.BIG_HOLE)
         {
@@ -99,5 +105,5 @@ public class SurvivalPool : MonoBehaviour
 }
 public enum PoolObject
 {
-    BIG_HOLE, CLOCK, CLOCK_PICKUP_PLAYER, EXTRA_POINTS_PLAYER
+    BIG_HOLE, CLOCK, CLOCK_PICKUP_PLAYER, EXTRA_POINTS_PLAYER, EXTRA_POINTS
 }

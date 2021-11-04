@@ -3691,9 +3691,13 @@ MonoBehaviour:
   - poolObject: 3
     prefab: {fileID: 3813111118777074116, guid: f4277461a83f30540a29bce2b688d0ca, type: 3}
     initialSize: 3
+  - poolObject: 4
+    prefab: {fileID: 3577839142065315907, guid: 6c6657c694997c64b928a94a11e968f5, type: 3}
+    initialSize: 2
   minScale: 0.5
   maxScale: 0.8
   clockScale: 0.65
+  coinScale: 0.25
 --- !u!4 &516965385
 Transform:
   m_ObjectHideFlags: 0
@@ -14997,7 +15001,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.01
+  m_Radius: 0.09
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1906507039
 MonoBehaviour:

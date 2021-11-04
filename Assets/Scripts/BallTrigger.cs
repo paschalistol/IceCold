@@ -39,6 +39,7 @@ public class BallTrigger : MonoBehaviour
 
         if (collider.CompareTag("ExtraPointsPowerUp"))
         {
+            collider.GetComponent<SurvivalPowerUp>().BackToPool();
             GiveExtraPoints(collider.GetComponent<SurvivalPowerUp>().PowerUpPoints);
             survivalPool.GetFromPool(PoolObject.EXTRA_POINTS_PLAYER);
         }

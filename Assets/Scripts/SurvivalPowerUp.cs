@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SurvivalPowerUp : SurvivalPoolObjectBase
@@ -5,7 +6,7 @@ public class SurvivalPowerUp : SurvivalPoolObjectBase
     [SerializeField] private float rotationSpeed = 10;
     [SerializeField] private GameObject face;
     
-    [SerializeField] private int powerUpPoints = 2;
+    [SerializeField] protected int powerUpPoints = 2;
 
     public int PowerUpPoints
     {
@@ -23,9 +24,10 @@ public class SurvivalPowerUp : SurvivalPoolObjectBase
             BackToPool();
         }
     }
+    
 
-        public void BackToPool()
-        {
-            survivalPool.AddToPool(type, gameObject);
-        }
+    public void BackToPool()
+    {
+        survivalPool.AddToPool(type, gameObject);
+    }
 }
