@@ -3728,6 +3728,7 @@ MonoBehaviour:
   xRange: 0.1
   yRange: 0.3
   clockChance: 0.4
+  coinChance: 0.225
 --- !u!82 &516965387
 AudioSource:
   m_ObjectHideFlags: 0

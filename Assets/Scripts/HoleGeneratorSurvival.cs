@@ -13,7 +13,9 @@ public class HoleGeneratorSurvival : MonoBehaviour
     [SerializeField] private float xRange = 0.15f, yRange = 0.2f;
     private float startPoolY;
     private float previousClockAppearance = 0;
+    private float previousCoinAppearance = 0;
     [SerializeField, Range(0,1)] private float clockChance = 0.3f;
+    [SerializeField, Range(0,1)] private float coinChance = 0.2f;
     private int rowChange = 0, minRow = 10;
     private int previousPowerUpAppearance = 0;
     private void Start()
@@ -46,6 +48,14 @@ public class HoleGeneratorSurvival : MonoBehaviour
         }
     }
 
+    private Vector3 GetRandomPosition()
+    {
+        int randomColumn = Random.Range(0, noOfColumns-1);
+        float randomX = startX + 0.5f + (randomColumn );
+        float randomY = startY + (rowNumber * 1.4f) + transform.position.y - startPoolY;
+        randomY += Random.Range(-yRange, yRange);
+        return new Vector3(randomX, randomY, 0);
+    }
     private void PowerUpHandler()
     {
         if (rowChange<rowNumber && rowNumber > minRow)
@@ -59,11 +69,6 @@ public class HoleGeneratorSurvival : MonoBehaviour
         }
     }
 
-    private void ExtraPointsPowerUpHandler()
-    {
-        PutExtraPointsCoin();
-        previousPowerUpAppearance = rowNumber;
-    }
 
     private void TimePowerUpHandler()
     {
@@ -81,16 +86,21 @@ public class HoleGeneratorSurvival : MonoBehaviour
         survivalPool.GetFromPool(PoolObject.CLOCK, GetRandomPosition());
     }
 
-    private Vector3 GetRandomPosition()
+    private void ExtraPointsPowerUpHandler()
     {
-        int randomColumn = Random.Range(0, noOfColumns-1);
-        float randomX = startX + 0.5f + (randomColumn );
-        float randomY = startY + (rowNumber * 1.4f) + transform.position.y - startPoolY;
-        randomY += Random.Range(-yRange, yRange);
-        return new Vector3(randomX, randomY, 0);
+        if (Random.Range(0f, 1) < ((rowNumber - previousCoinAppearance) / 10 * coinChance))
+        {
+            PutExtraPointsCoin();
+            previousCoinAppearance = rowNumber;
+            previousPowerUpAppearance = rowNumber;
+        }
     }
+
+    private int totalFromCoins = 0;
     private void PutExtraPointsCoin()
     {
-        survivalPool.GetFromPool(PoolObject.EXTRA_POINTS, GetRandomPosition()).GetComponent<ExtraPointsPowerUp>().SetExtraPoints(rowNumber);
+        survivalPool.GetFromPool(PoolObject.EXTRA_POINTS, GetRandomPosition()).GetComponent<ExtraPointsPowerUp>().SetExtraPoints((int)Mathf.Ceil(Math.Abs(transform.position.y/2)));
+        totalFromCoins += (int) Mathf.Ceil(Math.Abs(transform.position.y / 2));
+        Debug.Log(totalFromCoins);
     }
 }
