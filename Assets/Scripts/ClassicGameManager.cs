@@ -74,6 +74,7 @@ public class ClassicGameManager : MonoBehaviour
     public void BeginSurvivalGame()
     {
         gameMode = GameMode.survival;
+        lives = survivalLives;
         beginningGame();
         secondChanceLives = secondChanceLivesSurvival;
     }
@@ -98,8 +99,7 @@ public class ClassicGameManager : MonoBehaviour
         }
         else if (gameMode == GameMode.survival)
         {
-            lives = survivalLives;
-        initializingTexts();
+            initializingTexts();
         }
         livesScreen.SetText((lives -1).ToString());
 
@@ -179,9 +179,9 @@ public class ClassicGameManager : MonoBehaviour
     }
     public void Die()
     {
-
+        Debug.Log(lives);
         lives--;
-
+        Debug.Log(lives);
         RestartBall();
         endGame( lives==0);
         if (lives == 0)

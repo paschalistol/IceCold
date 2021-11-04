@@ -18,6 +18,8 @@ public class SurvivalModeHandler : MonoBehaviour
     [SerializeField] private TMP_Text bonusPointScreen;
     [SerializeField] private int secondsToAdd = 15;
     [SerializeField] private ThemeManager themeManager;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private int seconondsToPlaySound = 3;
     private void Start()
     {
         ClassicGameManager.instance.startRound += StartRound;
@@ -84,6 +86,10 @@ public class SurvivalModeHandler : MonoBehaviour
             if (timeLeft > 0)
             {
                 timeLeft -= Time.deltaTime;
+                if (timeLeft<seconondsToPlaySound+1 && int.Parse(bonusPointScreen.text) != (int)timeLeft)
+                {
+                    audioSource.Play();
+                }
                 bonusPointScreen.SetText(((int)timeLeft).ToString());
             }
             else if (timeLeft <= 0)
