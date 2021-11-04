@@ -49,6 +49,7 @@ public class BallTrigger : MonoBehaviour
     private void OnEnable()
     {
         rb.maxAngularVelocity = max;
+        // Debug.Log(rb.maxAngularVelocity);
     }
 
     private void GiveExtraPoints(int points)

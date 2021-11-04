@@ -100,7 +100,7 @@ public class HoleGeneratorSurvival : MonoBehaviour
     private void PutExtraPointsCoin()
     {
         survivalPool.GetFromPool(PoolObject.EXTRA_POINTS, GetRandomPosition()).GetComponent<ExtraPointsPowerUp>().SetExtraPoints((int)Mathf.Ceil(Math.Abs(transform.position.y/2)));
-        totalFromCoins += (int) Mathf.Ceil(Math.Abs(transform.position.y / 2));
-        Debug.Log(totalFromCoins);
+        // totalFromCoins += (int) Mathf.Ceil(Math.Abs(transform.position.y / 2));
+        // Debug.Log(totalFromCoins);
     }
 }
