@@ -9,6 +9,7 @@ TagManager:
   - Machine
   - Pool
   - TimePowerUp
+  - ExtraPointsPowerUp
   layers:
   - Default
   - TransparentFX

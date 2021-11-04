@@ -79,6 +79,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 100
   face: {fileID: 1806429865485722145}
+  powerUpPoints: 2
+  audioSource: {fileID: 0}
 --- !u!136 &8751905947397771463
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -64,6 +64,11 @@ public class SurvivalPool : MonoBehaviour
         {
             tempPoolObject.transform.localScale= Vector3.one * clockScale;
         }
+
+        if (poolObject != PoolObject.BIG_HOLE)
+        {
+            tempPoolObject.GetComponent<SurvivalPoolObjectBase>().InitPoolObject(poolObject, this);
+        }
     }
 
     public void AddToPool(PoolObject poolObject, GameObject instanceToAdd)
@@ -94,5 +99,5 @@ public class SurvivalPool : MonoBehaviour
 }
 public enum PoolObject
 {
-    BIG_HOLE, CLOCK
+    BIG_HOLE, CLOCK, CLOCK_PICKUP_PLAYER, EXTRA_POINTS_PLAYER
 }

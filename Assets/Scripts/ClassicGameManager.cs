@@ -9,6 +9,7 @@ public class ClassicGameManager : MonoBehaviour
 {
     private int totalPoints = 0;
     private int currentGoal = 0;
+    private int extraSurvivalPoints = 0;
     private int currentPoints = 100;
     [SerializeField] private TMP_Text pointScreen;
     [SerializeField] private TMP_Text bonusPointScreen;
@@ -77,6 +78,7 @@ public class ClassicGameManager : MonoBehaviour
         lives = survivalLives;
         beginningGame();
         secondChanceLives = secondChanceLivesSurvival;
+        extraSurvivalPoints = 0;
     }
     private void Start()
     {
@@ -179,9 +181,7 @@ public class ClassicGameManager : MonoBehaviour
     }
     public void Die()
     {
-        Debug.Log(lives);
         lives--;
-        Debug.Log(lives);
         RestartBall();
         endGame( lives==0);
         if (lives == 0)
@@ -223,9 +223,15 @@ public class ClassicGameManager : MonoBehaviour
         }
     }
 
+    public void AddExtraSurvivalPoints(int points)
+    {
+        extraSurvivalPoints += points;
+    }
+
     private void UpdateSurvivalPoints()
     {
         totalPoints = Mathf.Abs((int)(survivalPool.transform.position.y * 10) - 30);
+        totalPoints += extraSurvivalPoints;
         pointScreen.SetText(totalPoints.ToString());
     }
 

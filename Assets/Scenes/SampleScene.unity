@@ -3685,6 +3685,12 @@ MonoBehaviour:
   - poolObject: 1
     prefab: {fileID: 3577839142065315907, guid: a80fcc902c394e046983ca950349d34e, type: 3}
     initialSize: 10
+  - poolObject: 2
+    prefab: {fileID: 3813111118777074116, guid: f628506602b6440488ce9083aed2d17a, type: 3}
+    initialSize: 3
+  - poolObject: 3
+    prefab: {fileID: 3813111118777074116, guid: f4277461a83f30540a29bce2b688d0ca, type: 3}
+    initialSize: 3
   minScale: 0.5
   maxScale: 0.8
   clockScale: 0.65
@@ -15008,6 +15014,7 @@ MonoBehaviour:
   rb: {fileID: 1118161733}
   max: 100
   survivalModeHandler: {fileID: 1129842952}
+  survivalPool: {fileID: 516965384}
 --- !u!1 &1923859596
 GameObject:
   m_ObjectHideFlags: 0

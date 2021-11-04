@@ -8,6 +8,7 @@ public class BallTrigger : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float max = 50;
     [SerializeField] private SurvivalModeHandler survivalModeHandler;
+    [SerializeField] private SurvivalPool survivalPool;
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Hole"))
@@ -32,6 +33,14 @@ public class BallTrigger : MonoBehaviour
         {
             survivalModeHandler.AddTime();
             collider.GetComponent<SurvivalPowerUp>().BackToPool();
+            GiveExtraPoints(collider.GetComponent<SurvivalPowerUp>().PowerUpPoints);
+            survivalPool.GetFromPool(PoolObject.CLOCK_PICKUP_PLAYER);
+        }
+
+        if (collider.CompareTag("ExtraPointsPowerUp"))
+        {
+            GiveExtraPoints(collider.GetComponent<SurvivalPowerUp>().PowerUpPoints);
+            survivalPool.GetFromPool(PoolObject.EXTRA_POINTS_PLAYER);
         }
 
     }
@@ -41,8 +50,8 @@ public class BallTrigger : MonoBehaviour
         rb.maxAngularVelocity = max;
     }
 
-    private void Update()
+    private void GiveExtraPoints(int points)
     {
-        // Debug.Log(rb.maxAngularVelocity);
+        ClassicGameManager.instance.AddExtraSurvivalPoints(points);
     }
 }

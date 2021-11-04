@@ -1,23 +1,20 @@
 using UnityEngine;
 
-public class SurvivalPowerUp : MonoBehaviour
+public class SurvivalPowerUp : SurvivalPoolObjectBase
 {
     [SerializeField] private float rotationSpeed = 10;
     [SerializeField] private GameObject face;
-    private PoolObject type;
-    private SurvivalPool survivalPool;
-    private bool initialized = false;
+    
+    [SerializeField] private int powerUpPoints = 2;
 
-    public void PowerUpInit(PoolObject poolObject, SurvivalPool pool)
+    public int PowerUpPoints
     {
-        if (!initialized)
+        get
         {
-            survivalPool = pool;
-            type = poolObject;
-            initialized = true;
+            return powerUpPoints;
         }
     }
-        void Update()
+    void Update()
     {
         face.transform.eulerAngles = new Vector3(0, face.transform.eulerAngles.y + Time.deltaTime * rotationSpeed, 0);
         if (ClassicGameManager.instance.GetAllowControls() &&  Ball.instance.transform.position.y - transform.position.y > 4 )

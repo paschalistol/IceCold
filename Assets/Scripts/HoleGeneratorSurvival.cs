@@ -73,6 +73,5 @@ public class HoleGeneratorSurvival : MonoBehaviour
         randomY += Random.Range(-yRange, yRange);
         Vector3 newPosition = new Vector3(randomX, randomY, 0);
         objectHandler = survivalPool.GetFromPool(PoolObject.CLOCK, newPosition);
-        objectHandler.GetComponent<SurvivalPowerUp>().PowerUpInit(PoolObject.CLOCK, survivalPool);
     }
 }
