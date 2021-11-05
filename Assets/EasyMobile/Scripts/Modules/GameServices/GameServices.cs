@@ -329,9 +329,12 @@ namespace EasyMobile
             if (ldb != null)
             {
                 DoReportScore(score, ldb.Id, callback);
+                Debug.Log("reported score");
+                ClassicGameManager.instance.SetDebug("reported score");
             }
             else
             {
+                ClassicGameManager.instance.SetDebug("Failed to report score: unknown leaderboard name.");
                 Debug.Log("Failed to report score: unknown leaderboard name.");
             }
         }

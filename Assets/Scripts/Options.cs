@@ -111,10 +111,10 @@ public class Options : MonoBehaviour
             screenPanel.localScale = Vector3.one;
             fade.anchoredPosition = Vector3.zero;
             fade.localScale = Vector3.one;
-            optionsBackground.anchoredPosition = Vector3.zero;;
-            optionsBackground.localScale = Vector3.one;;
-            themeSelector.anchoredPosition = Vector3.zero;;
-            themeSelector.localScale = Vector3.one;;
+            optionsBackground.anchoredPosition = Vector3.zero;
+            optionsBackground.localScale = Vector3.one;
+            themeSelector.anchoredPosition = Vector3.zero;
+            themeSelector.localScale = Vector3.one;
         }
     }
 }

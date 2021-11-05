@@ -32,7 +32,8 @@ public class SurvivalBGHandler : MonoBehaviour
 
     public void MoveBgDown(float distance)
     {
+        distance *= 180;
         survivalTile1Panel.anchoredPosition =  new Vector2(0, survivalTile1Panel.anchoredPosition.y + distance);
-        survivalTile2Panel.anchoredPosition =  new Vector2(0, survivalTile1Panel.anchoredPosition.y + distance);
+        survivalTile2Panel.anchoredPosition =  new Vector2(0, survivalTile2Panel.anchoredPosition.y + distance);
     }
 }

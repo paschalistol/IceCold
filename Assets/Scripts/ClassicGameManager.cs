@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
 using System;
+using EasyMobile;
 
 public class ClassicGameManager : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private TMP_Text highScore, survivalScore;
     private GameMode gameMode;
     [SerializeField] private GameObject survivalPool;
-
+    [SerializeField] private TMP_Text debug;
     public float BallStartHeight
     {
         get;
@@ -93,6 +94,10 @@ public class ClassicGameManager : MonoBehaviour
         survivalScore.SetText(PlayerPrefs.GetInt("Survival",0).ToString());
     }
 
+    public void SetDebug(string text)
+    {
+        debug.text = text;
+    }
     private void InitRoundTexts()
     {
         if (gameMode == GameMode.classic)
@@ -164,6 +169,7 @@ public class ClassicGameManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("Survival", totalPoints);
                 survivalScore.SetText(PlayerPrefs.GetInt("Survival", 0).ToString());
+                GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Survival_High_Score);
             }
         }
     }

@@ -23,7 +23,7 @@ public class HoleGeneratorClassic : MonoBehaviour
         for (int y = 0; y < map.height; y++)
         {
             for (int x = 0; x < map.width; x++)
-        {
+            {
 
                 GenerateHoles(x,y);
             }
@@ -40,7 +40,7 @@ public class HoleGeneratorClassic : MonoBehaviour
         }
         foreach (ColorToPrefab colorMapping in colorMappings)
         {
-            if (colorMapping.GetColor().r.Equals(pixelColor.r) || colorMapping.GetColor().g.Equals(pixelColor.g) || colorMapping.GetColor().b.Equals(pixelColor.b))
+            if ((colorMapping.GetColor().r.Equals(pixelColor.r) && pixelColor.r > 0)|| (colorMapping.GetColor().g.Equals(pixelColor.g) && pixelColor.g > 0)|| (colorMapping.GetColor().b.Equals(pixelColor.b) && pixelColor.b >0))
             {
                 Vector3 position = new Vector3(x, y, 0) * canvas.localScale.x / holeMapScale;
 
@@ -49,8 +49,8 @@ public class HoleGeneratorClassic : MonoBehaviour
                 GameObject hole = Instantiate(colorMapping.GetPrefab(),position, Quaternion.identity, transform);
                 if (colorMapping.IsBonus())
                 {
-
                 }
+
             }
         }
     }
