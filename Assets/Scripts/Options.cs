@@ -74,16 +74,6 @@ public class Options : MonoBehaviour
     {
         GameServices.ShowLeaderboardUI(EM_GameServicesConstants.Leaderboard_Survival_High_Score);
     }
-
-    public void SignIn()
-    {
-        
-    }
-    public void SignOut()
-    {
-        
-    }
-    
     public void Quit()
     {
         Application.Quit();
