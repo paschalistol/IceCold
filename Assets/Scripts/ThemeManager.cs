@@ -10,7 +10,11 @@ public class ThemeManager : MonoBehaviour
     private string startingThemeName;
     [SerializeField] private GameObject parent;
     [SerializeField] private GameObject themePrefab;
+    
+    
+    [Header("Theme Pop Up")] 
     [SerializeField] private GameObject themePopUp;
+    [SerializeField] private GameObject buyButton;
     [SerializeField] private TMP_Text themePopUpCloseButton;
 
     [Header("Materials and Sprites")] 
@@ -112,11 +116,16 @@ public class ThemeManager : MonoBehaviour
 
     private void ShowLockedPopUp(Theme.ThemeReasonLocked tempThemeThemeReasonLocked)
     {
+        themePopUp.SetActive(true);
         switch (tempThemeThemeReasonLocked)
         {
             case Theme.ThemeReasonLocked.Achievement:
+                themePopUpCloseButton.text = "OK";
+                buyButton.SetActive(false);
                 break;
             case Theme.ThemeReasonLocked.IAP:
+                // themePopUpCloseButton.text = "Cancel";
+                // buyButton.SetActive(true);
                 break;
         }
     }
