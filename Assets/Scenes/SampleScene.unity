@@ -5481,7 +5481,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &567711665
@@ -8054,7 +8054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Watch A Video To Get More Balls?
+  m_text: Watch An Ad To Get More Lives?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 656dab4b8cd006b4fa64fc94080621aa, type: 2}
   m_sharedMaterial: {fileID: -232948571493530808, guid: 656dab4b8cd006b4fa64fc94080621aa, type: 2}
@@ -14776,7 +14776,7 @@ MonoBehaviour:
   themeSelector: {fileID: 730360034}
   fullScreenPosition: {x: 0, y: -190, z: 0}
   fullScreenScale: {x: 1.22, y: 1.22, z: 1.22}
-  signText: {fileID: 0}
+  signText: {fileID: 45199981}
 --- !u!114 &1579815154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16761,7 +16761,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1796231063

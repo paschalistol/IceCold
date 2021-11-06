@@ -26,7 +26,7 @@ public class IronBar : MonoBehaviour
     private GameMode gameMode;
     [SerializeField] private SurvivalBGHandler survivalBgHandler;
     private float survivalBgSpeed = 0.01f;
-
+    private bool barWaiting = true;
     public bool AllowControls
     {
         get { return allowControls; }
@@ -49,6 +49,14 @@ public class IronBar : MonoBehaviour
         ClassicGameManager.instance.endGame += OutOfLives;
     }
 
+    public void SetBarWaitingTrue()
+    {
+        barWaiting = true;
+    }
+    public void SetBarWaitingFalse()
+    {
+        barWaiting = false;
+    }
     private void OutOfLives(bool noMoreLives)
     {
         outOfLives = noMoreLives;
@@ -67,11 +75,12 @@ public class IronBar : MonoBehaviour
         {
             topHeight = topHeightSurvival + heightDifferenceOnSides;
         }
-        if (!animat.isPlaying)
+        if (!animat.isPlaying && barWaiting)
         {
             StartNextRound();
         }
     }
+    
     void FixedUpdate()
     {
         if (allowControls)
