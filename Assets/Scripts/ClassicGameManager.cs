@@ -44,7 +44,6 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private TMP_Text highScore, survivalScore;
     private GameMode gameMode;
     [SerializeField] private GameObject survivalPool;
-    [SerializeField] private TMP_Text debug;
     public float BallStartHeight
     {
         get;
@@ -94,10 +93,6 @@ public class ClassicGameManager : MonoBehaviour
         survivalScore.SetText(PlayerPrefs.GetInt("Survival",0).ToString());
     }
 
-    public void SetDebug(string text)
-    {
-        debug.text = text;
-    }
     private void InitRoundTexts()
     {
         if (gameMode == GameMode.classic)
