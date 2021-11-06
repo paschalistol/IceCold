@@ -24,7 +24,8 @@
 
 public static class EM_GPGSIds
 {
-        public const string leaderboard_survival_mode_highscore = "CggIq-WT3SAQAhAA"; // <GPGSID>
+        public const string leaderboard_freezing_cold_classic_personal_best = "CggIq-WT3SAQAhAC"; // <GPGSID>
+        public const string leaderboard_freezing_cold_beer = "CggIq-WT3SAQAhAA"; // <GPGSID>
 
 }
 

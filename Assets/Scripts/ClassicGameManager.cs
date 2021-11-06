@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.Audio;
 using System;
 using EasyMobile;
+using UnityEngine.SocialPlatforms;
 
 public class ClassicGameManager : MonoBehaviour
 {
@@ -82,17 +83,48 @@ public class ClassicGameManager : MonoBehaviour
     }
     private void Start()
     {
+        GameServices.UserLoginSucceeded += SetHighScores;
+        SetStartHighScores();
         adManager.giveReward += SecondChance;
-        SetHighScores();
         player.startingBar += InitRoundTexts;
     }
-
+    private void OnDestroy()
+    {
+        GameServices.UserLoginSucceeded -= SetHighScores;
+    }
     private void SetHighScores()
     {
         highScore.SetText(PlayerPrefs.GetInt("HighScore").ToString());
         survivalScore.SetText(PlayerPrefs.GetInt("Survival",0).ToString());
+        GameServices.LoadLocalUserScore(EM_GameServicesConstants.Leaderboard_Classic_Personal_Best, OnLocalUserScoreLoaded);
+        GameServices.LoadLocalUserScore(EM_GameServicesConstants.Leaderboard_Survival_High_Score, OnLocalUserScoreLoaded);
+    }
+    private void SetStartHighScores()
+    {
+        highScore.SetText(PlayerPrefs.GetInt("HighScore").ToString());
+        survivalScore.SetText(PlayerPrefs.GetInt("Survival",0).ToString());
+    }
+    void OnLocalUserScoreLoaded(string leaderboardName, IScore score) {
+        switch (leaderboardName)
+        {
+            case EM_GameServicesConstants.Leaderboard_Survival_High_Score: 
+                SetHighScore(survivalScore, score, "Survival");
+                break;
+            case EM_GameServicesConstants.Leaderboard_Classic_Personal_Best:
+                SetHighScore(highScore, score, "HighScore");
+                break;
+        }
     }
 
+    private void SetHighScore(TMP_Text tmpText, IScore score, string playerPref)
+    {
+        if (score != null) {
+            tmpText.SetText(score.formattedValue);
+            PlayerPrefs.SetInt(playerPref, (int)score.value);
+        } else {
+            tmpText.SetText(PlayerPrefs.GetInt(playerPref,0).ToString());
+        }
+    }
     private void InitRoundTexts()
     {
         if (gameMode == GameMode.classic)
@@ -158,6 +190,7 @@ public class ClassicGameManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("HighScore", totalPoints);
                 highScore.SetText(PlayerPrefs.GetInt("HighScore", 0).ToString());
+                GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Classic_Personal_Best);
             }
 
             if (gameMode == GameMode.survival &&totalPoints > (PlayerPrefs.GetInt("Survival", 0)))

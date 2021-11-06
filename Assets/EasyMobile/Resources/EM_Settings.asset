@@ -284,14 +284,19 @@ MonoBehaviour:
     - _name: Survival High Score
       _iosId: 
       _androidId: CggIq-WT3SAQAhAA
+    - _name: Classic Personal Best
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAC
     mAchievements: []
     mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--Google
       Play game services IDs. Save this file as res/values/games-ids.xml in your
       project.-->\r\n<resources>\r\n  <!--app_id-->\r\n  <string name=\"app_id\"
       translatable=\"false\">8785293995</string>\r\n  <!--package_name-->\r\n  <string
       name=\"package_name\" translatable=\"false\">com.PhobTroll.coldbeer</string>\r\n 
-      <!--leaderboard Survival Mode Highscore-->\r\n  <string name=\"leaderboard_survival_mode_highscore\"
-      translatable=\"false\">CggIq-WT3SAQAhAA</string>\r\n</resources>"
+      <!--leaderboard Freezing Cold Beer-->\r\n  <string name=\"leaderboard_freezing_cold_beer\"
+      translatable=\"false\">CggIq-WT3SAQAhAA</string>\r\n  <!--leaderboard Freezing
+      Cold Classic Personal Best-->\r\n  <string name=\"leaderboard_freezing_cold_classic_personal_best\"
+      translatable=\"false\">CggIq-WT3SAQAhAC</string>\r\n</resources>"
     mEnableMultiplayer: 0
     mEnableSavedGames: 0
     mAutoConflictResolutionStrategy: 0

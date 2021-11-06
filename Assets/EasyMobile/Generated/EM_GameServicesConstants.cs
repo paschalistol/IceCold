@@ -8,6 +8,7 @@ namespace EasyMobile
 {
 	public static class EM_GameServicesConstants
 	{
+		public const string Leaderboard_Classic_Personal_Best = "Classic Personal Best";
 		public const string Leaderboard_Survival_High_Score = "Survival High Score";
 
 	}

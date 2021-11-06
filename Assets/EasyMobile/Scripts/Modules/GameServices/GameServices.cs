@@ -160,7 +160,7 @@ namespace EasyMobile
                 }
                 else
                 {
-                    Debug.Log("Failed to initialize Game Services module: AndroidMaxLoginRequests exceeded. Requests attempted: " + loginRequestNumber);
+                    // Debug.Log("Failed to initialize Game Services module: AndroidMaxLoginRequests exceeded. Requests attempted: " + loginRequestNumber);
                 }
             }
 #endif
