@@ -13,4 +13,11 @@ public class Theme : ScriptableObject
     public Color bar = new Color(207/255f, 77/255f, 0);
     public Sprite platform;
     public bool available;
+    public ThemeReasonLocked themeReasonLocked;
+    // [Tooltip("To unlock this theme you'll have to ")]public string achievementDescription; 
+
+    public enum ThemeReasonLocked
+    {
+        IAP, Achievement
+    }
 }

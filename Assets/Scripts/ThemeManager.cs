@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using EasyMobile;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ public class ThemeManager : MonoBehaviour
     private string startingThemeName;
     [SerializeField] private GameObject parent;
     [SerializeField] private GameObject themePrefab;
+    [SerializeField] private GameObject themePopUp;
+    [SerializeField] private TMP_Text themePopUpCloseButton;
 
     [Header("Materials and Sprites")] 
     [SerializeField] private Image classicScreen;
@@ -18,6 +21,7 @@ public class ThemeManager : MonoBehaviour
     [SerializeField] private Material machineMain;
     [SerializeField] private Material machineSecondary;
     private Dictionary<string, GameObject> buttons = new Dictionary<string, GameObject>();
+    private Dictionary<string, ThemeObject> themeObjects = new Dictionary<string, ThemeObject>();
     public Theme ActiveTheme
     {
         get;
@@ -35,17 +39,19 @@ public class ThemeManager : MonoBehaviour
         {
             GameObject themeInstance = Instantiate(themePrefab, parent.transform);
             themeInstance.transform.GetChild(0).GetComponent<Image>().sprite = theme.platform;
-            themeInstance.GetComponent<ThemeObject>().changeTheme += ChangeTheme;
+            ThemeObject themeObject = themeInstance.GetComponent<ThemeObject>();
+            themeObject.changeTheme += ChangeTheme;
             themeInstance.name = theme.name;
             buttons.Add(themeInstance.name, themeInstance);
+            themeObjects.Add(themeInstance.name, themeObject);
             if (!theme.available)
             {
-                themeInstance.GetComponent<Button>().interactable = false;
-                themeInstance.GetComponent<ThemeObject>().NotAvailable();
+                // themeInstance.GetComponent<Button>().interactable = false;
+                themeObject.NotAvailable();
             }
             else if (theme.name.Equals(ActiveTheme.name))
             {
-                themeInstance.GetComponent<ThemeObject>().ChangeButtonColor();
+                themeObject.ChangeButtonColor();
             }
         }
         // ball.EnableKeyword("_EMISSION");
@@ -75,20 +81,64 @@ public class ThemeManager : MonoBehaviour
         machineSecondary.SetColor("_EmissionColor", ActiveTheme.machineSecondary);
     }
 
-    private void ChangeTheme(string name)
+    private void ChangeTheme(string themeName)
     {
-        RemoveOldSelected();
-        PlayerPrefs.SetString("startingTheme", name);
-        GetStartingTheme();
+        Theme tempTheme = null;
+        foreach (Theme theme in themes)
+        {
+            if (theme.name.Equals(themeName))
+            {
+                tempTheme = theme;
+                break;
+            }
+        }
+
+        if (tempTheme != null)
+        {
+            if (tempTheme.available)
+            {
+                RemoveOldSelected();
+                PlayerPrefs.SetString("startingTheme", themeName);
+                GetStartingTheme();
+                ChangeButtonColor(themeName);
+            }
+            else
+            {
+                ShowLockedPopUp(tempTheme.themeReasonLocked);
+            }
+        }
+  
+    }
+
+    private void ShowLockedPopUp(Theme.ThemeReasonLocked tempThemeThemeReasonLocked)
+    {
+        switch (tempThemeThemeReasonLocked)
+        {
+            case Theme.ThemeReasonLocked.Achievement:
+                break;
+            case Theme.ThemeReasonLocked.IAP:
+                break;
+        }
+    }
+
+    private void ChangeButtonColor(string themeName)
+    {
+        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
+        {
+            if (theme.Key.Equals(themeName))
+            {
+                theme.Value.ChangeButtonColor();
+            }
+        }
     }
 
     private void RemoveOldSelected()
     {
-        foreach (KeyValuePair<string,GameObject> theme in buttons)
+        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
         {
             if (theme.Key.Equals(ActiveTheme.name))
             {
-                theme.Value.GetComponent<ThemeObject>().RemoveSelected();
+                theme.Value.RemoveSelected();
             }
         }
 

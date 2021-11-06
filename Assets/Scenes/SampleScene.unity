@@ -14674,6 +14674,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 39dd5ab230c48d043976149b062a5645, type: 2}
   parent: {fileID: 1008808583}
   themePrefab: {fileID: 7561936238379973060, guid: 599c1e7e69a809f4bbda04a59e2acc8d, type: 3}
+  themePopUp: {fileID: 0}
+  themePopUpCloseButton: {fileID: 0}
   classicScreen: {fileID: 1725212152}
   ball: {fileID: 2100000, guid: 15b7a00437ec76c4fba8c32fb5e39d3c, type: 2}
   bar: {fileID: 2100000, guid: 5fac4b404fda0574e94e0f890f0694a3, type: 2}

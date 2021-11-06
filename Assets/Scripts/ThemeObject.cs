@@ -12,7 +12,6 @@ public class ThemeObject : MonoBehaviour
     public void ChangeThemeClick()
     {
         changeTheme(name);
-        ChangeButtonColor();
     }
 
     public void ChangeButtonColor()
