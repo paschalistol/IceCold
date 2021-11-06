@@ -3,6 +3,8 @@ using EasyMobile;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class Options : MonoBehaviour
 {
     [SerializeField] private GameObject soundPanel, pausePanel;
@@ -14,6 +16,7 @@ public class Options : MonoBehaviour
     public delegate void TogglingFullscreen();
     public TogglingFullscreen toggleFullscreen;
     private bool signedIn = false;
+    [SerializeField] private Button leaderboardButton;
     private void Start()
     {
         fullScreen = (PlayerPrefs.GetInt("fullScreen") != 0);
@@ -21,18 +24,27 @@ public class Options : MonoBehaviour
         //OptionsBackground();
         ChangeFullScreenOptions();
         InitSignText();
+        GameServices.UserLoginSucceeded += InitSignText;
+    }
+
+    private void OnDestroy()
+    {
+        GameServices.UserLoginSucceeded -= InitSignText;
     }
 
     private void InitSignText()
     {
+        signedIn = GameServices.IsInitialized();
         // signedIn = user signed in
         if (signedIn)
         {
             signText.text = "Sign out";
+            leaderboardButton.interactable = true;
         }
         else
         {
             signText.text = "Sign in";
+            leaderboardButton.interactable = false;
         }
 
 
@@ -42,11 +54,13 @@ public class Options : MonoBehaviour
     {
         if (signedIn)
         {
-            GameServices.SignOut();
+            GameServices.SignOut(); 
+            signedIn = false;
         }
         else
         {
-            //try sign in
+            GameServices.Init();
+            signedIn = true;
         }
         InitSignText();
     }

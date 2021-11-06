@@ -14777,6 +14777,7 @@ MonoBehaviour:
   fullScreenPosition: {x: 0, y: -190, z: 0}
   fullScreenScale: {x: 1.22, y: 1.22, z: 1.22}
   signText: {fileID: 45199981}
+  leaderboardButton: {fileID: 1093821154}
 --- !u!114 &1579815154
 MonoBehaviour:
   m_ObjectHideFlags: 0
