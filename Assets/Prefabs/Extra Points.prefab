@@ -352,8 +352,8 @@ MonoBehaviour:
   rotationSpeed: 100
   face: {fileID: 1806429865485722145}
   powerUpPoints: 2
-  coinText1: {fileID: 0}
-  coinText2: {fileID: 0}
+  coinText1: {fileID: 5410168169327108267}
+  coinText2: {fileID: 8264436945538256565}
 --- !u!1 &3658951861909181744
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6989531660994837775
 RectTransform:
   m_ObjectHideFlags: 0
