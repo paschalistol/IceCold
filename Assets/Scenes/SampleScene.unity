@@ -2313,7 +2313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The reason why this theme is locked and possibly a price.
+  m_text: The theme is not available yet
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d89ccf7346a7dd64d996a7918965ac3a, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: d89ccf7346a7dd64d996a7918965ac3a, type: 2}
@@ -4655,7 +4655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &426906241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7976,8 +7976,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 272.50006, y: -48}
-  m_SizeDelta: {x: 175.00003, y: 96}
+  m_AnchoredPosition: {x: 180.00003, y: -48}
+  m_SizeDelta: {x: 360.00006, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791176096
 MonoBehaviour:
