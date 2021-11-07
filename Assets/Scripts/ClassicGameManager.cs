@@ -10,7 +10,7 @@ using UnityEngine.SocialPlatforms;
 public class ClassicGameManager : MonoBehaviour
 {
     private int totalPoints = 0;
-    private int currentGoal = 0;
+    [SerializeField]private int currentGoal = 0;
     private int extraSurvivalPoints = 0;
     private int currentPoints = 100;
     [SerializeField] private TMP_Text pointScreen;
@@ -242,13 +242,21 @@ public class ClassicGameManager : MonoBehaviour
         bonusHoles[currentGoal].SetActiveGoal(false);
         UpdatePoints();
         currentGoal++;
-        if (currentGoal <= bonusHoles.Count)
+        if (currentGoal < bonusHoles.Count)
         {
             bonusHoles[currentGoal].SetActiveGoal(true) ;
             currentPoints=(currentGoal + 1) * 100;
         }
+        else if (currentGoal == bonusHoles.Count)
+        {
+            endGame(true);
+            Debug.Log("win the game");
+            Debug.Log("show win panel");
+            //unlock achievement
+            //to remove serialize field from currentgoal
+        }
     }
-
+    
     private void Update()
     {
         if (gameMode == GameMode.survival)
