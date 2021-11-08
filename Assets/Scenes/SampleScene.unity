@@ -2313,7 +2313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The theme is not available yet
+  m_text: The theme will be available soon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d89ccf7346a7dd64d996a7918965ac3a, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: d89ccf7346a7dd64d996a7918965ac3a, type: 2}
@@ -6950,7 +6950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba919ea8d463dfd438ad4b09d6a95750, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f333afa8d15d0c458a3daed2e50f414, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11024,7 +11024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba919ea8d463dfd438ad4b09d6a95750, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f333afa8d15d0c458a3daed2e50f414, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -16538,7 +16538,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb6d70b4fb6bd574a838cfc5060b76e9, type: 2}
   - {fileID: 11400000, guid: 9b4dd32317b06c54aa69da36a46892b5, type: 2}
   - {fileID: 11400000, guid: 48c709ea1ef432e41bea3126490e4cc8, type: 2}
-  - {fileID: 11400000, guid: 39dd5ab230c48d043976149b062a5645, type: 2}
   parent: {fileID: 1008808583}
   themePrefab: {fileID: 7561936238379973060, guid: 599c1e7e69a809f4bbda04a59e2acc8d, type: 3}
   themePopUp: {fileID: 284229328}
@@ -17760,7 +17759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba919ea8d463dfd438ad4b09d6a95750, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f333afa8d15d0c458a3daed2e50f414, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

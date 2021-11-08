@@ -24,7 +24,8 @@
 
 public static class EM_GPGSIds
 {
-        public const string leaderboard_freezing_cold_classic_personal_best = "CggIq-WT3SAQAhAC"; // <GPGSID>
+        public const string leaderboard_freezing_cold_beer_classic_mode = "CggIq-WT3SAQAhAC"; // <GPGSID>
+        public const string achievement_finish_classic_mode = "CggIq-WT3SAQAhAD"; // <GPGSID>
         public const string leaderboard_freezing_cold_beer = "CggIq-WT3SAQAhAA"; // <GPGSID>
 
 }

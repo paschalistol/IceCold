@@ -293,9 +293,10 @@ MonoBehaviour:
       project.-->\r\n<resources>\r\n  <!--app_id-->\r\n  <string name=\"app_id\"
       translatable=\"false\">8785293995</string>\r\n  <!--package_name-->\r\n  <string
       name=\"package_name\" translatable=\"false\">com.PhobTroll.coldbeer</string>\r\n 
-      <!--leaderboard Freezing Cold Beer-->\r\n  <string name=\"leaderboard_freezing_cold_beer\"
-      translatable=\"false\">CggIq-WT3SAQAhAA</string>\r\n  <!--leaderboard Freezing
-      Cold Classic Personal Best-->\r\n  <string name=\"leaderboard_freezing_cold_classic_personal_best\"
+      <!--achievement Finish Classic Mode-->\r\n  <string name=\"achievement_finish_classic_mode\"
+      translatable=\"false\">CggIq-WT3SAQAhAD</string>\r\n  <!--leaderboard Freezing
+      Cold Beer-->\r\n  <string name=\"leaderboard_freezing_cold_beer\" translatable=\"false\">CggIq-WT3SAQAhAA</string>\r\n 
+      <!--leaderboard Freezing Cold Beer Classic Mode-->\r\n  <string name=\"leaderboard_freezing_cold_beer_classic_mode\"
       translatable=\"false\">CggIq-WT3SAQAhAC</string>\r\n</resources>"
     mEnableMultiplayer: 0
     mEnableSavedGames: 0
