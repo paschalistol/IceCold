@@ -9,7 +9,7 @@ public class Options : MonoBehaviour
 {
     [SerializeField] private GameObject soundPanel, pausePanel;
     private bool pause = false;
-    [SerializeField] private RectTransform machinePanel, screenPanel, optionsBackground, fade, themeSelector, themePopUp;
+    [SerializeField] private RectTransform machinePanel, screenPanel, optionsBackground, fade, themeSelector, winPopUp;
     [SerializeField] private Vector3 fullScreenPosition, fullScreenScale;
     private bool fullScreen;
     [SerializeField] private TMP_Text signText;
@@ -158,8 +158,8 @@ public class Options : MonoBehaviour
             optionsBackground.localScale = fullScreenScale;
             themeSelector.anchoredPosition = fullScreenPosition;
             themeSelector.localScale = fullScreenScale;
-            // themePopUp.anchoredPosition = fullScreenPosition;
-            // themePopUp.localScale = fullScreenScale;
+            winPopUp.anchoredPosition = fullScreenPosition;
+            winPopUp.localScale = fullScreenScale;
         }
         else
         {
@@ -173,8 +173,8 @@ public class Options : MonoBehaviour
             optionsBackground.localScale = Vector3.one;
             themeSelector.anchoredPosition = Vector3.zero;
             themeSelector.localScale = Vector3.one;
-            // themePopUp.anchoredPosition = Vector3.zero;
-            // themePopUp.localScale = Vector3.one;
+            winPopUp.anchoredPosition = Vector3.zero;
+            winPopUp.localScale = Vector3.one;
         }
     }
 }

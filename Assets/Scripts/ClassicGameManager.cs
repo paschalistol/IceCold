@@ -45,6 +45,7 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private TMP_Text highScore, survivalScore;
     private GameMode gameMode;
     [SerializeField] private GameObject survivalPool;
+    [SerializeField] private GameObject winPopUp;
     public float BallStartHeight
     {
         get;
@@ -250,9 +251,9 @@ public class ClassicGameManager : MonoBehaviour
         {
             endGame(true);
             Debug.Log("win the game");
-            Debug.Log("show win panel");
+            winPopUp.SetActive(true);
             //unlock achievement
-            //to remove serialize field from currentgoal
+            //to remove [serialize field] from variable: currentgoal
         }
     }
     
