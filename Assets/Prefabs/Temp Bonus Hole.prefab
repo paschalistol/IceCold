@@ -181,8 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c507e0de7203444a6e3b281d1b751f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loseClip: {fileID: 8300000, guid: 62f8c9e82f3c7b74690825d3e71047b0, type: 3}
   label: {fileID: 2600509829459731358}
   animator: {fileID: 7716813174029656523}
+  winClip: {fileID: 8300000, guid: 82920ae65d0a5bc48beac7cd696f9ca9, type: 3}
 --- !u!135 &2721769697628829736
 SphereCollider:
   m_ObjectHideFlags: 0

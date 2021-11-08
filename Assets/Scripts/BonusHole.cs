@@ -10,6 +10,7 @@ public class BonusHole : Hole
     private bool activeGoal = false;
     Animation anim;
     [SerializeField] private Animator animator;
+    [SerializeField]private AudioClip winClip;
 
     private void Awake()
     {
@@ -21,12 +22,14 @@ public class BonusHole : Hole
         anim = GetComponent<Animation>();
         SetActiveGoal(false);
         ClassicGameManager.instance.AddBonus(this);
+        base.Start();
     }
     public override void BallInHole()
     {
         if (activeGoal)
         {
             ClassicGameManager.instance.BallInBonus();
+            PlaySound(winClip);
         }
         else
         {

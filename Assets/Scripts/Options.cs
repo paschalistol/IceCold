@@ -89,7 +89,6 @@ public class Options : MonoBehaviour
         if (pause)
         {
             Time.timeScale = 0;
- 
             foreach (var source in sources)
             {
                 if (!source.outputAudioMixerGroup.name.Equals("Music"))
