@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class PickUpAudioPlayer : SurvivalPoolObjectBase
 {
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] protected AudioSource audioSource;
 
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         audioSource.Play();
         StartCoroutine(WaitAndDisable());
     }
 
-    private IEnumerator WaitAndDisable()
+    protected IEnumerator WaitAndDisable()
     {
         while (audioSource.isPlaying)
         {

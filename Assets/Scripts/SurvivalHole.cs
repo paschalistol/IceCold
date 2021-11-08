@@ -14,7 +14,7 @@ public class SurvivalHole : Hole
     {
         ClassicGameManager.instance.endRound += CheckDistanceAfterDying;
         anim = GetComponent<Animator>();
-        Ball.instance.startingBall += WaitForTrigger; 
+        Ball.instance.startingBall += WaitForTrigger;
     }
     private void CheckDistanceAfterDying()
     {

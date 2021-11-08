@@ -16,17 +16,23 @@ public class BallTrigger : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.useGravity = false;
             Ball.instance.RotateBallInHole(collider.transform.position);
+            AudioPlayer audioPlayer = survivalPool.GetFromPool(PoolObject.AUDIO_PLAYER).GetComponent<AudioPlayer>();
+            Hole hole;
             if (ClassicGameManager.instance.GetGameMode() == GameMode.classic)
             {
-                collider.GetComponent<Hole>().BallInHole();
+                hole = collider.GetComponent<Hole>();
+                hole.PlayWithAudioPlayer(audioPlayer);
+                hole.BallInHole();
                 Ball.instance.StartAnimation("BallInHole");
             }
             else if (ClassicGameManager.instance.GetGameMode() == GameMode.survival)
             {
-            
-                collider.transform.parent.GetComponent<Hole>().BallInHole();
+                hole = collider.transform.parent.GetComponent<Hole>();   
+                hole.PlayWithAudioPlayer(audioPlayer);
+                hole.BallInHole();
                 Ball.instance.StartAnimation("BallInHoleSurvival");
             }
+            // audioPlayer.PlayClip();
         }
 
         if (collider.CompareTag("TimePowerUp"))
@@ -43,7 +49,6 @@ public class BallTrigger : MonoBehaviour
             GiveExtraPoints(collider.GetComponent<SurvivalPowerUp>().PowerUpPoints);
             survivalPool.GetFromPool(PoolObject.EXTRA_POINTS_PLAYER);
         }
-
     }
 
     private void OnEnable()

@@ -51,8 +51,8 @@ public class SurvivalPool : MonoBehaviour
         tempPoolObject = Instantiate(poolObjectTranslation[poolObject]);
         tempPoolObject.transform.SetParent(transform);
         tempPoolObject.name = tempPoolObject.name + " " + tempPoolObject.transform.GetSiblingIndex();
-        DifferentObjectHandler(poolObject, tempPoolObject);
         AddToPool(poolObject, tempPoolObject);
+        DifferentObjectHandler(poolObject, tempPoolObject);
     }
 
     private void DifferentObjectHandler(PoolObject poolObject, GameObject tempPoolObject)
@@ -105,5 +105,5 @@ public class SurvivalPool : MonoBehaviour
 }
 public enum PoolObject
 {
-    BIG_HOLE, CLOCK, CLOCK_PICKUP_PLAYER, EXTRA_POINTS_PLAYER, EXTRA_POINTS
+    BIG_HOLE, CLOCK, CLOCK_PICKUP_PLAYER, EXTRA_POINTS_PLAYER, EXTRA_POINTS, AUDIO_PLAYER
 }

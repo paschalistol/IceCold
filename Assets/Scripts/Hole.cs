@@ -1,24 +1,20 @@
 using System;
 using UnityEngine;
-[RequireComponent(typeof(AudioSource))]
+using UnityEngine.Audio;
+
 public class Hole : MonoBehaviour
 {
-    [SerializeField]private AudioClip loseClip;
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip loseClip;
+    [SerializeField] private AudioMixerGroup mixerGroup;
 
-    protected void Start()
+    public virtual void PlayWithAudioPlayer(AudioPlayer audioPlayer)
     {
-        audioSource = GetComponent<AudioSource>();
+        audioPlayer.PlayClip(loseClip, mixerGroup);
     }
 
     public virtual void BallInHole()
     {
         ClassicGameManager.instance.Die();
-        PlaySound(loseClip);
     }
 
-    protected void PlaySound(AudioClip clip)
-    {
-        audioSource.PlayOneShot(clip);
-    }
 }

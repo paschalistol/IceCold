@@ -5106,7 +5106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &516965384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5134,6 +5134,9 @@ MonoBehaviour:
     initialSize: 3
   - poolObject: 4
     prefab: {fileID: 3577839142065315907, guid: 6c6657c694997c64b928a94a11e968f5, type: 3}
+    initialSize: 2
+  - poolObject: 5
+    prefab: {fileID: 198029365370919189, guid: fcdb759d5969be9488c756457d207fa8, type: 3}
     initialSize: 2
   minScale: 0.5
   maxScale: 0.8

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class BonusHole : Hole
 {
@@ -10,7 +11,8 @@ public class BonusHole : Hole
     private bool activeGoal = false;
     Animation anim;
     [SerializeField] private Animator animator;
-    [SerializeField]private AudioClip winClip;
+    [SerializeField] private AudioClip winClip;
+    [SerializeField] private AudioMixerGroup winMixerGroup;
 
     private void Awake()
     {
@@ -22,18 +24,27 @@ public class BonusHole : Hole
         anim = GetComponent<Animation>();
         SetActiveGoal(false);
         ClassicGameManager.instance.AddBonus(this);
-        base.Start();
     }
     public override void BallInHole()
     {
         if (activeGoal)
         {
             ClassicGameManager.instance.BallInBonus();
-            PlaySound(winClip);
         }
         else
         {
             base.BallInHole();
+        }
+    }
+    public override void PlayWithAudioPlayer(AudioPlayer audioPlayer)
+    {
+        if (activeGoal)
+        {
+            audioPlayer.PlayClip(winClip, winMixerGroup);
+        }
+        else
+        {
+            base.PlayWithAudioPlayer(audioPlayer);
         }
     }
     public void SetActiveGoal(bool goal)

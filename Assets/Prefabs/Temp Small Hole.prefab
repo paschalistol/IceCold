@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loseClip: {fileID: 8300000, guid: 62f8c9e82f3c7b74690825d3e71047b0, type: 3}
+  mixerGroup: {fileID: -5818598338002157927, guid: 08c282478f047de41aa3908291899d83, type: 2}
 --- !u!82 &654893616607888141
 AudioSource:
   m_ObjectHideFlags: 0
