@@ -19,6 +19,7 @@ public class CyllinderSoundManager : MonoBehaviour
         UpdatePivotPosition();
         player.resettingPivots += UpdatePivotPosition;
         previousLevelHeight = survivalPool.transform.position.y;
+        player.barInPlaceEvent += StopSound;
 
     }
     private void Update()
@@ -41,6 +42,11 @@ public class CyllinderSoundManager : MonoBehaviour
                 previousLevelHeight = survivalPool.transform.position.y;
                 PlaySound();
             }
+        }
+
+        if (player.AllowControls && !player.BarMovingByPlayer())
+        {
+            audioSource.Stop();
         }
     }
 

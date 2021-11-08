@@ -27,6 +27,9 @@ public class IronBar : MonoBehaviour
     [SerializeField] private SurvivalBGHandler survivalBgHandler;
     private float survivalBgSpeed = 0.01f;
     private bool barWaiting = true;
+    public delegate void BarInPlaceEvent();
+    public BarInPlaceEvent barInPlaceEvent;
+    private bool barInPlace;
     public bool AllowControls
     {
         get { return allowControls; }
@@ -95,11 +98,19 @@ public class IronBar : MonoBehaviour
                 survivalBgHandler.MoveBgDown(-survivalBgSpeed);
             }
         }
-        if (barLocated && barRotated && !Ball.instance.BallResetting)
+        if (barLocated && barRotated)
         {
-
             barRotated = false;
             barLocated = false;
+            barInPlace = true;
+        }
+        if (barInPlace && !animat.isPlaying)
+        {
+            barInPlaceEvent();
+        }
+        if (barInPlace && !Ball.instance.BallResetting)
+        {
+            barInPlace = false;
             animat.Play("ReStartIron");
         }
 
@@ -183,6 +194,11 @@ public class IronBar : MonoBehaviour
     private void StartBall()
     {
         ball.StartAnimation("StartBall");
+    }
+
+    public bool BarMovingByPlayer()
+    {
+        return (Math.Abs(rightJoystick.Vertical) > threshold || Math.Abs(leftJoystick.Vertical) > threshold );
     }
     private void Controls()
     {

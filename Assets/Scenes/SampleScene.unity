@@ -2064,7 +2064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b186fe74e98afa41bf8ecc8da57e9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tick: {fileID: 8300000, guid: 7271798fa66c6fe40a7613176832b277, type: 3}
+  tick: {fileID: 8300000, guid: ea5f404f0fc800a489a12527465b0031, type: 3}
   leftPivot: {fileID: 1119745720}
   rightPivot: {fileID: 2100231060}
   soundOnHeightDifference: 0.03
