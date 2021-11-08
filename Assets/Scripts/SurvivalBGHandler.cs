@@ -8,6 +8,8 @@ public class SurvivalBGHandler : MonoBehaviour
     [SerializeField] private RectTransform classicModeBackground, survivalTile1Panel, survivalTile2Panel;
     private Color bgColor;
     [SerializeField] private SpriteRenderer survivalTile1, survivalTile2;
+    private bool tile1IsUp;
+    private float tile1Y;
 
     public void ChangeToSurvivalBackground(Color color)
     {
@@ -23,17 +25,20 @@ public class SurvivalBGHandler : MonoBehaviour
         if (survivalTile1Panel.anchoredPosition.y < -1600)
         {
             survivalTile1Panel.anchoredPosition =  new Vector2(0, survivalTile1Panel.anchoredPosition.y + 3200);
+            tile1IsUp = true;
         }
         if (survivalTile2Panel.anchoredPosition.y < -1600)
         {
             survivalTile2Panel.anchoredPosition =  new Vector2(0, survivalTile2Panel.anchoredPosition.y + 3200);
+            tile1IsUp = false;
         }
     }
 
     public void MoveBgDown(float distance)
     {
         distance *= 180;
-        survivalTile1Panel.anchoredPosition =  new Vector2(0, survivalTile1Panel.anchoredPosition.y + distance);
-        survivalTile2Panel.anchoredPosition =  new Vector2(0, survivalTile2Panel.anchoredPosition.y + distance);
+        tile1Y = survivalTile1Panel.anchoredPosition.y;
+        survivalTile1Panel.anchoredPosition =  new Vector2(0, tile1Y + distance);
+        survivalTile2Panel.anchoredPosition =  new Vector2(0, (tile1IsUp ? tile1Y +1600 + distance : tile1Y -1600 + distance));
     }
 }
