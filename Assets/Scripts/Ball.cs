@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
     public delegate void StartingBall();
     public StartingBall startingBall;
     private Rigidbody rb;
+    private float startingHeight = 4;
     public bool BallResetting
     {
         get;
@@ -51,7 +52,7 @@ public class Ball : MonoBehaviour
         if (animation.Equals("StartBall"))
         {
             float randomX = Random.Range(-ballRandomPos, ballRandomPos);
-            transform.position = new Vector3( randomX,4, 0);
+            transform.position = new Vector3( randomX,startingHeight, 0);
             if (ClassicGameManager.instance.GetGameMode() == GameMode.survival)
             {
                 transform.localScale = Vector3.one * 2.5f;
@@ -86,7 +87,24 @@ public class Ball : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, holeCenter, 0.1f * Time.deltaTime);
             yield return null;
         }
+        BallResetting = false;
+    }
 
+    public void TimeEnded()
+    {
+        StartCoroutine(TimeEndedEnumarator());
+    }
+    
+    IEnumerator TimeEndedEnumarator()
+    {
+        BallResetting = true;
+        rb.velocity = Vector3.zero;
+        while (transform.position.y < startingHeight)
+        {
+            // transform.Translate(Vector3.up * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, startingHeight), 3f * Time.deltaTime);
+            yield return null;
+        }
         BallResetting = false;
     }
     private void ActivateTrigger(bool activate)

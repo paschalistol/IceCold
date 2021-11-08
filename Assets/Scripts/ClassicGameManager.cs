@@ -223,7 +223,6 @@ public class ClassicGameManager : MonoBehaviour
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             OutOfLives();
         }
-
     }
     private void RestartBall()
     {

@@ -96,6 +96,7 @@ public class SurvivalModeHandler : MonoBehaviour
             {
                 bonusPointScreen.SetText("0");
                 ClassicGameManager.instance.Die();
+                Ball.instance.TimeEnded();
             }
         }
 
