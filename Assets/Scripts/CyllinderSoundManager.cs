@@ -24,9 +24,9 @@ public class CyllinderSoundManager : MonoBehaviour
     }
     private void Update()
     {
-        if (!audioSource.isPlaying && player.AllowControls)
-        {
 
+        if (player.AllowControls)
+        {
             if (Mathf.Abs(previousLeft - leftPivot.transform.position.y) > soundOnHeightDifference)
             {
                 previousLeft = leftPivot.transform.position.y;
@@ -44,16 +44,22 @@ public class CyllinderSoundManager : MonoBehaviour
             }
         }
 
-        if (player.AllowControls && !player.BarMovingByPlayer())
+        if (player.AllowControls && (!player.BarMovingByPlayer() || player.BarStoppedMoving))
         {
             audioSource.Stop();
         }
+
     }
+
+
 
     private void PlaySound()
     {
-        PlaySound(tick, false, 1.22f);
-        audioSource.Play();
+        PlaySound(tick, true, 1.22f);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
     private void UpdatePivotPosition()
     {

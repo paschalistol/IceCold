@@ -34,6 +34,11 @@ public class IronBar : MonoBehaviour
     {
         get { return allowControls; }
     }
+    public bool BarStoppedMoving
+    {
+        get;
+        private set;
+    }
     [SerializeField] private Ball ball;
     private Vector3 leftPivotStart, rightPivotStart;
     [SerializeField] private Vector3 barStart;
@@ -164,7 +169,6 @@ public class IronBar : MonoBehaviour
     {
         while (transform.position.y != barStart.y)
         {
-            Debug.Log("moving down");
             transform.position = Vector3.MoveTowards(transform.position, barStart, 0.02f);
             yield return new WaitForSeconds(0.01f);
         }
@@ -208,6 +212,7 @@ public class IronBar : MonoBehaviour
     }
     private void Controls()
     {
+        BarStoppedMoving = true;
         // if ((leftJoystick.Vertical > threshold || Input.GetKey(KeyCode.W)) && (Input.GetKey(KeyCode.UpArrow) || rightJoystick.Vertical > threshold) && leftPivot.transform.position.y < topHeight && rightPivot.transform.position.y < topHeight)
         // {
         //     transform.parent = null;
@@ -278,5 +283,6 @@ public class IronBar : MonoBehaviour
         leftPivot.transform.parent = transform;
         rightPivot.transform.parent = transform;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        BarStoppedMoving = false;
     }
 }

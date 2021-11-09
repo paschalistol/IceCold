@@ -2067,7 +2067,7 @@ MonoBehaviour:
   tick: {fileID: 8300000, guid: ea5f404f0fc800a489a12527465b0031, type: 3}
   leftPivot: {fileID: 1119745720}
   rightPivot: {fileID: 2100231060}
-  soundOnHeightDifference: 0.03
+  soundOnHeightDifference: 0.001
   survivalPool: {fileID: 516965383}
 --- !u!1 &179991473
 GameObject:
@@ -24678,7 +24678,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4138455310657659404, guid: 52d3727f0afddb944bf1679805507699, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 23dec421c39d2704eae48cff62bd8f37, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0190142f42a738246b76f38634ff069c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
