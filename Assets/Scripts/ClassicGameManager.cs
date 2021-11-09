@@ -51,6 +51,8 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private AudioClip endRoundClip;
     [SerializeField] private AudioMixerGroup outOfLivesMixer;
     [SerializeField] private AudioClip outOfLivesClip;
+    [SerializeField] private AudioMixerGroup winClassicMixer;
+    [SerializeField] private AudioClip winClassicClip;
     public float BallStartHeight
     {
         get;
@@ -262,6 +264,7 @@ public class ClassicGameManager : MonoBehaviour
             endGame(true);
             Debug.Log("win the game");
             winPopUp.SetActive(true);
+            survivalPool.GetFromPool(PoolObject.AUDIO_PLAYER).GetComponent<AudioPlayer>().PlayClip(winClassicClip, winClassicMixer);
             //unlock achievement
             //to remove [serialize field] from variable: currentgoal
         }
