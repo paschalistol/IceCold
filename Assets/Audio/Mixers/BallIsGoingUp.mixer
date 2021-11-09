@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BallIsGoingUp
+  m_OutputGroup: {fileID: 7734807639037092794, guid: 08c282478f047de41aa3908291899d83, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 4427029710156724524}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 194912364eb2b81408d95c6ca84b3872
+    - c384a1ddc0ff23c4a8bff01c76b5389c
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 4427029710156724524}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 194912364eb2b81408d95c6ca84b3872
+  m_Children:
+  - {fileID: 8256374927567645475}
+  m_Volume: 66d9d574c70ea1541996a78026ffe8eb
+  m_Pitch: 929b7bb248097ad4d9ec7053ebdc64bd
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9af579af244b3e844b04fba28f008b41
+  m_EffectName: Attenuation
+  m_MixLevel: 22d2b86c740c9974ba1324411006dd0c
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Snapshot
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: f5484ae816dacd24aa68f0dc63c4a423
+  m_FloatValues:
+    158f6ddf1ae016b4fad4ddaf3aa95b4e: 1
+  m_TransitionOverrides: {}
+--- !u!244 &3302531857347355996
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 5fd7e55805c75f047a680f8796ddeda2
+  m_EffectName: Attenuation
+  m_MixLevel: 8758d7912312b6f4e86a46f28a577930
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &4427029710156724524
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FadeOut
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: b0b93a10661301f4db6fb0e5f6161f51
+  m_FloatValues:
+    158f6ddf1ae016b4fad4ddaf3aa95b4e: -80
+  m_TransitionOverrides: {}
+--- !u!243 &8256374927567645475
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BallIsGoingUp
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: c384a1ddc0ff23c4a8bff01c76b5389c
+  m_Children: []
+  m_Volume: 158f6ddf1ae016b4fad4ddaf3aa95b4e
+  m_Pitch: 6e391e863aa1ae549954d6f50fefdc92
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 3302531857347355996}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0

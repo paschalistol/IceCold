@@ -83,21 +83,9 @@ public class IronBar : MonoBehaviour
             StartNextRound();
         }
     }
-    
-    void FixedUpdate()
+
+    private void Update()
     {
-        if (allowControls)
-        {
-            Controls();
-            if (gameMode == GameMode.survival && transform.position.y > topHeightSurvival)
-            {
-                survivalBgSpeed = rotationSpeed * Time.deltaTime * 0.1f;
-                SurvivalControl();
-                survivalPool.transform.position = new Vector3(survivalPool.transform.position.x,
-                    survivalPool.transform.position.y - survivalBgSpeed, survivalPool.transform.position.z);
-                survivalBgHandler.MoveBgDown(-survivalBgSpeed);
-            }
-        }
         if (barLocated && barRotated)
         {
             barRotated = false;
@@ -113,6 +101,23 @@ public class IronBar : MonoBehaviour
             barInPlace = false;
             animat.Play("ReStartIron");
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (allowControls)
+        {
+            Controls();
+            if (gameMode == GameMode.survival && transform.position.y > topHeightSurvival)
+            {
+                survivalBgSpeed = rotationSpeed * Time.deltaTime * 0.1f;
+                SurvivalControl();
+                survivalPool.transform.position = new Vector3(survivalPool.transform.position.x,
+                    survivalPool.transform.position.y - survivalBgSpeed, survivalPool.transform.position.z);
+                survivalBgHandler.MoveBgDown(-survivalBgSpeed);
+            }
+        }
+
 
 
     }
@@ -159,6 +164,7 @@ public class IronBar : MonoBehaviour
     {
         while (transform.position.y != barStart.y)
         {
+            Debug.Log("moving down");
             transform.position = Vector3.MoveTowards(transform.position, barStart, 0.02f);
             yield return new WaitForSeconds(0.01f);
         }

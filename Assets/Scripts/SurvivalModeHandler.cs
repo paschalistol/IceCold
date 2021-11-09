@@ -20,6 +20,7 @@ public class SurvivalModeHandler : MonoBehaviour
     [SerializeField] private ThemeManager themeManager;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private int seconondsToPlaySound = 3;
+    [SerializeField] private float ballUpWhenTimeIsUpSpeed = 5f;
     private void Start()
     {
         ClassicGameManager.instance.startRound += StartRound;
@@ -96,7 +97,7 @@ public class SurvivalModeHandler : MonoBehaviour
             {
                 bonusPointScreen.SetText("0");
                 ClassicGameManager.instance.Die();
-                Ball.instance.TimeEnded();
+                Ball.instance.TimeEnded(ballUpWhenTimeIsUpSpeed);
             }
         }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Ball : MonoBehaviour
 {
@@ -13,6 +14,16 @@ public class Ball : MonoBehaviour
     public StartingBall startingBall;
     private Rigidbody rb;
     private float startingHeight = 4;
+
+    [Header("Ball Landing")] 
+    [SerializeField] private AudioClip ballLanding;
+    [SerializeField] private AudioMixerGroup ballLandingMixer;
+    [Header("Ball Going Up")] 
+    [SerializeField] private AudioClip ballGoingUp;
+    [SerializeField] private AudioMixerGroup ballGoingUpMixer;
+    [SerializeField] private AudioMixerSnapshot fadeOutSnapshot;
+    [SerializeField] private AudioMixerSnapshot startSnapshot;
+    
     public bool BallResetting
     {
         get;
@@ -32,7 +43,8 @@ public class Ball : MonoBehaviour
         anim = GetComponent<Animation>();
         ClassicGameManager.instance.activateBallTrigger += ActivateTrigger;
         audioSource = GetComponent<AudioSource>();
-        ClassicGameManager.instance.startRound += PlayBallSound;
+        ClassicGameManager.instance.startRound += PlayBallSoundLanding;
+
     }
     private float offset = 0.002f;
     private void OnCollisionStay(Collision collision)
@@ -42,8 +54,10 @@ public class Ball : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y + offset, transform.position.z);
         }
     }
-    private void PlayBallSound()
+    private void PlayBallSoundLanding()
     {
+        audioSource.clip = ballLanding;
+        audioSource.outputAudioMixerGroup = ballLandingMixer;
         audioSource.Play();
     }
     public void StartAnimation(string animation)
@@ -70,8 +84,7 @@ public class Ball : MonoBehaviour
     {
         if (startingBall != null)
         {
-            
-         startingBall();
+            startingBall();
         }
     }
     public void RotateBallInHole(Vector3 holeCenter)
@@ -90,21 +103,31 @@ public class Ball : MonoBehaviour
         BallResetting = false;
     }
 
-    public void TimeEnded()
+    public void TimeEnded(float speed)
     {
-        StartCoroutine(TimeEndedEnumarator());
+        PlayBallGoingUpSound();
+        StartCoroutine(TimeEndedEnumarator( speed));
     }
-    
-    IEnumerator TimeEndedEnumarator()
+
+    private void PlayBallGoingUpSound()
+    {
+        startSnapshot.TransitionTo(0);
+        audioSource.clip = ballGoingUp;
+        audioSource.outputAudioMixerGroup = ballGoingUpMixer;
+        audioSource.Play();
+    }
+
+    IEnumerator TimeEndedEnumarator(float speed)
     {
         BallResetting = true;
         rb.velocity = Vector3.zero;
         while (transform.position.y < startingHeight)
         {
             // transform.Translate(Vector3.up * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, startingHeight), 3f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, startingHeight), speed * Time.deltaTime);
             yield return null;
         }
+        fadeOutSnapshot.TransitionTo(0.5f);
         BallResetting = false;
     }
     private void ActivateTrigger(bool activate)

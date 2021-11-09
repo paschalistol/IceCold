@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
-using System;
 using EasyMobile;
 using UnityEngine.SocialPlatforms;
 
@@ -44,8 +43,14 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private GameObject endPanel, endPanel2,optionsBG;
     [SerializeField] private TMP_Text highScore, survivalScore;
     private GameMode gameMode;
-    [SerializeField] private GameObject survivalPool;
+    [SerializeField] private GameObject survivalPoolObject;
     [SerializeField] private GameObject winPopUp;
+    private SurvivalPool survivalPool;
+    [Header("SFX")] 
+    [SerializeField] private AudioMixerGroup endRoundMixer;
+    [SerializeField] private AudioClip endRoundClip;
+    [SerializeField] private AudioMixerGroup outOfLivesMixer;
+    [SerializeField] private AudioClip outOfLivesClip;
     public float BallStartHeight
     {
         get;
@@ -88,6 +93,7 @@ public class ClassicGameManager : MonoBehaviour
         SetStartHighScores();
         adManager.giveReward += SecondChance;
         player.startingBar += InitRoundTexts;
+        survivalPool = survivalPoolObject.GetComponent<SurvivalPool>();
     }
     private void OnDestroy()
     {
@@ -221,8 +227,12 @@ public class ClassicGameManager : MonoBehaviour
         endGame( lives==0);
         if (lives == 0)
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             OutOfLives();
+            survivalPool.GetFromPool(PoolObject.AUDIO_PLAYER).GetComponent<AudioPlayer>().PlayClip(outOfLivesClip, outOfLivesMixer);
+        }
+        else
+        {
+            survivalPool.GetFromPool(PoolObject.AUDIO_PLAYER).GetComponent<AudioPlayer>().PlayClip(endRoundClip, endRoundMixer);
         }
     }
     private void RestartBall()
@@ -272,7 +282,7 @@ public class ClassicGameManager : MonoBehaviour
 
     private void UpdateSurvivalPoints()
     {
-        totalPoints = Mathf.Abs((int)(survivalPool.transform.position.y * 10) - 30);
+        totalPoints = Mathf.Abs((int)(survivalPoolObject.transform.position.y * 10) - 30);
         totalPoints += extraSurvivalPoints;
         pointScreen.SetText(totalPoints.ToString());
     }
