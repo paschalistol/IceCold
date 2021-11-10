@@ -37,7 +37,7 @@ public class MusicPanelHandler : MonoBehaviour
         PlayerPrefs.SetFloat("sfxVolume", sfxLevel);
     }
     public void SetMusicLevel(float musicLevel)
-    {   if (musicLevel < 39.5f )
+    {   if (musicLevel < -39.5f )
         {
             musicLevel = -80;
         }
