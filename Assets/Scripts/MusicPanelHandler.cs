@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,15 +26,21 @@ public class MusicPanelHandler : MonoBehaviour
 
         audioSource.Play();
 
-
     }
     public void SetSfxLevel(float sfxLevel)
     {
+        if (sfxLevel < -39.5f )
+        {
+            sfxLevel = -80;
+        }
         masterMixer.SetFloat("sfxVolume", sfxLevel);
         PlayerPrefs.SetFloat("sfxVolume", sfxLevel);
     }
     public void SetMusicLevel(float musicLevel)
-    {
+    {   if (musicLevel < 39.5f )
+        {
+            musicLevel = -80;
+        }
         masterMixer.SetFloat("musicVolume", musicLevel);
         PlayerPrefs.SetFloat("musicVolume", musicLevel);
     }

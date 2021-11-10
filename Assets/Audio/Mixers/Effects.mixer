@@ -247,6 +247,7 @@ AudioMixerController:
     - ff3a39cc977882140b95526512d8eb8a
     - 90568da7c7c19ef458aecfda8aa71568
     - 4678290371014cd49ab43ecee987c4bf
+    - 4f535b91b494d9f44974961735b50f46
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -271,6 +272,7 @@ AudioMixerGroupController:
   - {fileID: -5847253453281595470}
   - {fileID: -1033980865428620847}
   - {fileID: 304996383168388982}
+  - {fileID: 1899735584372596997}
   m_Volume: c51e8bb6d1d77d54d9dc9d6ebba601da
   m_Pitch: fa4ab720a57ceeb47a0ba86a3638af97
   m_Send: 00000000000000000000000000000000
@@ -309,6 +311,7 @@ AudioMixerSnapshotController:
     7ded3c55ceb2ee24a999525c8815bc09: 1
     dc612b75ad7d1c24fb3454e91181b714: 8
     c16492460b9cf7541ba8df6332ad5771: 5.67851
+    c212ffa68f37f5f4680bc1908f19a36a: 1.8
     55d8d63ade7d8634e9732eeafa3f5449: -8.362404
     d34b3a8bc4bb81e4189cd268bcb852ef: -2.8722944
     c9108c0c0008d6147b48092f48a0ef4a: -2.018035
@@ -361,6 +364,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &1899735584372596997
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SoundPanel
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 4f535b91b494d9f44974961735b50f46
+  m_Children: []
+  m_Volume: c212ffa68f37f5f4680bc1908f19a36a
+  m_Pitch: 78de5e934856d63429e1fbe7c0f43e13
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 5413728738627793046}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &2585632568104307173
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -385,6 +407,20 @@ AudioMixerEffectController:
   m_EffectID: 96c46c57d600aba4db70f588429974e0
   m_EffectName: Attenuation
   m_MixLevel: 2fb5b32ebfc9d3244baae1459ff11e10
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &5413728738627793046
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 24ba0a1668ec90c448dd4faa6de742af
+  m_EffectName: Attenuation
+  m_MixLevel: 0b0c06bcdaec6404d893d64871dba3f9
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0

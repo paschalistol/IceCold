@@ -5,6 +5,9 @@ public class MusicPlayer : MonoBehaviour
 {
     public static MusicPlayer instance;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioMixerGroup musicMixer;
+    [SerializeField] private AudioMixerSnapshot fadeInSnapshot;
+    [SerializeField] private AudioSource audioSource;
     private void Awake()
     {
         if (instance == null)
@@ -21,6 +24,13 @@ public class MusicPlayer : MonoBehaviour
     private void Start()
     {
         audioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("musicVolume"));
-        GetComponent<AudioSource>().Play();
+        FadeInMusic();
+    }
+    
+    private void FadeInMusic()
+    {
+        fadeInSnapshot.TransitionTo(0.7f);
+        audioSource.outputAudioMixerGroup = musicMixer;
+        audioSource.Play();
     }
 }
