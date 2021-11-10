@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using EasyMobile;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class Options : MonoBehaviour
     public TogglingFullscreen toggleFullscreen;
     private bool signedIn = false;
     [SerializeField] private Button leaderboardButton;
+    [SerializeField] private Image sceneFadePanel;
+    [SerializeField] private float fadeSpeed = 0.003f;
     private void Start()
     {
         fullScreen = (PlayerPrefs.GetInt("fullScreen") != 0);
@@ -25,8 +28,48 @@ public class Options : MonoBehaviour
         ChangeFullScreenOptions();
         InitSignText();
         GameServices.UserLoginSucceeded += InitSignText;
+        StartCoroutine(FadeOut());
     }
 
+    private void Awake()
+    {
+        sceneFadePanel.transform.parent.gameObject.SetActive(true);
+    }
+
+    IEnumerator FadeOut()
+    {
+        Image color = sceneFadePanel.GetComponent<Image>();
+        Color tempColor = color.color;
+        float lerpAmount = 0f;
+        while(lerpAmount<1)
+        {
+            tempColor.a=Mathf.Lerp(1,0,lerpAmount);
+            color.color = tempColor;
+            lerpAmount+=fadeSpeed;
+            
+            yield return null;
+        }
+
+
+        sceneFadePanel.transform.parent.gameObject.SetActive(false);
+    }
+    IEnumerator FadeInAndReloadScene()
+    {
+        sceneFadePanel.transform.parent.gameObject.SetActive(true);
+        Image color = sceneFadePanel.GetComponent<Image>();
+        Color tempColor = color.color;
+        float lerpAmount = 0f;
+        while(lerpAmount<1)
+        {
+            tempColor.a=Mathf.Lerp(0,1,lerpAmount);
+            color.color = tempColor;
+            lerpAmount+=fadeSpeed;
+            
+            yield return null;
+        }
+        color.color = new Color(1, 1, 1, 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     private void OnDestroy()
     {
         GameServices.UserLoginSucceeded -= InitSignText;
@@ -67,7 +110,7 @@ public class Options : MonoBehaviour
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(FadeInAndReloadScene());
     }
 
     public void ShowLeaderboard()
