@@ -60,7 +60,7 @@ public class ThemeManager : MonoBehaviour
         }
         // ball.EnableKeyword("_EMISSION");
         // bar.EnableKeyword("_EMISSION");
-        
+
     }
 
     private void GetStartingTheme()

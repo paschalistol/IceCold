@@ -40,7 +40,7 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private int secondChanceLivesSurvival = 0;
     private bool gotAward;
     [SerializeField] private AdManager adManager;
-    [SerializeField] private GameObject endPanel, endPanel2,optionsBG;
+    [SerializeField] private GameObject endPanel, endPanel2,optionsBG, askToSignInPanel;
     [SerializeField] private TMP_Text highScore, survivalScore;
     private GameMode gameMode;
     [SerializeField] private GameObject survivalPoolObject;
@@ -100,7 +100,12 @@ public class ClassicGameManager : MonoBehaviour
     private void OnDestroy()
     {
         GameServices.UserLoginSucceeded -= SetHighScores;
+        GameServices.UserLoginSucceeded -= SaveNewHighScore;
+        GameServices.UserLoginFailed -= LoginFailed;
     }
+
+
+
     private void SetHighScores()
     {
         highScore.SetText(PlayerPrefs.GetInt("HighScore").ToString());
@@ -116,7 +121,7 @@ public class ClassicGameManager : MonoBehaviour
     void OnLocalUserScoreLoaded(string leaderboardName, IScore score) {
         switch (leaderboardName)
         {
-            case EM_GameServicesConstants.Leaderboard_Survival_High_Score: 
+            case EM_GameServicesConstants.Leaderboard_Survival_High_Score:
                 SetHighScore(survivalScore, score, "Survival");
                 break;
             case EM_GameServicesConstants.Leaderboard_Classic_Personal_Best:
@@ -127,7 +132,7 @@ public class ClassicGameManager : MonoBehaviour
 
     private void SetHighScore(TMP_Text tmpText, IScore score, string playerPref)
     {
-        if (score != null) {
+        if (score != null && score.value > PlayerPrefs.GetInt(playerPref)) {
             tmpText.SetText(score.formattedValue);
             PlayerPrefs.SetInt(playerPref, (int)score.value);
         } else {
@@ -194,23 +199,57 @@ public class ClassicGameManager : MonoBehaviour
         }
         else
         {
-            endPanel2.SetActive(true);
             if (gameMode == GameMode.classic && totalPoints > (PlayerPrefs.GetInt("HighScore", 0)))
             {
                 PlayerPrefs.SetInt("HighScore", totalPoints);
                 highScore.SetText(PlayerPrefs.GetInt("HighScore", 0).ToString());
-                GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Classic_Personal_Best);
             }
 
             if (gameMode == GameMode.survival &&totalPoints > (PlayerPrefs.GetInt("Survival", 0)))
             {
                 PlayerPrefs.SetInt("Survival", totalPoints);
                 survivalScore.SetText(PlayerPrefs.GetInt("Survival", 0).ToString());
-                GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Survival_High_Score);
+            }
+            if (GameServices.IsInitialized())
+            {
+                
+                SaveNewHighScore();
+                endPanel2.SetActive(true);
+            }
+            else
+            {
+                askToSignInPanel.SetActive(true);
             }
         }
     }
 
+    public void AskToSignInBeforeHome()
+    {
+        GameServices.UserLoginSucceeded += SaveNewHighScore;
+        GameServices.UserLoginFailed += LoginFailed;
+        GameServices.Init();
+    }
+
+    private void LoginFailed()
+    {
+        askToSignInPanel.SetActive(false);
+        endPanel2.SetActive(true);
+    }
+
+    private void SaveNewHighScore()
+    {
+        if (gameMode == GameMode.classic)
+        {
+            GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Classic_Personal_Best);
+        }
+
+        if (gameMode == GameMode.survival)
+        {
+            GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Survival_High_Score);
+        }
+        askToSignInPanel.SetActive(false);
+        endPanel2.SetActive(true);
+    }
     public bool GetAllowControls()
     {
         return player.AllowControls;
