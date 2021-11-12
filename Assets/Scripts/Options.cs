@@ -10,7 +10,8 @@ public class Options : MonoBehaviour
 {
     [SerializeField] private GameObject soundPanel, pausePanel;
     private bool pause = false;
-    [SerializeField] private RectTransform machinePanel, screenPanel, optionsBackground, fade, themeSelector, winPopUp;
+    [SerializeField] private RectTransform optionsBackground;
+    [SerializeField] private RectTransform[] panels;
     [SerializeField] private Vector3 fullScreenPosition, fullScreenScale;
     private bool fullScreen;
     [SerializeField] private TMP_Text signText;
@@ -20,6 +21,7 @@ public class Options : MonoBehaviour
     [SerializeField] private Button leaderboardButton;
     [SerializeField] private Image sceneFadePanel;
     [SerializeField] private float fadeSpeed = 0.003f;
+    [SerializeField] private Image logo;
     private void Start()
     {
         fullScreen = (PlayerPrefs.GetInt("fullScreen") != 0);
@@ -29,6 +31,7 @@ public class Options : MonoBehaviour
         InitSignText();
         GameServices.UserLoginSucceeded += InitSignText;
         StartCoroutine(FadeOut());
+        StartCoroutine(FadeOutLogo());
     }
 
     private void Awake()
@@ -49,9 +52,37 @@ public class Options : MonoBehaviour
             
             yield return null;
         }
-
-
         sceneFadePanel.transform.parent.gameObject.SetActive(false);
+    }
+    IEnumerator FadeOutLogo()
+    {
+        Image color = logo;
+        Color tempColor = color.color;
+        float lerpAmount = 0f;
+        while(lerpAmount<1)
+        {
+            tempColor.a=Mathf.Lerp(1,0,lerpAmount);
+            color.color = tempColor;
+            lerpAmount+=fadeSpeed;
+            yield return null;
+        }
+    }
+    IEnumerator FadeInLogo()
+    {
+        SceneFadeHandler.instance.SceneReset();
+        logo.gameObject.SetActive(true);
+        Image color = logo;
+        Color tempColor = color.color;
+        float lerpAmount = 0f;
+        while(lerpAmount<1)
+        {
+            tempColor.a=Mathf.Lerp(0,1,lerpAmount);
+            color.color = tempColor;
+            lerpAmount+=fadeSpeed;
+            
+            yield return null;
+        }
+        color.color = new Color(1, 1, 1, 1);
     }
     IEnumerator FadeInAndReloadScene()
     {
@@ -111,6 +142,11 @@ public class Options : MonoBehaviour
     public void ReloadScene()
     {
         StartCoroutine(FadeInAndReloadScene());
+        if (SceneFadeHandler.instance.GetIconActivated())
+        {
+            logo.gameObject.SetActive(true);
+            StartCoroutine(FadeInLogo());
+        }
     }
 
     public void ShowLeaderboard()
@@ -184,39 +220,54 @@ public class Options : MonoBehaviour
     }
     /// <summary>
     ///Changes the anchors of UI objects
-    /// also important to add the panel at CameraScript.scalers
+    /// add the child here (panel)
+    /// also important to add the parent (canvas) at CameraScript.scalers
     /// </summary>
     private void FullScreen()
     {
         if (fullScreen)
         {
-            machinePanel.anchoredPosition = fullScreenPosition;
-            machinePanel.localScale = fullScreenScale;
-            screenPanel.anchoredPosition = fullScreenPosition;
-            screenPanel.localScale = fullScreenScale;
-            fade.anchoredPosition = fullScreenPosition;
-            fade.localScale = fullScreenScale;
-            optionsBackground.anchoredPosition = fullScreenPosition;
-            optionsBackground.localScale = fullScreenScale;
-            themeSelector.anchoredPosition = fullScreenPosition;
-            themeSelector.localScale = fullScreenScale;
-            winPopUp.anchoredPosition = fullScreenPosition;
-            winPopUp.localScale = fullScreenScale;
+            // machinePanel.anchoredPosition = fullScreenPosition;
+            // machinePanel.localScale = fullScreenScale;
+            // screenPanel.anchoredPosition = fullScreenPosition;
+            // screenPanel.localScale = fullScreenScale;
+            // fade.anchoredPosition = fullScreenPosition;
+            // fade.localScale = fullScreenScale;
+            // optionsBackground.anchoredPosition = fullScreenPosition;
+            // optionsBackground.localScale = fullScreenScale;
+            // themeSelector.anchoredPosition = fullScreenPosition;
+            // themeSelector.localScale = fullScreenScale;
+            // winPopUp.anchoredPosition = fullScreenPosition;
+            // winPopUp.localScale = fullScreenScale;
+            // winPopUpNotSignedIn.anchoredPosition = fullScreenPosition;
+            // winPopUpNotSignedIn.localScale = fullScreenScale;
+            foreach (var panel in panels)
+            {
+                panel.anchoredPosition = fullScreenPosition;
+                panel.localScale = fullScreenScale;
+            }
         }
         else
         {
-            machinePanel.anchoredPosition = Vector3.zero;
-            machinePanel.localScale = Vector3.one;
-            screenPanel.anchoredPosition = Vector3.zero;
-            screenPanel.localScale = Vector3.one;
-            fade.anchoredPosition = Vector3.zero;
-            fade.localScale = Vector3.one;
-            optionsBackground.anchoredPosition = Vector3.zero;
-            optionsBackground.localScale = Vector3.one;
-            themeSelector.anchoredPosition = Vector3.zero;
-            themeSelector.localScale = Vector3.one;
-            winPopUp.anchoredPosition = Vector3.zero;
-            winPopUp.localScale = Vector3.one;
+            // machinePanel.anchoredPosition = Vector3.zero;
+            // machinePanel.localScale = Vector3.one;
+            // screenPanel.anchoredPosition = Vector3.zero;
+            // screenPanel.localScale = Vector3.one;
+            // fade.anchoredPosition = Vector3.zero;
+            // fade.localScale = Vector3.one;
+            // optionsBackground.anchoredPosition = Vector3.zero;
+            // optionsBackground.localScale = Vector3.one;
+            // themeSelector.anchoredPosition = Vector3.zero;
+            // themeSelector.localScale = Vector3.one;
+            // winPopUp.anchoredPosition = Vector3.zero;
+            // winPopUp.localScale = Vector3.one;
+            // winPopUpNotSignedIn.anchoredPosition = Vector3.zero;
+            // winPopUpNotSignedIn.localScale = Vector3.one;
+            foreach (var panel in panels)
+            {
+                panel.anchoredPosition = Vector3.zero;
+                panel.localScale = Vector3.one;
+            }
         }
     }
 }

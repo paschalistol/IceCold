@@ -44,7 +44,8 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private TMP_Text highScore, survivalScore;
     private GameMode gameMode;
     [SerializeField] private GameObject survivalPoolObject;
-    [SerializeField] private GameObject winPopUp;
+    [SerializeField] private GameObject winPopUp, winPopUpNotSignedIn;
+    [SerializeField] private GameObject didntSignInClassic, didntSignInLose;
     private SurvivalPool survivalPool;
     [Header("SFX")] 
     [SerializeField] private AudioMixerGroup endRoundMixer;
@@ -223,6 +224,24 @@ public class ClassicGameManager : MonoBehaviour
         }
     }
 
+    private void WinClassic()
+    {
+        if (totalPoints > (PlayerPrefs.GetInt("HighScore", 0)))
+        {
+            PlayerPrefs.SetInt("HighScore", totalPoints);
+            highScore.SetText(PlayerPrefs.GetInt("HighScore", 0).ToString());
+        }
+        if (GameServices.IsInitialized())
+        {
+            SaveNewHighScore();
+            winPopUp.SetActive(true);
+        }
+        else
+        {
+            winPopUpNotSignedIn.SetActive(true);
+        }
+    }
+
     public void AskToSignInBeforeHome()
     {
         GameServices.UserLoginSucceeded += SaveNewHighScore;
@@ -232,8 +251,19 @@ public class ClassicGameManager : MonoBehaviour
 
     private void LoginFailed()
     {
-        askToSignInPanel.SetActive(false);
-        endPanel2.SetActive(true);
+        if (gameMode == GameMode.classic)
+        {
+            winPopUpNotSignedIn.SetActive(false);
+            winPopUp.SetActive(true);
+            didntSignInClassic.SetActive(true);
+        }
+        else if (gameMode == GameMode.survival)
+        {
+            askToSignInPanel.SetActive(false);
+            endPanel2.SetActive(true);
+            didntSignInLose.SetActive(true);
+        }
+
     }
 
     private void SaveNewHighScore()
@@ -241,14 +271,17 @@ public class ClassicGameManager : MonoBehaviour
         if (gameMode == GameMode.classic)
         {
             GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Classic_Personal_Best);
+            winPopUpNotSignedIn.SetActive(false);
+            winPopUp.SetActive(true);
         }
 
-        if (gameMode == GameMode.survival)
+        else if (gameMode == GameMode.survival)
         {
             GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Survival_High_Score);
+            askToSignInPanel.SetActive(false);
+            endPanel2.SetActive(true);
         }
-        askToSignInPanel.SetActive(false);
-        endPanel2.SetActive(true);
+
     }
     public bool GetAllowControls()
     {
@@ -301,10 +334,8 @@ public class ClassicGameManager : MonoBehaviour
         else if (currentGoal == bonusHoles.Count)
         {
             endGame(true);
-            Debug.Log("win the game");
-            winPopUp.SetActive(true);
             survivalPool.GetFromPool(PoolObject.AUDIO_PLAYER).GetComponent<AudioPlayer>().PlayClip(winClassicClip, winClassicMixer);
-            //SaveScores
+            WinClassic();
             //unlock achievement
             //to remove [serialize field] from variable: currentgoal
         }
