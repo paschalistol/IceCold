@@ -7,6 +7,12 @@ public class ThemeObject : MonoBehaviour
 {
     public delegate void ChangeTheme(string name);
     public ChangeTheme changeTheme;
+    private bool available = true;
+    public bool Available
+    {
+        get => available;
+        private set => available = value;
+    }
     
 
     public void ChangeThemeClick()
@@ -26,6 +32,7 @@ public class ThemeObject : MonoBehaviour
 
     public void NotAvailable()
     {
+        Available = false;
         GetComponent<Image>().color = GetComponent<Button>().colors.disabledColor;
     }
 }

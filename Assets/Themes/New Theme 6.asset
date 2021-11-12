@@ -20,4 +20,5 @@ MonoBehaviour:
   bar: {r: 0.8117647, g: 0.3019608, b: 0, a: 1}
   platform: {fileID: 21300000, guid: 43aecca1d3895e34eaf5be03e2aa39e4, type: 3}
   available: 0
-  themeReasonLocked: 0
+  themeReasonLocked: 1
+  achievementDescription: get over 4000 points at survival mode.

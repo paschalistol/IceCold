@@ -3383,7 +3383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &284229329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11525,10 +11525,10 @@ RectTransform:
   m_Father: {fileID: 644981493}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.00003, y: -48}
-  m_SizeDelta: {x: 360.00006, y: 96}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791176096
 MonoBehaviour:
@@ -23892,6 +23892,8 @@ MonoBehaviour:
   themePopUp: {fileID: 284229328}
   buyButton: {fileID: 426906240}
   themePopUpCloseButton: {fileID: 1464706287}
+  themePopUpText: {fileID: 256760513}
+  defaultUnlockText: 'To unlock this theme you''ll have to '
   classicScreen: {fileID: 1725212152}
   ball: {fileID: 2100000, guid: 15b7a00437ec76c4fba8c32fb5e39d3c, type: 2}
   bar: {fileID: 2100000, guid: 5fac4b404fda0574e94e0f890f0694a3, type: 2}

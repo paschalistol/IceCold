@@ -14,7 +14,7 @@ public class Theme : ScriptableObject
     public Sprite platform;
     public bool available;
     public ThemeReasonLocked themeReasonLocked;
-    // [Tooltip("To unlock this theme you'll have to ")]public string achievementDescription; 
+    [Tooltip("To unlock this theme you'll have to "), TextArea]public string achievementDescription; 
 
     public enum ThemeReasonLocked
     {

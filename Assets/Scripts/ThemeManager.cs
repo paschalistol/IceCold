@@ -16,7 +16,9 @@ public class ThemeManager : MonoBehaviour
     [SerializeField] private GameObject themePopUp;
     [SerializeField] private GameObject buyButton;
     [SerializeField] private TMP_Text themePopUpCloseButton;
-
+    [SerializeField] private TMP_Text themePopUpText;
+    [SerializeField] private string defaultUnlockText = "To unlock this theme you'll have to ";
+    
     [Header("Materials and Sprites")] 
     [SerializeField] private Image classicScreen;
 
@@ -58,6 +60,8 @@ public class ThemeManager : MonoBehaviour
                 themeObject.ChangeButtonColor();
             }
         }
+
+        ChangeChildrenOrder();
         // ball.EnableKeyword("_EMISSION");
         // bar.EnableKeyword("_EMISSION");
 
@@ -108,22 +112,24 @@ public class ThemeManager : MonoBehaviour
             }
             else
             {
-                ShowLockedPopUp(tempTheme.themeReasonLocked);
+                ShowLockedPopUp(tempTheme.themeReasonLocked, tempTheme);
             }
         }
   
     }
 
-    private void ShowLockedPopUp(Theme.ThemeReasonLocked tempThemeThemeReasonLocked)
+    private void ShowLockedPopUp(Theme.ThemeReasonLocked tempThemeThemeReasonLocked, Theme tempTheme)
     {
         themePopUp.SetActive(true);
         switch (tempThemeThemeReasonLocked)
         {
             case Theme.ThemeReasonLocked.Achievement:
+                themePopUpText.text = defaultUnlockText + tempTheme.achievementDescription;
                 themePopUpCloseButton.text = "OK";
                 buyButton.SetActive(false);
                 break;
             case Theme.ThemeReasonLocked.IAP:
+                themePopUpText.text = "The theme will be available soon";
                 // themePopUpCloseButton.text = "Cancel";
                 // buyButton.SetActive(true);
                 break;
@@ -150,6 +156,19 @@ public class ThemeManager : MonoBehaviour
                 theme.Value.RemoveSelected();
             }
         }
+    }
 
+    private void ChangeChildrenOrder()
+    {
+        int currentSiblingIndex = 0;
+        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
+        {
+            if (theme.Value.Available)
+            {
+                Debug.Log("test");
+                theme.Value.gameObject.transform.SetSiblingIndex(currentSiblingIndex);
+                currentSiblingIndex++;
+            }
+        }
     }
 }
