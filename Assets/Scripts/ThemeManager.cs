@@ -3,6 +3,7 @@ using EasyMobile;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms;
 
 public class ThemeManager : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class ThemeManager : MonoBehaviour
     private string startingThemeName;
     [SerializeField] private GameObject parent;
     [SerializeField] private GameObject themePrefab;
-    
     
     [Header("Theme Pop Up")] 
     [SerializeField] private GameObject themePopUp;
@@ -61,10 +61,48 @@ public class ThemeManager : MonoBehaviour
             }
         }
 
+        UnlockThemes();
         ChangeChildrenOrder();
         // ball.EnableKeyword("_EMISSION");
         // bar.EnableKeyword("_EMISSION");
+    }
 
+    private void UnlockThemes()
+    {
+        //if user initialized
+        Social.LoadAchievements(achievements => {
+            if (achievements.Length > 0)
+            {
+                foreach (IAchievement achievement in achievements)
+                {
+                    if (achievement.completed)
+                    {
+                        foreach (Theme theme in themes)
+                        {
+                            if (theme.achievementID.Equals(achievement.id))
+                            {
+                                UnlockTheme(theme.name);
+                            }
+                        }
+                    }
+                   
+                }
+            }
+            else
+                Debug.Log("No achievements returned");
+        });
+  
+    }
+
+    private void UnlockTheme(string name)
+    {
+        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
+        {
+            if (theme.Key.Equals(name))
+            {
+                theme.Value.UnlockTheme();
+            }
+        }
     }
 
     private void GetStartingTheme()
@@ -165,7 +203,6 @@ public class ThemeManager : MonoBehaviour
         {
             if (theme.Value.Available)
             {
-                Debug.Log("test");
                 theme.Value.gameObject.transform.SetSiblingIndex(currentSiblingIndex);
                 currentSiblingIndex++;
             }

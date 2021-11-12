@@ -287,16 +287,54 @@ MonoBehaviour:
     - _name: Classic Personal Best
       _iosId: 
       _androidId: CggIq-WT3SAQAhAC
-    mAchievements: []
+    mAchievements:
+    - _name: Resurrector
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAE
+    - _name: Ghost
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAF
+    - _name: Finisher
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAD
+    - _name: Immortal
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAG
+    - _name: Sprinter
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAH
+    - _name: Aficionado
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAI
+    - _name: Veteran
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAK
+    - _name: Marathon Runner
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAJ
+    - _name: Survivor
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAL
     mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--Google
       Play game services IDs. Save this file as res/values/games-ids.xml in your
       project.-->\r\n<resources>\r\n  <!--app_id-->\r\n  <string name=\"app_id\"
       translatable=\"false\">8785293995</string>\r\n  <!--package_name-->\r\n  <string
       name=\"package_name\" translatable=\"false\">com.PhobTroll.coldbeer</string>\r\n 
-      <!--achievement Finish Classic Mode-->\r\n  <string name=\"achievement_finish_classic_mode\"
-      translatable=\"false\">CggIq-WT3SAQAhAD</string>\r\n  <!--leaderboard Freezing
-      Cold Beer-->\r\n  <string name=\"leaderboard_freezing_cold_beer\" translatable=\"false\">CggIq-WT3SAQAhAA</string>\r\n 
-      <!--leaderboard Freezing Cold Beer Classic Mode-->\r\n  <string name=\"leaderboard_freezing_cold_beer_classic_mode\"
+      <!--achievement Resurrector-->\r\n  <string name=\"achievement_resurrector\"
+      translatable=\"false\">CggIq-WT3SAQAhAE</string>\r\n  <!--achievement Ghost-->\r\n 
+      <string name=\"achievement_ghost\" translatable=\"false\">CggIq-WT3SAQAhAF</string>\r\n 
+      <!--achievement Finisher-->\r\n  <string name=\"achievement_finisher\" translatable=\"false\">CggIq-WT3SAQAhAD</string>\r\n 
+      <!--achievement Immortal-->\r\n  <string name=\"achievement_immortal\" translatable=\"false\">CggIq-WT3SAQAhAG</string>\r\n 
+      <!--achievement Sprinter-->\r\n  <string name=\"achievement_sprinter\" translatable=\"false\">CggIq-WT3SAQAhAH</string>\r\n 
+      <!--achievement Aficionado-->\r\n  <string name=\"achievement_aficionado\"
+      translatable=\"false\">CggIq-WT3SAQAhAI</string>\r\n  <!--achievement Veteran-->\r\n 
+      <string name=\"achievement_veteran\" translatable=\"false\">CggIq-WT3SAQAhAK</string>\r\n 
+      <!--achievement Marathon Runner-->\r\n  <string name=\"achievement_marathon_runner\"
+      translatable=\"false\">CggIq-WT3SAQAhAJ</string>\r\n  <!--achievement Survivor-->\r\n 
+      <string name=\"achievement_survivor\" translatable=\"false\">CggIq-WT3SAQAhAL</string>\r\n 
+      <!--leaderboard Freezing Cold Beer-->\r\n  <string name=\"leaderboard_freezing_cold_beer\"
+      translatable=\"false\">CggIq-WT3SAQAhAA</string>\r\n  <!--leaderboard Freezing
+      Cold Beer Classic Mode-->\r\n  <string name=\"leaderboard_freezing_cold_beer_classic_mode\"
       translatable=\"false\">CggIq-WT3SAQAhAC</string>\r\n</resources>"
     mEnableMultiplayer: 0
     mEnableSavedGames: 0

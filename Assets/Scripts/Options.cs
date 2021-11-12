@@ -18,7 +18,7 @@ public class Options : MonoBehaviour
     public delegate void TogglingFullscreen();
     public TogglingFullscreen toggleFullscreen;
     private bool signedIn = false;
-    [SerializeField] private Button leaderboardButton;
+    [SerializeField] private Button leaderboardButton, achievementsButton;
     [SerializeField] private Image sceneFadePanel;
     [SerializeField] private float fadeSpeed = 0.003f;
     [SerializeField] private Image logo;
@@ -114,11 +114,14 @@ public class Options : MonoBehaviour
         {
             signText.text = "Sign out";
             leaderboardButton.interactable = true;
+            achievementsButton.interactable = true;
+            
         }
         else
         {
             signText.text = "Sign in";
             leaderboardButton.interactable = false;
+            achievementsButton.interactable = false;
         }
 
 
@@ -152,6 +155,10 @@ public class Options : MonoBehaviour
     public void ShowLeaderboard()
     {
         GameServices.ShowLeaderboardUI(EM_GameServicesConstants.Leaderboard_Survival_High_Score);
+    }
+    public void ShowAchievements()
+    {
+        GameServices.ShowAchievementsUI();
     }
     public void Quit()
     {

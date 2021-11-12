@@ -21,4 +21,5 @@ MonoBehaviour:
   platform: {fileID: 21300000, guid: 63a9e2584f306ad4682f753a5848a8ff, type: 3}
   available: 0
   themeReasonLocked: 1
-  achievementDescription: cover a distance of 5000 at survival mode in a game.
+  achievementDescription: get over 4000 points at survival mode.
+  achievementID: CggIq-WT3SAQAhAK

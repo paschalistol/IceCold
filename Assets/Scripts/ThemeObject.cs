@@ -35,4 +35,9 @@ public class ThemeObject : MonoBehaviour
         Available = false;
         GetComponent<Image>().color = GetComponent<Button>().colors.disabledColor;
     }
+
+    public void UnlockTheme()
+    {
+        
+    }
 }

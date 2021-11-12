@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EasyMobile;
 
 [CreateAssetMenu(fileName = "Theme", menuName = "ScriptableObjects/Theme", order = 1)]
 public class Theme : ScriptableObject
@@ -14,8 +15,8 @@ public class Theme : ScriptableObject
     public Sprite platform;
     public bool available;
     public ThemeReasonLocked themeReasonLocked;
-    [Tooltip("To unlock this theme you'll have to "), TextArea]public string achievementDescription; 
-
+    [Tooltip("To unlock this theme you'll have to "), TextArea]public string achievementDescription;
+    public string achievementID;
     public enum ThemeReasonLocked
     {
         IAP, Achievement
