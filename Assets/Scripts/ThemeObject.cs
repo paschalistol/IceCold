@@ -5,19 +5,15 @@ using UnityEngine.UI;
 
 public class ThemeObject : MonoBehaviour
 {
-    public delegate void ChangeTheme(string name);
+    public delegate void ChangeTheme(string themeName, Theme theme);
     public ChangeTheme changeTheme;
-    private bool available = true;
-    public bool Available
-    {
-        get => available;
-        private set => available = value;
-    }
-    
+    private Theme theme;
+    public bool Available { get; private set; } = true;
+
 
     public void ChangeThemeClick()
     {
-        changeTheme(name);
+        changeTheme(name, theme);
     }
 
     public void ChangeButtonColor()
@@ -36,8 +32,12 @@ public class ThemeObject : MonoBehaviour
         GetComponent<Image>().color = GetComponent<Button>().colors.disabledColor;
     }
 
+    public void SetTheme(Theme theme)
+    {
+        this.theme = theme;
+    }
     public void UnlockTheme()
     {
-        
+        Available = true;
     }
 }

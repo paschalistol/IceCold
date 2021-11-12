@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using EasyMobile;
 using TMPro;
@@ -48,6 +49,7 @@ public class ThemeManager : MonoBehaviour
             ThemeObject themeObject = themeInstance.GetComponent<ThemeObject>();
             themeObject.changeTheme += ChangeTheme;
             themeInstance.name = theme.name;
+            themeObject.SetTheme(theme);
             buttons.Add(themeInstance.name, themeInstance);
             themeObjects.Add(themeInstance.name, themeObject);
             if (!theme.available)
@@ -60,23 +62,28 @@ public class ThemeManager : MonoBehaviour
                 themeObject.ChangeButtonColor();
             }
         }
-
-        UnlockThemes();
+        GameServices.UserLoginSucceeded += UnlockThemes;
         ChangeChildrenOrder();
         // ball.EnableKeyword("_EMISSION");
         // bar.EnableKeyword("_EMISSION");
     }
 
+    private void OnDestroy()
+    {
+        GameServices.UserLoginSucceeded -= UnlockThemes;
+    }
+
     private void UnlockThemes()
     {
-        //if user initialized
-        Social.LoadAchievements(achievements => {
-            if (achievements.Length > 0)
+        if (GameServices.IsInitialized())
+        {
+            Social.LoadAchievements(achievements =>
             {
-                foreach (IAchievement achievement in achievements)
+                if (achievements.Length > 0)
                 {
-                    if (achievement.completed)
+                    foreach (IAchievement achievement in achievements)
                     {
+                        if (!achievement.completed) continue;
                         foreach (Theme theme in themes)
                         {
                             if (theme.achievementID.Equals(achievement.id))
@@ -85,20 +92,19 @@ public class ThemeManager : MonoBehaviour
                             }
                         }
                     }
-                   
                 }
-            }
-            else
-                Debug.Log("No achievements returned");
-        });
+                else
+                    Debug.Log("No achievements returned");
+            });
+        }
   
     }
 
-    private void UnlockTheme(string name)
+    private void UnlockTheme(string themeName)
     {
         foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
         {
-            if (theme.Key.Equals(name))
+            if (theme.Key.Equals(themeName))
             {
                 theme.Value.UnlockTheme();
             }
@@ -127,33 +133,32 @@ public class ThemeManager : MonoBehaviour
         machineSecondary.SetColor("_EmissionColor", ActiveTheme.machineSecondary);
     }
 
-    private void ChangeTheme(string themeName)
+    private void ChangeTheme(string themeName, Theme theme)
     {
-        Theme tempTheme = null;
-        foreach (Theme theme in themes)
+        ThemeObject tempObject = null;
+        foreach (KeyValuePair<string,ThemeObject> themeObject in themeObjects)
         {
-            if (theme.name.Equals(themeName))
+            if (themeObject.Key.Equals(themeName))
             {
-                tempTheme = theme;
-                break;
+                tempObject = themeObject.Value;
             }
         }
-
-        if (tempTheme != null)
-        {
-            if (tempTheme.available)
+            if (tempObject != null)
+            {
+                
+            if (tempObject.gameObject.name.Equals(themeName) && tempObject.Available)
             {
                 RemoveOldSelected();
+                tempObject.RemoveSelected();
                 PlayerPrefs.SetString("startingTheme", themeName);
                 GetStartingTheme();
                 ChangeButtonColor(themeName);
             }
             else
             {
-                ShowLockedPopUp(tempTheme.themeReasonLocked, tempTheme);
+                ShowLockedPopUp(theme.themeReasonLocked, theme);
             }
-        }
-  
+            }
     }
 
     private void ShowLockedPopUp(Theme.ThemeReasonLocked tempThemeThemeReasonLocked, Theme tempTheme)
