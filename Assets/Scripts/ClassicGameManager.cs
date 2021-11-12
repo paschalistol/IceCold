@@ -304,6 +304,7 @@ public class ClassicGameManager : MonoBehaviour
             Debug.Log("win the game");
             winPopUp.SetActive(true);
             survivalPool.GetFromPool(PoolObject.AUDIO_PLAYER).GetComponent<AudioPlayer>().PlayClip(winClassicClip, winClassicMixer);
+            //SaveScores
             //unlock achievement
             //to remove [serialize field] from variable: currentgoal
         }
