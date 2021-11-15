@@ -315,6 +315,9 @@ MonoBehaviour:
     - _name: Survivor
       _iosId: 
       _androidId: CggIq-WT3SAQAhAL
+    - _name: Collector
+      _iosId: 
+      _androidId: CggIq-WT3SAQAhAM
     mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--Google
       Play game services IDs. Save this file as res/values/games-ids.xml in your
       project.-->\r\n<resources>\r\n  <!--app_id-->\r\n  <string name=\"app_id\"
@@ -329,6 +332,7 @@ MonoBehaviour:
       <!--achievement Aficionado-->\r\n  <string name=\"achievement_aficionado\"
       translatable=\"false\">CggIq-WT3SAQAhAI</string>\r\n  <!--achievement Veteran-->\r\n 
       <string name=\"achievement_veteran\" translatable=\"false\">CggIq-WT3SAQAhAK</string>\r\n 
+      <!--achievement Collector-->\r\n  <string name=\"achievement_collector\" translatable=\"false\">CggIq-WT3SAQAhAM</string>\r\n 
       <!--achievement Marathon Runner-->\r\n  <string name=\"achievement_marathon_runner\"
       translatable=\"false\">CggIq-WT3SAQAhAJ</string>\r\n  <!--achievement Survivor-->\r\n 
       <string name=\"achievement_survivor\" translatable=\"false\">CggIq-WT3SAQAhAL</string>\r\n 
@@ -346,9 +350,44 @@ MonoBehaviour:
     mSimulateAppleAskToBuy: 0
     mInterceptApplePromotionalPurchases: 0
     mEnableAmazonSandboxTesting: 0
-    mValidateAppleReceipt: 1
+    mValidateAppleReceipt: 0
     mValidateGooglePlayReceipt: 1
-    mProducts: []
+    mProducts:
+    - _name: Theme 1
+      _type: 1
+      _id: 
+      _price: 0.5
+      _description: 
+      _storeSpecificIds: []
+      _isEditingAdvanced: 1
+    - _name: Theme 2
+      _type: 1
+      _id: 
+      _price: 0.5
+      _description: 
+      _storeSpecificIds: []
+      _isEditingAdvanced: 1
+    - _name: Theme 3
+      _type: 1
+      _id: 
+      _price: 0.5
+      _description: 
+      _storeSpecificIds: []
+      _isEditingAdvanced: 1
+    - _name: Theme 4
+      _type: 1
+      _id: 
+      _price: 0.5
+      _description: 
+      _storeSpecificIds: []
+      _isEditingAdvanced: 1
+    - _name: Remove Ads
+      _type: 1
+      _id: 
+      _price: 5
+      _description: Revive player without viewing an ad
+      _storeSpecificIds: []
+      _isEditingAdvanced: 1
   mNotificationSettings:
     mAutoInit: 1
     mAutoInitDelay: 0
@@ -447,9 +486,9 @@ MonoBehaviour:
         mValue: '[Your usage description]'
   mRuntimeAutoInitialization: 1
   mIsAdModuleEnable: 0
-  mIsIAPModuleEnable: 0
+  mIsIAPModuleEnable: 1
   mIsGameServiceModuleEnable: 1
   mIsNotificationModuleEnable: 0
   mIsSharingModuleEnable: 0
-  mActiveModuleIndex: 1
+  mActiveModuleIndex: 3
   mIsSelectingModule: 0

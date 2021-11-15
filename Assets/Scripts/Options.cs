@@ -164,6 +164,11 @@ public class Options : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void RemoveAds()
+    {
+        
+    }
     public void PauseMenu()
     {
         var sources = FindObjectsOfType<AudioSource>();
