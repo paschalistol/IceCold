@@ -32,6 +32,7 @@ public static class EM_GPGSIds
         public const string leaderboard_freezing_cold_beer_classic_mode = "CggIq-WT3SAQAhAC"; // <GPGSID>
         public const string achievement_survivor = "CggIq-WT3SAQAhAL"; // <GPGSID>
         public const string achievement_immortal = "CggIq-WT3SAQAhAG"; // <GPGSID>
+        public const string achievement_collector = "CggIq-WT3SAQAhAM"; // <GPGSID>
         public const string achievement_veteran = "CggIq-WT3SAQAhAK"; // <GPGSID>
         public const string achievement_sprinter = "CggIq-WT3SAQAhAH"; // <GPGSID>
         public const string achievement_marathon_runner = "CggIq-WT3SAQAhAJ"; // <GPGSID>

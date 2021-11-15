@@ -19,6 +19,7 @@ namespace EasyMobile
 		public const string Achievement_Aficionado = "Aficionado";
 		public const string Achievement_Marathon_Runner = "Marathon Runner";
 		public const string Achievement_Immortal = "Immortal";
+		public const string Achievement_Collector = "Collector";
 
 	}
 }
