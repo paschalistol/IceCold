@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballColor: {r: 0.44705883, g: 0.6117647, b: 1, a: 1}
   survivalBgColor: {r: 0.6627451, g: 0.7058824, b: 0.7764706, a: 1}
-  classicBg: {fileID: 21300000, guid: 889fa668539ae82488b4524bf5f9ba34, type: 3}
+  classicBg: {fileID: 21300000, guid: 9647667741040a641a49a378cd53b9dd, type: 3}
   machineMain: {r: 0, g: 0, b: 0, a: 0}
   machineSecondary: {r: 0, g: 0, b: 0, a: 0}
   bar: {r: 0.8117647, g: 0.3019608, b: 0, a: 1}
-  platform: {fileID: 21300000, guid: a4b78433db3a3364f9ef125ac97fa030, type: 3}
+  platform: {fileID: 21300000, guid: ff4175d45b7658247a9ac73ae1e82e93, type: 3}
   available: 0
   themeReasonLocked: 0
   achievementDescription: 
+  achievementID: 
