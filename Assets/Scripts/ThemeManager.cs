@@ -84,11 +84,11 @@ public class ThemeManager : MonoBehaviour
                     foreach (IAchievement achievement in achievements)
                     {
                         if (!achievement.completed) continue;
-                        foreach (Theme theme in themes)
+                        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
                         {
-                            if (theme.achievementID.Equals(achievement.id))
+                            if (theme.Value.GetTheme().achievementID.Equals(achievement.id))
                             {
-                                UnlockTheme(theme.name);
+                                theme.Value.UnlockTheme();
                             }
                         }
                     }

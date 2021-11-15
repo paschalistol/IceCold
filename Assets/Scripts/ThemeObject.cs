@@ -36,6 +36,11 @@ public class ThemeObject : MonoBehaviour
     {
         this.theme = theme;
     }
+
+    public Theme GetTheme()
+    {
+        return theme;
+    }
     public void UnlockTheme()
     {
         Available = true;

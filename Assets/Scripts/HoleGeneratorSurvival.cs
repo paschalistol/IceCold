@@ -78,6 +78,7 @@ public class HoleGeneratorSurvival : MonoBehaviour
             PutClock();
             previousClockAppearance = rowNumber;
             previousPowerUpAppearance = rowNumber;
+            // CountPowerUps();
         }
     }
 
@@ -93,7 +94,14 @@ public class HoleGeneratorSurvival : MonoBehaviour
             PutExtraPointsCoin();
             previousCoinAppearance = rowNumber;
             previousPowerUpAppearance = rowNumber;
+            // CountPowerUps();
         }
+    }
+    private int totalPowerUps = 0;
+    private void CountPowerUps()
+    {
+        totalPowerUps++;
+        Debug.Log(totalPowerUps);
     }
 
     private int totalFromCoins = 0;
