@@ -383,7 +383,7 @@ MonoBehaviour:
       _isEditingAdvanced: 1
     - _name: Remove Ads
       _type: 1
-      _id: 
+      _id: com.PhobTroll.coldbeer.removeAds
       _price: 5
       _description: Revive player without viewing an ad
       _storeSpecificIds: []
