@@ -54,6 +54,9 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private AudioClip outOfLivesClip;
     [SerializeField] private AudioMixerGroup winClassicMixer;
     [SerializeField] private AudioClip winClassicClip;
+
+    [Header("Achievements")] [SerializeField]
+    private int timesToRevive = 5;
     public float BallStartHeight
     {
         get;
@@ -178,6 +181,7 @@ public class ClassicGameManager : MonoBehaviour
     }
     private void SecondChance()
     {
+        RevivalAchievement();
         gotAward = true;
         endPanel.SetActive(false);
         lives = 0;
@@ -186,6 +190,18 @@ public class ClassicGameManager : MonoBehaviour
         beginningGame();
         optionsBG.gameObject.SetActive(false);
     }
+
+    private void RevivalAchievement()
+    {
+        int timesRevived = PlayerPrefs.GetInt("RevivalTimes", 0);
+        timesRevived++;
+        PlayerPrefs.SetInt("RevivalTimes", timesRevived);
+        if (timesRevived >= timesToRevive)
+        {
+            GameServices.UnlockAchievement(EM_GameServicesConstants.Achievement_Resurrector);
+        }
+    }
+
     public GameMode GetGameMode()
     {
         return gameMode;
@@ -271,8 +287,17 @@ public class ClassicGameManager : MonoBehaviour
         if (gameMode == GameMode.classic)
         {
             GameServices.ReportScore(totalPoints, EM_GameServicesConstants.Leaderboard_Classic_Personal_Best);
-            winPopUpNotSignedIn.SetActive(false);
-            winPopUp.SetActive(true);
+            if (winPopUpNotSignedIn.gameObject.activeSelf)
+            {
+                winPopUpNotSignedIn.SetActive(false);
+                winPopUp.SetActive(true);
+            }
+            else
+            {
+                askToSignInPanel.SetActive(false);
+                endPanel2.SetActive(true);
+            }
+
         }
 
         else if (gameMode == GameMode.survival)

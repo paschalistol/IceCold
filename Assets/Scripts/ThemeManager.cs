@@ -63,7 +63,6 @@ public class ThemeManager : MonoBehaviour
             }
         }
         GameServices.UserLoginSucceeded += UnlockThemes;
-        ChangeChildrenOrder();
         // ball.EnableKeyword("_EMISSION");
         // bar.EnableKeyword("_EMISSION");
     }
@@ -92,6 +91,7 @@ public class ThemeManager : MonoBehaviour
                             }
                         }
                     }
+                    ChangeChildrenOrder();
                 }
                 else
                     Debug.Log("No achievements returned");
@@ -99,6 +99,7 @@ public class ThemeManager : MonoBehaviour
         }
   
     }
+    
 
     private void UnlockTheme(string themeName)
     {
@@ -149,7 +150,7 @@ public class ThemeManager : MonoBehaviour
             if (tempObject.gameObject.name.Equals(themeName) && tempObject.Available)
             {
                 RemoveOldSelected();
-                tempObject.RemoveSelected();
+                tempObject.SetUnSelected();
                 PlayerPrefs.SetString("startingTheme", themeName);
                 GetStartingTheme();
                 ChangeButtonColor(themeName);
@@ -196,7 +197,7 @@ public class ThemeManager : MonoBehaviour
         {
             if (theme.Key.Equals(ActiveTheme.name))
             {
-                theme.Value.RemoveSelected();
+                theme.Value.SetUnSelected();
             }
         }
     }

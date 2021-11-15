@@ -21,7 +21,7 @@ public class ThemeObject : MonoBehaviour
         GetComponent<Image>().color = GetComponent<Button>().colors.selectedColor;
     }
 
-    public void RemoveSelected()
+    public void SetUnSelected()
     {
         GetComponent<Image>().color = Color.white;
     }
@@ -44,5 +44,7 @@ public class ThemeObject : MonoBehaviour
     public void UnlockTheme()
     {
         Available = true;
+        SetUnSelected();
+        
     }
 }

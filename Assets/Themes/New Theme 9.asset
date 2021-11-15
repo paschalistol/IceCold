@@ -21,5 +21,5 @@ MonoBehaviour:
   platform: {fileID: 21300000, guid: 83875bb6f578b044684d6d4f83295039, type: 3}
   available: 0
   themeReasonLocked: 1
-  achievementDescription: get over 20000 points at survival mode.
+  achievementDescription: get over 20000 points at survival mode in one game.
   achievementID: CggIq-WT3SAQAhAL
