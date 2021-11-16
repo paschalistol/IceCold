@@ -7725,6 +7725,8 @@ MonoBehaviour:
   - {fileID: 1555199645}
   - {fileID: 1665614746}
   - {fileID: 340123784}
+  - {fileID: 394577246}
+  - {fileID: 2065458977}
 --- !u!114 &519420033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8251,6 +8253,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 825087928593242826, guid: 921d693b9cc33054dad228de04109168, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.26
+      objectReference: {fileID: 0}
     - target: {fileID: 825087928593242827, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_fontSize
       value: 63.6
@@ -8285,19 +8291,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.9
+      value: 0.78
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_SizeDelta.x
@@ -24912,6 +24918,8 @@ MonoBehaviour:
   - {fileID: 854277943}
   - {fileID: 569081404}
   - {fileID: 1696878139}
+  - {fileID: 2012424691}
+  - {fileID: 1832269902}
   fullScreenPosition: {x: 0, y: -190, z: 0}
   fullScreenScale: {x: 1.22, y: 1.22, z: 1.22}
   signText: {fileID: 45199981}
@@ -28776,6 +28784,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 825087928593242826, guid: 921d693b9cc33054dad228de04109168, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.26
+      objectReference: {fileID: 0}
     - target: {fileID: 825087928593242827, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_text
       value: 'Effects
@@ -28816,19 +28828,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.9
+      value: 0.775
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.8
+      value: 0.725
       objectReference: {fileID: 0}
     - target: {fileID: 825087928604063367, guid: 921d693b9cc33054dad228de04109168, type: 3}
       propertyPath: m_SizeDelta.x
@@ -29081,8 +29093,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 375}
-  m_SizeDelta: {x: 800, y: 982}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1200, y: 1600}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1832269903
 MonoBehaviour:
@@ -29104,9 +29116,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: 38248b1df22e04845a392644c551f217, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
