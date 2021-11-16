@@ -23,7 +23,14 @@ public class ThemeObject : MonoBehaviour
 
     public void SetUnSelected()
     {
-        GetComponent<Image>().color = Color.white;
+        if (Available)
+        {
+            GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            NotAvailable();
+        }
     }
 
     public void NotAvailable()

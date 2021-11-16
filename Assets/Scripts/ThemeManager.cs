@@ -62,6 +62,7 @@ public class ThemeManager : MonoBehaviour
                 themeObject.ChangeButtonColor();
             }
         }
+        ChangeChildrenOrder();
         GameServices.UserLoginSucceeded += UnlockThemes;
         // ball.EnableKeyword("_EMISSION");
         // bar.EnableKeyword("_EMISSION");
