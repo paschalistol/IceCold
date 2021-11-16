@@ -47,6 +47,8 @@ public class ClassicGameManager : MonoBehaviour
     [SerializeField] private GameObject survivalPoolObject;
     [SerializeField] private GameObject winPopUp, winPopUpNotSignedIn;
     [SerializeField] private GameObject didntSignInClassic, didntSignInLose;
+    [SerializeField] private GameObject statsPanel;
+    [SerializeField] private TMP_Text statsDistance, statsTotal, statsCollected;
     private SurvivalPool survivalPool;
     [Header("SFX")] 
     [SerializeField] private AudioMixerGroup endRoundMixer;
@@ -250,6 +252,14 @@ public class ClassicGameManager : MonoBehaviour
             else
             {
                 askToSignInPanel.SetActive(true);
+            }
+
+            if (gameMode == GameMode.survival)
+            {
+                statsPanel.SetActive(true);
+                statsCollected.text = totalPowerUps.ToString();
+                statsTotal.text = totalPoints.ToString();
+                statsDistance.text = (totalPoints - extraSurvivalPoints).ToString();
             }
         }
     }
