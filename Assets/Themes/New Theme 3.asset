@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31347920abd84fc4794b2c08e7955359, type: 3}
   m_Name: New Theme 3
   m_EditorClassIdentifier: 
-  ballColor: {r: 0.44705883, g: 0.6117647, b: 1, a: 1}
-  survivalBgColor: {r: 0.6627451, g: 0.7058824, b: 0.7764706, a: 1}
+  ballColor: {r: 0.015686275, g: 0.05490196, b: 0.15294118, a: 1}
+  survivalBgColor: {r: 0.9607843, g: 0.8980392, b: 0.69411767, a: 1}
   classicBg: {fileID: 21300000, guid: b7360e0c14ef7ec42868367d481484bb, type: 3}
-  machineMain: {r: 0, g: 0, b: 0, a: 0}
-  machineSecondary: {r: 0, g: 0, b: 0, a: 0}
-  bar: {r: 0.8117647, g: 0.3019608, b: 0, a: 1}
+  machineMain: {r: 0.28627452, g: 0.12941177, b: 0.007843138, a: 0}
+  machineSecondary: {r: 0.19215687, g: 0, b: 0, a: 0}
+  bar: {r: 0, g: 0.011764706, b: 0.14509805, a: 1}
   platform: {fileID: 21300000, guid: c166b427a527e914ca5809454ef4cd34, type: 3}
   available: 0
   themeReasonLocked: 1

@@ -33,9 +33,9 @@ public class SurvivalModeHandler : MonoBehaviour
     }
 
     /// <summary>
-/// Changes the Screen BG and the game holes.
-/// Is enabled from animation event
-/// </summary>
+    /// Changes the Screen BG and the game holes.
+    /// Is enabled from animation event
+    /// </summary>
     private void ChangeScreenBG()
     {
         // baseImage.sprite = newBG;
@@ -44,7 +44,7 @@ public class SurvivalModeHandler : MonoBehaviour
         EnableSurvivalHoles();
         survivalBgHandler.ChangeToSurvivalBackground(themeManager.ActiveTheme.survivalBgColor);
     }
-
+    
     private void EnableSurvivalHoles()
     {
         foreach (Transform child in survivalPool.transform)
