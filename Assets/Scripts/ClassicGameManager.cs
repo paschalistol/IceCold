@@ -558,6 +558,17 @@ public class ClassicGameManager : MonoBehaviour
             achievementsAfterInit.Add(CompleteAficionado);
         }
     }
+    public void CompleteTimeKeeper()
+    {
+        if (GameServices.IsInitialized())
+        {
+            GameServices.UnlockAchievement(EM_GameServicesConstants.Achievement_Time_Keeper);
+        }
+        else
+        {
+            achievementsAfterInit.Add(CompleteTimeKeeper);
+        }
+    }
 
     private void CompleteVeteran()
     {

@@ -79,6 +79,10 @@ public class SurvivalModeHandler : MonoBehaviour
     public void AddTime()
     {
         timeLeft += secondsToAdd;
+        if (timeLeft >= 240)
+        {
+            ClassicGameManager.instance.CompleteTimeKeeper();
+        }
     }
     private void Update()
     {

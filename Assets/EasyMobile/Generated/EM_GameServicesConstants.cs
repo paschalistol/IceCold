@@ -8,18 +8,19 @@ namespace EasyMobile
 {
 	public static class EM_GameServicesConstants
 	{
-		public const string Leaderboard_Survival_High_Score = "Survival High Score";
+		public const string Achievement_Time_Keeper = "Time Keeper";
 		public const string Leaderboard_Classic_Personal_Best = "Classic Personal Best";
-		public const string Achievement_Ghost = "Ghost";
-		public const string Achievement_Sprinter = "Sprinter";
 		public const string Achievement_Survivor = "Survivor";
-		public const string Achievement_Finisher = "Finisher";
-		public const string Achievement_Veteran = "Veteran";
-		public const string Achievement_Resurrector = "Resurrector";
-		public const string Achievement_Aficionado = "Aficionado";
-		public const string Achievement_Marathon_Runner = "Marathon Runner";
+		public const string Achievement_Ghost = "Ghost";
 		public const string Achievement_Immortal = "Immortal";
+		public const string Achievement_Sprinter = "Sprinter";
+		public const string Achievement_Finisher = "Finisher";
+		public const string Achievement_Aficionado = "Aficionado";
+		public const string Achievement_Resurrector = "Resurrector";
 		public const string Achievement_Collector = "Collector";
+		public const string Leaderboard_Survival_High_Score = "Survival High Score";
+		public const string Achievement_Veteran = "Veteran";
+		public const string Achievement_Marathon_Runner = "Marathon Runner";
 
 	}
 }
