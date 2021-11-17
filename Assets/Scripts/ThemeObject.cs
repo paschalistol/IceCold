@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using EasyMobile;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +11,8 @@ public class ThemeObject : MonoBehaviour
     public ChangeTheme changeTheme;
     private Theme theme;
     public bool Available { get; private set; } = true;
-
+    [SerializeField]private Image image;
+    [SerializeField]private Button button;
 
     public void ChangeThemeClick()
     {
@@ -18,14 +21,14 @@ public class ThemeObject : MonoBehaviour
 
     public void ChangeButtonColor()
     {
-        GetComponent<Image>().color = GetComponent<Button>().colors.selectedColor;
+        image.color = Available ? button.colors.selectedColor : button.colors.highlightedColor;
     }
 
     public void SetUnSelected()
     {
         if (Available)
         {
-            GetComponent<Image>().color = Color.white;
+            image.color = Color.white;
         }
         else
         {
@@ -36,7 +39,7 @@ public class ThemeObject : MonoBehaviour
     public void NotAvailable()
     {
         Available = false;
-        GetComponent<Image>().color = GetComponent<Button>().colors.disabledColor;
+        image.color = button.colors.disabledColor;
     }
 
     public void SetTheme(Theme theme)

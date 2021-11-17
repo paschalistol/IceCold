@@ -12,16 +12,17 @@ public class ThemeManager : MonoBehaviour
     private string startingThemeName;
     [SerializeField] private GameObject parent;
     [SerializeField] private GameObject themePrefab;
-    
-    [Header("Theme Pop Up")] 
-    [SerializeField] private GameObject themePopUp;
+
+    [Header("Theme Pop Up")] [SerializeField]
+    private GameObject themePopUp;
+
     [SerializeField] private GameObject buyButton;
     [SerializeField] private TMP_Text themePopUpCloseButton;
     [SerializeField] private TMP_Text themePopUpText;
     [SerializeField] private string defaultUnlockText = "To unlock this theme you'll have to ";
-    
-    [Header("Materials and Sprites")] 
-    [SerializeField] private Image classicScreen;
+
+    [Header("Materials and Sprites")] [SerializeField]
+    private Image classicScreen;
 
     [SerializeField] private Material ball;
     [SerializeField] private Material bar;
@@ -29,11 +30,7 @@ public class ThemeManager : MonoBehaviour
     [SerializeField] private Material machineSecondary;
     private Dictionary<string, GameObject> buttons = new Dictionary<string, GameObject>();
     private Dictionary<string, ThemeObject> themeObjects = new Dictionary<string, ThemeObject>();
-    public Theme ActiveTheme
-    {
-        get;
-        private set;
-    }
+    public Theme ActiveTheme { get; private set; }
 
     private void Awake()
     {
@@ -42,7 +39,7 @@ public class ThemeManager : MonoBehaviour
 
     private void Start()
     {
-        foreach(Theme theme in themes)
+        foreach (Theme theme in themes)
         {
             GameObject themeInstance = Instantiate(themePrefab, parent.transform);
             themeInstance.transform.GetChild(0).GetComponent<Image>().sprite = theme.platform;
@@ -57,13 +54,15 @@ public class ThemeManager : MonoBehaviour
                 // themeInstance.GetComponent<Button>().interactable = false;
                 themeObject.NotAvailable();
             }
-            else if (theme.name.Equals(ActiveTheme.name))
+            if (theme.name.Equals(ActiveTheme.name))
             {
                 themeObject.ChangeButtonColor();
             }
         }
+
         ChangeChildrenOrder();
         GameServices.UserLoginSucceeded += UnlockThemes;
+        UnlockThemes();
         // ball.EnableKeyword("_EMISSION");
         // bar.EnableKeyword("_EMISSION");
     }
@@ -84,27 +83,36 @@ public class ThemeManager : MonoBehaviour
                     foreach (IAchievement achievement in achievements)
                     {
                         if (!achievement.completed) continue;
-                        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
+                        foreach (KeyValuePair<string, ThemeObject> theme in themeObjects)
                         {
                             if (theme.Value.GetTheme().achievementID.Equals(achievement.id))
                             {
                                 theme.Value.UnlockTheme();
+                                CheckSelected(theme.Value);
                             }
                         }
                     }
+
                     ChangeChildrenOrder();
                 }
                 else
                     Debug.Log("No achievements returned");
             });
         }
-  
     }
-    
+
+    private void CheckSelected(ThemeObject themeObject)
+    {
+        if (themeObject.name.Equals(startingThemeName))
+        {
+            themeObject.ChangeButtonColor();
+        }
+    }
+
 
     private void UnlockTheme(string themeName)
     {
-        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
+        foreach (KeyValuePair<string, ThemeObject> theme in themeObjects)
         {
             if (theme.Key.Equals(themeName))
             {
@@ -138,16 +146,16 @@ public class ThemeManager : MonoBehaviour
     private void ChangeTheme(string themeName, Theme theme)
     {
         ThemeObject tempObject = null;
-        foreach (KeyValuePair<string,ThemeObject> themeObject in themeObjects)
+        foreach (KeyValuePair<string, ThemeObject> themeObject in themeObjects)
         {
             if (themeObject.Key.Equals(themeName))
             {
                 tempObject = themeObject.Value;
             }
         }
-            if (tempObject != null)
-            {
-                
+
+        if (tempObject != null)
+        {
             if (tempObject.gameObject.name.Equals(themeName) && tempObject.Available)
             {
                 RemoveOldSelected();
@@ -160,7 +168,7 @@ public class ThemeManager : MonoBehaviour
             {
                 ShowLockedPopUp(theme.themeReasonLocked, theme);
             }
-            }
+        }
     }
 
     private void ShowLockedPopUp(Theme.ThemeReasonLocked tempThemeThemeReasonLocked, Theme tempTheme)
@@ -183,7 +191,7 @@ public class ThemeManager : MonoBehaviour
 
     private void ChangeButtonColor(string themeName)
     {
-        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
+        foreach (KeyValuePair<string, ThemeObject> theme in themeObjects)
         {
             if (theme.Key.Equals(themeName))
             {
@@ -194,7 +202,7 @@ public class ThemeManager : MonoBehaviour
 
     private void RemoveOldSelected()
     {
-        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
+        foreach (KeyValuePair<string, ThemeObject> theme in themeObjects)
         {
             if (theme.Key.Equals(ActiveTheme.name))
             {
@@ -206,7 +214,7 @@ public class ThemeManager : MonoBehaviour
     private void ChangeChildrenOrder()
     {
         int currentSiblingIndex = 0;
-        foreach (KeyValuePair<string,ThemeObject> theme in themeObjects)
+        foreach (KeyValuePair<string, ThemeObject> theme in themeObjects)
         {
             if (theme.Value.Available)
             {

@@ -25850,7 +25850,7 @@ MonoBehaviour:
   livesScreen: {fileID: 782796680}
   lives: 3
   survivalLives: 2
-  waitTime: 6
+  waitTime: 3
   player: {fileID: 170545173}
   masterMixer: {fileID: 24100000, guid: 52d3727f0afddb944bf1679805507699, type: 2}
   secondChanceLives: 2
@@ -31677,7 +31677,6 @@ GameObject:
   - component: {fileID: 1947128218}
   - component: {fileID: 1947128217}
   - component: {fileID: 1947128219}
-  - component: {fileID: 1947128220}
   m_Layer: 0
   m_Name: MusicPlayer
   m_TagString: Untagged
@@ -31811,18 +31810,6 @@ MonoBehaviour:
   musicMixer: {fileID: 8152120637218334414, guid: c82bca262fdf472419239f68808ea4df, type: 2}
   fadeInSnapshot: {fileID: 3043517574987129898, guid: c82bca262fdf472419239f68808ea4df, type: 2}
   audioSource: {fileID: 1947128217}
---- !u!114 &1947128220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947128216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c0071f3bec97f43b4c24d32d4ac6b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1963083488
 GameObject:
   m_ObjectHideFlags: 0

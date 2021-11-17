@@ -97,14 +97,14 @@ public class HoleGeneratorSurvival : MonoBehaviour
             // CountPowerUps();
         }
     }
-    private int totalPowerUps = 0;
-    private void CountPowerUps()
-    {
-        totalPowerUps++;
-        Debug.Log(totalPowerUps);
-    }
+    // private int totalPowerUps = 0;
+    // private void CountPowerUps()
+    // {
+    //     totalPowerUps++;
+    //     Debug.Log(totalPowerUps);
+    // }
 
-    private int totalFromCoins = 0;
+    // private int totalFromCoins = 0;
     private void PutExtraPointsCoin()
     {
         survivalPool.GetFromPool(PoolObject.EXTRA_POINTS, GetRandomPosition()).GetComponent<ExtraPointsPowerUp>().SetExtraPoints((int)Mathf.Ceil(Math.Abs(transform.position.y/2)));

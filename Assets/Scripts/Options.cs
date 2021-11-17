@@ -69,7 +69,6 @@ public class Options : MonoBehaviour
     }
     IEnumerator FadeInLogo()
     {
-        SceneFadeHandler.instance.SceneReset();
         logo.gameObject.SetActive(true);
         Image color = logo;
         Color tempColor = color.color;
@@ -145,11 +144,9 @@ public class Options : MonoBehaviour
     public void ReloadScene()
     {
         StartCoroutine(FadeInAndReloadScene());
-        if (SceneFadeHandler.instance.GetIconActivated())
-        {
-            logo.gameObject.SetActive(true);
-            StartCoroutine(FadeInLogo());
-        }
+
+        logo.gameObject.SetActive(true);
+        StartCoroutine(FadeInLogo());
     }
 
     public void ShowLeaderboard()

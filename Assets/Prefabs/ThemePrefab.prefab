@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8148993, g: 0.8301887, b: 0.6, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9764706, g: 1, b: 0.63529414, a: 1}
     m_DisabledColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
@@ -221,3 +221,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4cf22d5c68fe2488205e9ab3b58715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 6201909804157670845}
+  button: {fileID: 8941768123048933246}
